@@ -19,13 +19,17 @@ listaDados = [
 
 planilha = Planilha()
 
-@app.route("/teste", methods=["GET"])
-def get():
-    return jsonify(listaDados)
 
 @app.route("/update", methods=["GET"])
 def update():
     return jsonify({"data": planilha.execute(planilha.atualizarTabela)})
+
+
+
+
+@app.route("/teste", methods=["GET"])
+def get():
+    return jsonify(listaDados)
 
 @app.route("/pega/<int:id>", methods=["GET"])
 def getById(id):

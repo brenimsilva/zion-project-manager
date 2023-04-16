@@ -65,16 +65,17 @@ class Planilha:
     def atualizarTabela(self, values, sheet):
         print(values)
         listaFinal = []
-        floorPrices = []
+        nft_redes = []
         for index, row in enumerate(values):
             nft = row[0]
             rede = row[2]
             celula = f"NFT_FP!B{index+1}"
-            valor = self.request.getFloorPrice(nft, rede)
-            print(nft, " => ", rede, " => ", valor)
+            nft_redes.append({"symbol": nft, "rede": rede})
+            # valor = self.request.getFloorPrice(nft, rede)
+            print(nft, " => ", rede)
             print("=================")
-            listaFinal.append([valor])
         
-        print(listaFinal)
+        print(nft_redes)
+        listaFinal = self.request.getArrayFloorPrices(nft_redes)
         self.__escreverValor(listaFinal, f"NFT_FP!B1", sheet)
         return values
