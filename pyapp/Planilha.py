@@ -26,15 +26,10 @@ class Planilha:
 
         self.SAMPLE_RANGE_NAME = f"{self.SHEET_NAME}!{self.CELL_START_INTERVAL}{':' + self.CELL_END_INTERVAL}"
         self.SAMPLE_SPREADSHEET_ID = self.SHEET_ID
-        
-    def execute(self, method):
-        """Shows basic usage of the Sheets API.
-        Prints values from a sample spreadsheet.
-        """
+
+
+        #INICIALIZANDO PLANILHA
         creds = None
-        # The file token.json stores the user's access and refresh tokens, and is
-        # created automatically when the authorization flow completes for the first
-        # time.
         if os.path.exists('token.json'):
             creds = Credentials.from_authorized_user_file('token.json', self.SCOPES)
         # If there are no (valid) credentials available, let the user log in.
@@ -49,37 +44,32 @@ class Planilha:
             with open('token.json', 'w') as token:
                 token.write(creds.to_json())
 
-        try:
-            service = build('sheets', 'v4', credentials=creds)
+        service = build('sheets', 'v4', credentials=creds)
+        self.sheet = service.spreadsheets()
+        
+    def execute(self, method):
+            values = self.__getSheetValues(f"{self.SAMPLE_RANGE_NAME}")
+            return method(values, self.SHEET_NAME)
 
-            # Call the Sheets API
-            sheet = service.spreadsheets()
-            result = sheet.values().get(spreadsheetId=self.SAMPLE_SPREADSHEET_ID,
-                                        range=self.SAMPLE_RANGE_NAME).execute()
-            values = result.get('values', [])
-
-            return method(values, sheet)
-
-        except HttpError as err:
-            print(err)
-
-    def __escreverValor(self, valor, celula, sheet):
-        # valor_final = [[valor]]
-        sheet.values().update(spreadsheetId=self.SAMPLE_SPREADSHEET_ID, range=celula,
+    def __escreverValor(self, valor, celula):
+        self.sheet.values().update(spreadsheetId=self.SAMPLE_SPREADSHEET_ID, range=celula,
                             valueInputOption="USER_ENTERED", body={'values': valor}).execute()
+
+    def __getSheetValues(self, sheet_range):
+        result = self.sheet.values().get(spreadsheetId=self.SAMPLE_SPREADSHEET_ID,
+                                    range=sheet_range).execute()
+        values = result.get('values', [])
+        return values
 
     def atualizarTabela(self, values, sheet):
         print(values)
         listaFinal = []
         nft_redes = []
-        listaResponse = []
         
         for index, row in enumerate(values):
             nft = row[0]
             rede = row[2]
-            celula = f"NFT_FP!B{index+1}"
             nft_redes.append({"symbol": nft, "rede": rede, "index": index})
-            # valor = self.request.getFloorPrice(nft, rede)
         
         listaResponse = self.request.getArrayFloorPrices(nft_redes)
         sorted_nft_list = sorted(listaResponse, key=lambda x: x["index"])
@@ -94,5 +84,10 @@ class Planilha:
             listaFinal.append([nft['value']])
         
         write_cell = f"{self.SHEET_NAME}!{self.CELL_TO_WRITE}"
-        self.__escreverValor(listaFinal, write_cell, sheet)
+        self.__escreverValor(listaFinal, write_cell)
         return values
+
+    def convertCryptoToUsd(self, crypto):
+        cryptoToUsd = self.request.getCryptoUsdPrice(crypto)['usd']
+        return {"value": cryptoToUsd}
+

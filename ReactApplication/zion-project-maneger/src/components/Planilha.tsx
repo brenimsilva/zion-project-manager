@@ -1,28 +1,27 @@
 import React, { useState } from "react";
+import PlanilhaService from "../services/PlanilhaService";
+
+export interface IMessage {
+  message: string;
+  error: string;
+}
 
 export default function Planilha() {
-  function getErrorMessage(error: unknown) {
-    if (error instanceof Error) return error.message;
-    return String(error);
-  }
-  const [error, setError] = useState<string>("");
+  const [message, setMessage] = useState<IMessage>({ message: "", error: "" });
   const [data, setData] = useState<Array<Object> | null>();
-  async function updateTabela() {
-    try {
-      const response = await fetch("http://localhost:5000/update");
-      const data = await response.json();
-      setData(data);
-      setError("");
-    } catch {
-      setError("Falhou ao executar alterações na planilha");
-      setData(null);
-    }
+
+  function updateTabela() {
+    PlanilhaService.updateTabela().then((response) => {
+      setMessage({ message: response.message, error: response.error });
+      setData(response.data);
+    });
   }
+
   return (
     <div className="App">
-      <h5 style={{ color: "red" }}>{error}</h5>
+      <h5 style={{ color: "red" }}>{message.error}</h5>
       <button onClick={updateTabela}>Update Tabela</button>
-      <h5>{JSON.stringify(data)}</h5>
+      <h5 style={{ color: "green" }}>{message.message}</h5>
     </div>
   );
 }

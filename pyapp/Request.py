@@ -60,3 +60,11 @@ class Request:
                 results.append(result)
         self.cm.c_log("Retornando os resultados de getArrayFloorPrices")
         return results
+
+    def getCryptoUsdPrice(self, crypto):
+        self.cm.c_log(f"Pegando preço de {crypto}")
+        headers = {}
+        payload = {}
+        url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto}&vs_currencies=usd"
+        response = requests.request("GET", url, headers=headers, data=payload)
+        return response.json()[crypto]
