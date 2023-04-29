@@ -5,21 +5,27 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from Request import Request
-import requests
 import os.path
-import threading
-import time
-
+from dotenv import load_dotenv
+from termcolor import colored
+from CustomMessage import CustomMessage
 
 class Planilha:
     def __init__(self) -> None:
+        load_dotenv()
+        self.cm = CustomMessage()
         self.request = Request()
         self.SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-        self.SAMPLE_RANGE_NAME = 'NFT_FP!A1:C400'
-        
-        #ATUALIZAR CAMPO
-        self.SAMPLE_SPREADSHEET_ID = '1OoBGMGlGgnHg7zJEO7N302Yfjjt6k7ZoqEjgA6x-IWo'
 
+        #ATUALIZAR CAMPO NO ARQUIVO .EVN
+        self.SHEET_NAME = os.environ.get("SHEET_NAME")
+        self.SHEET_ID = os.environ.get("SHEET_ID")
+        self.CELL_START_INTERVAL = os.environ.get("CELL_START_INTERVAL")
+        self.CELL_END_INTERVAL = os.environ.get("CELL_END_INTERVAL")
+        self.CELL_TO_WRITE = os.environ.get("CELL_TO_WRITE")
+
+        self.SAMPLE_RANGE_NAME = f"{self.SHEET_NAME}!{self.CELL_START_INTERVAL}{':' + self.CELL_END_INTERVAL}"
+        self.SAMPLE_SPREADSHEET_ID = self.SHEET_ID
         
     def execute(self, method):
         """Shows basic usage of the Sheets API.
@@ -66,16 +72,27 @@ class Planilha:
         print(values)
         listaFinal = []
         nft_redes = []
+        listaResponse = []
+        
         for index, row in enumerate(values):
             nft = row[0]
             rede = row[2]
             celula = f"NFT_FP!B{index+1}"
-            nft_redes.append({"symbol": nft, "rede": rede})
+            nft_redes.append({"symbol": nft, "rede": rede, "index": index})
             # valor = self.request.getFloorPrice(nft, rede)
-            print(nft, " => ", rede)
-            print("=================")
         
-        print(nft_redes)
-        listaFinal = self.request.getArrayFloorPrices(nft_redes)
-        self.__escreverValor(listaFinal, f"NFT_FP!B1", sheet)
+        listaResponse = self.request.getArrayFloorPrices(nft_redes)
+        sorted_nft_list = sorted(listaResponse, key=lambda x: x["index"])
+
+        self.cm.c_log("Iniciando processo de ordenacao dos nfts no array")
+
+        for nft in sorted_nft_list:
+            value = colored(nft['value'], "green")
+            msg = f"{nft['symbol']} => {nft['rede']} => {value}"
+            print(msg)
+            print("\n")
+            listaFinal.append([nft['value']])
+        
+        write_cell = f"{self.SHEET_NAME}!{self.CELL_TO_WRITE}"
+        self.__escreverValor(listaFinal, write_cell, sheet)
         return values

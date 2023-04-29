@@ -1,11 +1,11 @@
 import requests
 from typing import List
-import asyncio
-import aiohttp
 import concurrent.futures
+from CustomMessage import CustomMessage
 
 class Request:
     def __init__(self) -> None:
+        self.cm = CustomMessage()
         pass
 
     def getFloorPrice(self, nft):
@@ -40,10 +40,13 @@ class Request:
             data = float(response.json()["collection"]["stats"]["floor_price"])
         else: 
             data = float(response.json()['floorPrice']) / divisaoPor
+        
+        retorno = {"symbol": nft['symbol'], "rede": nft['rede'], "value": data, "index": nft['index'], "url": url}
 
-        return data
+        return retorno
 
     def getArrayFloorPrices(self, nft_list: List[object]) -> List[object]:
+        self.cm.c_log("Pegando floor prices em concurrency")
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = {executor.submit(self.getFloorPrice, nft): nft for nft in nft_list}
         results = []
@@ -54,5 +57,6 @@ class Request:
             except Exception as exc:
                 print(exc)
             else:
-                results.append([result])
+                results.append(result)
+        self.cm.c_log("Retornando os resultados de getArrayFloorPrices")
         return results
