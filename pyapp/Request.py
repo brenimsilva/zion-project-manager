@@ -62,9 +62,32 @@ class Request:
         return results
 
     def getCryptoUsdPrice(self, crypto):
-        self.cm.c_log(f"Pegando preço de {crypto}")
-        headers = {}
-        payload = {}
-        url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto}&vs_currencies=usd"
-        response = requests.request("GET", url, headers=headers, data=payload)
-        return response.json()[crypto]
+        retorno = {}
+        try:
+            self.cm.c_log(f"Pegando preço de {crypto['symbol']}")
+            headers = {}
+            payload = {}
+            url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto['symbol']}&vs_currencies=usd"
+            response = requests.request("GET", url, headers=headers, data=payload)
+            data = response.json()
+            retorno = {"index": crypto['index'], "symbol": crypto['symbol'], "value": data[crypto['symbol']]['usd']}
+        except:
+            retorno = {"index": crypto["index"], "symbol": crypto["symbol"], "value": "NOT FOUND"}
+
+        return retorno
+
+    def getCryptoUsdPrices(self, cryptos: List[object]) -> List[object]:
+        self.cm.c_log("Escrevendo os preços de todas as cryptos da tabela")
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            futures = {executor.submit(self.getCryptoUsdPrice, crypto): crypto for crypto in cryptos}
+        results = []
+        for future in concurrent.futures.as_completed(futures):
+            url = futures[future]
+            try:
+                result = future.result()
+            except Exception as exc:
+                print(exc)
+            else:
+                results.append(result)
+        self.cm.c_log("Retornando os resultados de getCryptoUsdPrices")
+        return results

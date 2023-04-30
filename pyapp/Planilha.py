@@ -46,10 +46,6 @@ class Planilha:
 
         service = build('sheets', 'v4', credentials=creds)
         self.sheet = service.spreadsheets()
-        
-    def execute(self, method):
-            values = self.__getSheetValues(f"{self.SAMPLE_RANGE_NAME}")
-            return method(values, self.SHEET_NAME)
 
     def __escreverValor(self, valor, celula):
         self.sheet.values().update(spreadsheetId=self.SAMPLE_SPREADSHEET_ID, range=celula,
@@ -61,8 +57,8 @@ class Planilha:
         values = result.get('values', [])
         return values
 
-    def atualizarTabela(self, values, sheet):
-        print(values)
+    def updateNftValues(self):
+        values = self.__getSheetValues(f"{self.SAMPLE_RANGE_NAME}")
         listaFinal = []
         nft_redes = []
         
@@ -88,6 +84,28 @@ class Planilha:
         return values
 
     def convertCryptoToUsd(self, crypto):
-        cryptoToUsd = self.request.getCryptoUsdPrice(crypto)['usd']
-        return {"value": cryptoToUsd}
+        cryptoToUsd = self.request.getCryptoUsdPrice({"index": 0, "symbol": crypto})
+        return {"symbol": cryptoToUsd['symbol'], "value": cryptoToUsd["value"]}
+
+    def updateCryptoValues(self):
+        sheet_name = os.environ.get("CRYPTO_SHEET_NAME")
+        cell_start_interval = os.environ.get("CRYPTO_CELL_START_INTERVAL")
+        cell_end_interval = os.environ.get("CRYPTO_CELL_END_INTERVAL")
+        self.SAMPLE_RANGE_NAME=f"{sheet_name}!{cell_start_interval}:{cell_end_interval}"
+        values = self.__getSheetValues(f"{self.SAMPLE_RANGE_NAME}")
+
+        listCryptoObjects = []
+        for index, cArr in enumerate(values):
+            listCryptoObjects.append({"index": index, "symbol": cArr[2]})
+
+        retorno = self.request.getCryptoUsdPrices(listCryptoObjects)
+        sorted_crypto_list = sorted(retorno, key=lambda x: x["index"])
+        listToWrite = []
+        for crypto in sorted_crypto_list:
+            listToWrite.append([crypto["value"]])
+
+        print(listToWrite)
+        range = f"{sheet_name}!{os.environ.get('CRYPTO_CELL_TO_WRITE')}"
+        self.__escreverValor(listToWrite, range)
+        return sorted_crypto_list
 

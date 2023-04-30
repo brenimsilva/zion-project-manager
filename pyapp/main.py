@@ -6,12 +6,16 @@ CORS(app)
 
 planilha = Planilha()
 
-@app.route("/update", methods=["GET"])
-def update():
-    return jsonify({"data": planilha.execute(planilha.atualizarTabela)})
+@app.route("/update-nft-values", methods=["GET"])
+def updateNftValues():
+    return jsonify({"data": planilha.updateNftValues()})
 
 @app.route("/crypto-to-usd/<crypto>", methods=["GET"])
 def cryptoToUsd(crypto):
     return planilha.convertCryptoToUsd(crypto)
+
+@app.route("/update-crypto-values", methods=["GET"])
+def updateCryptoValues():
+    return jsonify({"data": planilha.updateCryptoValues()})
         
 app.run(port=5000, host='localhost', debug=True)
