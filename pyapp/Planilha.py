@@ -66,7 +66,8 @@ class Planilha:
             nft = row[0]
             rede = row[2]
             nft_redes.append({"symbol": nft, "rede": rede, "index": index})
-        
+
+
         listaResponse = self.request.getArrayFloorPrices(nft_redes)
         sorted_nft_list = sorted(listaResponse, key=lambda x: x["index"])
 
