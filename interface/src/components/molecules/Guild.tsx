@@ -9,9 +9,8 @@ export interface IGuildProps {
 
 export default function Guild({ id, imageSrc, name }: IGuildProps) {
   const [selected, setSelected] = useState<boolean>(false);
-  const { addSelectedGuildId, selectedGuildIds } = useContext(
-    guildContext
-  ) as IGuildContext;
+  const { addSelectedGuildId, selectedGuildIds, removeSelectedGuildId } =
+    useContext(guildContext) as IGuildContext;
 
   useEffect(() => {
     if (selectedGuildIds.includes(id)) {
@@ -27,7 +26,7 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
         selected ? "bg-cyan-500 hover:bg-cyan-600" : ""
       }`}
       onClick={() => {
-        addSelectedGuildId(id);
+        selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
       }}
     >
       <div className="grid grid-cols-4">
