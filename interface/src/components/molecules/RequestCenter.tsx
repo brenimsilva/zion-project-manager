@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlanilhaService from "@/services/PlanilhaService";
 import Message from "./Message";
 import APIButton from "../atoms/APIButton";
-import DiscordService from "@/services/DiscordService";
+import DiscordService, { IDiscordUser } from "@/services/DiscordService";
+import { useRouter } from "next/router";
+import UserGuilds from "./UserGuilds";
 
 export interface IMessage {
   message: string;
@@ -11,35 +13,59 @@ export interface IMessage {
 
 export default function RequestCenter() {
   const [message, setMessage] = useState<IMessage>({ message: "", error: "" });
-  const [data, setData] = useState<Array<Object> | null>();
+  const [connected, setConnected] = useState<boolean>(false);
+  const [discordUser, setDiscordUser] = useState<IDiscordUser>();
+  const router = useRouter();
+  const { code } = router.query;
+
+  function discConnection() {}
 
   function updateNFTValues() {
     PlanilhaService.updateNFTValues().then((response) => {
       setMessage({ message: response.message, error: response.error });
-      setData(response.data);
     });
   }
 
   function updateCryptoValues() {}
 
   function getDiscordUserInfo() {
-    DiscordService.getUserInfo();
+    DiscordService.getUserInfo(code as string).then((user) => {
+      setDiscordUser(user);
+    });
+  }
+
+  useEffect(() => {
+    if (code) {
+      DiscordService.authenticate(code as string).then((auth: boolean) => {
+        setConnected(auth);
+      });
+    }
+  }, [code]);
+
+  function connect() {
+    window.location.href =
+      "https://discord.com/api/oauth2/authorize?client_id=1102067081115091055&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&response_type=code&scope=identify%20guilds%20guilds.join";
   }
 
   return (
     <div className="">
-      <div className="msg-box w-64">
+      <div className="msg-box">
         <Message message={message.message} error={message.error} />
       </div>
-      <APIButton pushRequestData={updateNFTValues} text="Update NFT Values" />
-      <APIButton
-        pushRequestData={updateCryptoValues}
-        text="Update Crypto Values"
-      />
-      <APIButton
-        pushRequestData={getDiscordUserInfo}
-        text="Get Discord User Info"
-      />
+      <div className="grid grid-cols-2">
+        <APIButton pushRequestData={updateNFTValues} text="Update NFT Values" />
+        <APIButton
+          pushRequestData={updateCryptoValues}
+          text="Update Crypto Values"
+        />
+        <APIButton
+          disabled={!connected}
+          pushRequestData={getDiscordUserInfo}
+          text="Get Discord User Info"
+        />
+        <APIButton pushRequestData={connect} text="Discord Connect" />
+      </div>
+      {discordUser && <UserGuilds guilds={discordUser.guilds} />}
     </div>
   );
 }
