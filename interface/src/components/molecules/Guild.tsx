@@ -21,9 +21,8 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
   }, [selectedGuildIds]);
   return (
     <div
-      key={id}
       className={`block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ${
-        selected ? "bg-cyan-500 hover:bg-cyan-600" : ""
+        selected ? "bg-cyan-400 hover:bg-cyan-500" : ""
       }`}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);

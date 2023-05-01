@@ -7,12 +7,24 @@ export interface IUserGuildsProps {
 }
 export default function UserGuilds({ guilds }: IUserGuildsProps) {
   return (
-    <div className="grid grid-cols-2 gap-5">
-      {guilds.map((guild) => {
-        return (
-          <Guild id={guild.id} imageSrc={guild.image.src} name={guild.name} />
-        );
-      })}
+    <div className="">
+      <h5 className="p-5">
+        <strong>
+          Servidores: <span className="text-green-500">{guilds.length}</span>
+        </strong>
+      </h5>
+      <div className="grid grid-cols-2 gap-5">
+        {guilds.map((guild) => {
+          return (
+            <Guild
+              key={guild.id}
+              id={guild.id}
+              imageSrc={guild.image.src}
+              name={guild.name}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
