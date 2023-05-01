@@ -15,6 +15,7 @@ export interface IDiscordGuild {
     name: string;
     owner: boolean;
     image: HTMLImageElement;
+    joined_at?: Date;
 }
 
 export interface IDiscordUser {
@@ -22,6 +23,10 @@ export interface IDiscordUser {
     id: string;
     username: string;
     guilds: Array<IDiscordGuild>
+}
+
+export interface IGuildMembersInfo {
+    
 }
 
 export default class DiscordService {
@@ -54,9 +59,13 @@ export default class DiscordService {
         }
     }
 
+    private async getGuildInfo(guild_id: string) {
+
+    }
+
     static async getUserInfo(code: string): Promise<IDiscordUser> {
         try {
-            const userGuilds = await (await axios.get(`${this.url}users/@me/guilds`, {
+            const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds`, {
                 headers: {
                     Authorization: `Bearer ${this.ACCESS_TOKEN}`
                 }
@@ -65,6 +74,24 @@ export default class DiscordService {
                     image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
                 return {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image}
             })
+
+            
+            userGuilds.forEach((guild) => {
+                this.getGuildMemberInfo(guild.id).then((response) => {
+                    console.log({...guild, joined_at: response});
+                })
+                
+            });
+
+            // Promise.all(promises).then((responses) => {
+            //     console.log(responses);
+            //     const result = userGuilds.map((guild, index) => {
+            //         return {...guild, joined_at: responses[index]}
+            //     })
+            //     console.log(result);
+            // })
+
+            
             
     
             const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
@@ -78,6 +105,23 @@ export default class DiscordService {
         }
         catch {
             return {avatar: "", guilds: [], id: "", username: ""}
+        }
+    }
+
+    static async getGuildMemberInfo(guild_id: string): Promise<Date> {
+        const url = `${this.url}users/@me/guilds/${guild_id}/member`
+        try {
+            const {joined_at} = await (await axios.get(url, {
+                headers: {
+                    Authorization: `Bearer ${this.ACCESS_TOKEN}`
+                }
+            })).data
+
+            return new Date(joined_at)
+
+        }
+        catch {
+            return null
         }
     }
 }
