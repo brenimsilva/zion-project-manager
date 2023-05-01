@@ -26,7 +26,7 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
         selected ? "bg-cyan-500 hover:bg-cyan-600" : ""
       }`}
       onClick={() => {
-        selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
+        !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
       }}
     >
       <div className="grid grid-cols-4">
