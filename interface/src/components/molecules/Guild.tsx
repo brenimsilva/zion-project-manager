@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { IDiscordGuild } from "@/services/DiscordService";
+import React, { useContext, useEffect, useState } from "react";
+import { IGuildContext, guildContext } from "@/store/guild-provider";
 
 export interface IGuildProps {
   id: string;
@@ -9,6 +9,17 @@ export interface IGuildProps {
 
 export default function Guild({ id, imageSrc, name }: IGuildProps) {
   const [selected, setSelected] = useState<boolean>(false);
+  const { addSelectedGuildId, selectedGuildIds } = useContext(
+    guildContext
+  ) as IGuildContext;
+
+  useEffect(() => {
+    if (selectedGuildIds.includes(id)) {
+      setSelected(true);
+    } else {
+      setSelected(false);
+    }
+  }, [selectedGuildIds]);
   return (
     <div
       key={id}
@@ -16,7 +27,7 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
         selected ? "bg-cyan-500 hover:bg-cyan-600" : ""
       }`}
       onClick={() => {
-        setSelected(!selected);
+        addSelectedGuildId(id);
       }}
     >
       <div className="grid grid-cols-4">
