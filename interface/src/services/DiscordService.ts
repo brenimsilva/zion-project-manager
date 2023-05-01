@@ -38,7 +38,7 @@ export default class DiscordService {
                 client_secret: "61cmsrZc00EJD1s59azSmwXI1odOSZfz", 
                 grant_type: "authorization_code", 
                 code: code, 
-                redirect_uri: `${Config.APP_HOST}dashboard`, 
+                redirect_uri: `http://${Config.APP_HOST}:${Config.APP_PORT}/dashboard`, 
             })
             const headers = {
                 'Content-Type':  'application/x-www-form-urlencoded',
