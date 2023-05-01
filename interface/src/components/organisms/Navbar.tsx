@@ -1,5 +1,6 @@
 import React from "react";
 
+// require("dotenv").config();
 export default function Navbar() {
   return (
     <div className="nav-bar">

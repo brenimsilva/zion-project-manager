@@ -1,3 +1,4 @@
+import Config from "@/Util/Config";
 import axios from "axios";
 
 export interface IDiscordAuth {
@@ -27,6 +28,7 @@ export default class DiscordService {
     static ACCESS_TOKEN = "";
     static url = "https://discord.com/api/"
     static cdn = "https://cdn.discordapp.com/"
+
     constructor(){}
 
     static async authenticate(code: string) {
@@ -36,7 +38,7 @@ export default class DiscordService {
                 client_secret: "61cmsrZc00EJD1s59azSmwXI1odOSZfz", 
                 grant_type: "authorization_code", 
                 code: code, 
-                redirect_uri: "http://localhost:3000/dashboard", 
+                redirect_uri: `${Config.APP_HOST}dashboard`, 
             })
             const headers = {
                 'Content-Type':  'application/x-www-form-urlencoded',

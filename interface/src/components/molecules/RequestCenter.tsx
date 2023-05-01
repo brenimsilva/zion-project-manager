@@ -5,6 +5,7 @@ import APIButton from "../atoms/APIButton";
 import DiscordService, { IDiscordUser } from "@/services/DiscordService";
 import { useRouter } from "next/router";
 import UserGuilds from "./UserGuilds";
+import Config from "@/Util/Config";
 
 export interface IMessage {
   message: string;
@@ -43,8 +44,8 @@ export default function RequestCenter() {
   }, [code]);
 
   function connect() {
-    window.location.href =
-      "https://discord.com/api/oauth2/authorize?client_id=1102067081115091055&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&response_type=code&scope=identify%20guilds%20guilds.join";
+    const url = `https://discord.com/api/oauth2/authorize?client_id=1102067081115091055&redirect_uri=http%3A%2F%2F${Config.APP_HOST}%3A${Config.APP_PORT}%2Fdashboard&response_type=code&scope=identify%20guilds.join%20guilds`;
+    window.location.href = url;
   }
 
   return (
