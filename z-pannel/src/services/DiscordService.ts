@@ -83,13 +83,13 @@ export default class DiscordService {
                 
             });
 
-            // Promise.all(promises).then((responses) => {
-            //     console.log(responses);
-            //     const result = userGuilds.map((guild, index) => {
-            //         return {...guild, joined_at: responses[index]}
-            //     })
-            //     console.log(result);
-            // })
+            //  Promise.all(promises).then((responses) => {
+            //      console.log(responses);
+            //      const result = userGuilds.map((guild, index) => {
+            //          return {...guild, joined_at: responses[index]}
+            //      })
+            //      console.log(result);
+            //  })
 
             
             

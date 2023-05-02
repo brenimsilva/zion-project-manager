@@ -13,7 +13,7 @@ export default function UserGuilds({ guilds }: IUserGuildsProps) {
           Servidores: <span className="text-green-500">{guilds.length}</span>
         </strong>
       </h5>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-4 gap-5">
         {guilds.map((guild) => {
           return (
             <Guild

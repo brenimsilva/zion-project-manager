@@ -56,7 +56,7 @@ export default function RequestCenter() {
       <div className="grid grid-cols-2">
         <APIButton pushRequestData={updateNFTValues} text="Update NFT Values" />
         <APIButton
-          pushRequestData={updateCryptoValues}
+          pushRequestData={() => PlanilhaService.updateCryptoValues()}
           text="Update Crypto Values"
         />
         <APIButton
