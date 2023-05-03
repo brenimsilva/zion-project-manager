@@ -29,8 +29,9 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/guild-user', 'DiscordController::get');
-$routes->post("/insert-user", 'DiscordController::insertUser');
+$routes->get('/user/(:num)', 'UserController::getById/$1');
+$routes->get('/user', 'UserController::getAll');
+$routes->post("/user", 'UserController::insert');
 
 /*
  * --------------------------------------------------------------------
