@@ -16,6 +16,7 @@ class DiscordController extends ResourceController
         header("Access-Control-Expose-Headers: Content-Length, X-JSON");
         header("Access-Control-Max-Age: 86400");
     }
+    
     public function get()
     {
         

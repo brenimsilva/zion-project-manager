@@ -107,4 +107,26 @@ export default class DiscordService {
             return null
         }
     }
+
+    static async getGuildPreview(guild_id: string): Promise<any> {
+        const url = `${this.url}guilds/${guild_id}`
+        try {
+            console.log("Teste");
+            console.log(`Bearer ${this.ACCESS_TOKEN}`);
+
+            const data = await (await axios.get(url, {
+                headers: {
+                    Authorization: `Bearer ${this.ACCESS_TOKEN}`
+                }
+            })).data
+            
+
+            const {joined_at} = await this.getGuildMemberInfo(guild_id);
+
+            return {...data, joined_at};
+        }
+        catch {
+            return null;
+        }
+    }
 }

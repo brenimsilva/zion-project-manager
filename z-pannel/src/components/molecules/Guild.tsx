@@ -27,7 +27,7 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
       }`}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
-        DiscordService.getGuildMemberInfo(id);
+        DiscordService.getGuildPreview(id);
       }}
     >
       <div className="grid grid-cols-4">
