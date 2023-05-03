@@ -66,11 +66,12 @@ export default class DiscordService {
 
     static async getUserInfo(code: string): Promise<IDiscordUser> {
         try {
-            const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds`, {
+            const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
                 headers: {
                     Authorization: `Bearer ${this.ACCESS_TOKEN}`
                 }
-            })).data.map((guild: IDiscordGuild): IDiscordGuild => {
+            })).data.map((guild: any): IDiscordGuild => {
+                console.log(guild);
                     const image = new Image();
                     image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
                 return {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image}
