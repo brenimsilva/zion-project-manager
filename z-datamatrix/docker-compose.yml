@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  z-db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=matrix
+      - MYSQL_USER=zion
+      - MYSQL_DATABASE=z-db
+      - MYSQL_PASSWORD=matrix
+    ports:
+      - '3306:3306'
+  z-backend:
+    image: docker.io/bitnami/codeigniter:4
+    ports:
+      - '8000:8000'
+    environment:
+      - CODEIGNITER_DATABASE_HOST=mysql
+      - CODEIGNITER_DATABASE_PORT_NUMBER=3306
+      - CODEIGNITER_DATABASE_USER=zion
+      - CODEIGNITER_DATABASE_NAME=z-db
+      - CODEIGNITER_DATABASE_PASSWORD=matrix
+    volumes:
+      - './my-project:/app'
+    depends_on:
+      - z-db

@@ -1,0 +1,35 @@
+{
+    "SPDXID": "SPDXRef-codeigniter",
+    "spdxVersion": "SPDX-2.3",
+    "creationInfo": {
+        "created": "2023-04-27T15:11:29.385Z",
+        "creators": [
+            "Organization: VMware, Inc."
+        ]
+    },
+    "name": "SPDX document for CodeIgniter 4.3.4",
+    "dataLicense": "CC0-1.0",
+    "documentDescribes": [
+        "SPDXRef-codeigniter"
+    ],
+    "documentNamespace": "codeigniter-4.3.4",
+    "packages": [
+        {
+            "SPDXID": "SPDXRef-codeigniter",
+            "name": "CodeIgniter",
+            "versionInfo": "4.3.4",
+            "downloadLocation": "https://github.com/codeigniter4/CodeIgniter4/archive/refs/tags/v4.3.4.tar.gz",
+            "licenseConcluded": "MIT",
+            "licenseDeclared": "MIT",
+            "filesAnalyzed": false,
+            "externalRefs": [
+                {
+                    "referenceCategory": "SECURITY",
+                    "referenceType": "cpe23Type",
+                    "referenceLocator": "cpe:2.3:*:codeigniter:codeigniter:4.3.4:*:*:*:*:*:*:*"
+                }
+            ]
+        }
+    ],
+    "files": []
+}
