@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IGuildContext, guildContext } from "@/store/guild-provider";
+import DiscordService from "@/services/DiscordService";
 
 export interface IGuildProps {
   id: string;
@@ -26,6 +27,7 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
       }`}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
+        DiscordService.getGuildMemberInfo(id);
       }}
     >
       <div className="grid grid-cols-4">

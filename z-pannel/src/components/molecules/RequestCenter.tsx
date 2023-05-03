@@ -6,6 +6,7 @@ import DiscordService, { IDiscordUser } from "@/services/DiscordService";
 import { useRouter } from "next/router";
 import UserGuilds from "./UserGuilds";
 import Config from "@/Util/Config";
+import ZDataMatrix from "@/services/ZDataMatrixService";
 
 export interface IMessage {
   message: string;
@@ -65,6 +66,17 @@ export default function RequestCenter() {
           text="Get Discord User Info"
         />
         <APIButton pushRequestData={connect} text="Discord Connect" />
+        <APIButton
+          text="INSERT"
+          pushRequestData={() =>
+            ZDataMatrix.insertUser({
+              id: "1",
+              avatar: "",
+              guilds: [],
+              username: "brenimsilva",
+            })
+          }
+        />
       </div>
       {discordUser && <UserGuilds guilds={discordUser.guilds} />}
     </div>

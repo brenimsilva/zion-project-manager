@@ -1,5 +1,6 @@
 import Config from "@/Util/Config";
 import axios from "axios";
+import ZDataMatrix from "./ZDataMatrixService";
 
 export interface IDiscordAuth {
     access_token: string;
@@ -75,25 +76,6 @@ export default class DiscordService {
                 return {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image}
             })
 
-            
-            userGuilds.forEach((guild) => {
-                this.getGuildMemberInfo(guild.id).then((response) => {
-                    console.log({...guild, joined_at: response});
-                })
-                
-            });
-
-            //  Promise.all(promises).then((responses) => {
-            //      console.log(responses);
-            //      const result = userGuilds.map((guild, index) => {
-            //          return {...guild, joined_at: responses[index]}
-            //      })
-            //      console.log(result);
-            //  })
-
-            
-            
-    
             const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
                 headers: {
                     Authorization: `Bearer ${this.ACCESS_TOKEN}`
@@ -101,6 +83,7 @@ export default class DiscordService {
             })).data
             
             const user: IDiscordUser = {id, username, avatar, guilds: userGuilds}
+            ZDataMatrix.insertUser({user_id: id, username: username});
             return user;
         }
         catch {
@@ -108,16 +91,16 @@ export default class DiscordService {
         }
     }
 
-    static async getGuildMemberInfo(guild_id: string): Promise<Date> {
+    static async getGuildMemberInfo(guild_id: string): Promise<any> {
         const url = `${this.url}users/@me/guilds/${guild_id}/member`
         try {
-            const {joined_at} = await (await axios.get(url, {
+            const data = await (await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${this.ACCESS_TOKEN}`
                 }
             })).data
 
-            return new Date(joined_at)
+            return data
 
         }
         catch {
