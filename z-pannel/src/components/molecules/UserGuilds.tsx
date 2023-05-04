@@ -37,6 +37,7 @@ export default function UserGuilds({ guilds }: IUserGuildsProps) {
               id={guild.id}
               imageSrc={guild.image.src}
               name={guild.name}
+              approximate_member_count={guild.approximate_member_count}
             />
           );
         })}

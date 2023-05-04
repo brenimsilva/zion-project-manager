@@ -16,6 +16,7 @@ export interface IDiscordGuild {
     name: string;
     owner: boolean;
     image: HTMLImageElement;
+    approximate_member_count: number;
     joined_at?: Date;
 }
 
@@ -64,33 +65,33 @@ export default class DiscordService {
 
     }
 
-    static async getUserInfo(code: string): Promise<IDiscordUser> {
-        try {
-            const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
-                headers: {
-                    Authorization: `Bearer ${this.ACCESS_TOKEN}`
-                }
-            })).data.map((guild: any): IDiscordGuild => {
-                console.log(guild);
-                    const image = new Image();
-                    image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
-                return {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image}
-            })
+    // static async getUserInfo(code: string): Promise<IDiscordUser> {
+    //     try {
+    //         const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
+    //             headers: {
+    //                 Authorization: `Bearer ${this.ACCESS_TOKEN}`
+    //             }
+    //         })).data.map((guild: any): IDiscordGuild => {
+    //             console.log(guild);
+    //                 const image = new Image();
+    //                 image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
+    //             return {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image}
+    //         })
 
-            const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
-                headers: {
-                    Authorization: `Bearer ${this.ACCESS_TOKEN}`
-                }
-            })).data
+    //         const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
+    //             headers: {
+    //                 Authorization: `Bearer ${this.ACCESS_TOKEN}`
+    //             }
+    //         })).data
             
-            const user: IDiscordUser = {id, username, avatar, guilds: userGuilds}
-            ZDataMatrix.insertUser({user_id: id, username: username});
-            return user;
-        }
-        catch {
-            return {avatar: "", guilds: [], id: "", username: ""}
-        }
-    }
+    //         const user: IDiscordUser = {id, username, avatar, guilds: userGuilds}
+    //         ZDataMatrix.insertUser({user_id: id, username: username});
+    //         return user;
+    //     }
+    //     catch {
+    //         return {avatar: "", guilds: [], id: "", username: ""}
+    //     }
+    // }
 
     static async getGuildMemberInfo(guild_id: string): Promise<any> {
         const url = `${this.url}users/@me/guilds/${guild_id}/member`

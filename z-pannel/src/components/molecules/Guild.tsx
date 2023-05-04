@@ -6,9 +6,10 @@ export interface IGuildProps {
   id: string;
   imageSrc: string;
   name: string;
+  approximate_member_count: number;
 }
 
-export default function Guild({ id, imageSrc, name }: IGuildProps) {
+export default function Guild({ id, imageSrc, name, approximate_member_count}: IGuildProps) {
   const [selected, setSelected] = useState<boolean>(false);
   const { addSelectedGuildId, selectedGuildIds, removeSelectedGuildId } =
     useContext(guildContext) as IGuildContext;
@@ -23,7 +24,7 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
   return (
     <div
       className={`block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ${
-        selected ? "bg-cyan-400 hover:bg-cyan-500" : ""
+        selected ? "bg-cyan-300 hover:bg-cyan-400" : ""
       }`}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
@@ -44,6 +45,9 @@ export default function Guild({ id, imageSrc, name }: IGuildProps) {
           <p>
             <strong>id: </strong>
             {id}
+          </p>
+          <p>
+            <strong>Members: </strong>{approximate_member_count}
           </p>
         </div>
       </div>

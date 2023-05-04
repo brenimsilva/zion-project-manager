@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import UserGuilds from "./UserGuilds";
 import Config from "@/Util/Config";
 import ZDataMatrix from "@/services/ZDataMatrixService";
+import GuildService from "@/services/GuildService";
 
 export interface IMessage {
   message: string;
@@ -31,7 +32,7 @@ export default function RequestCenter() {
   function updateCryptoValues() {}
 
   function getDiscordUserInfo() {
-    DiscordService.getUserInfo(code as string).then((user) => {
+    GuildService.getGuilds().then((user) => {
       setDiscordUser(user);
     });
   }
