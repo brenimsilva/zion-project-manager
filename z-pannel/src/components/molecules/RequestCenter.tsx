@@ -31,8 +31,6 @@ export default function RequestCenter() {
     });
   }
 
-  function updateCryptoValues() {}
-
   function getDiscordUserInfo() {
     GuildService.getGuilds().then((user) => {
       setDiscordUser(user);
