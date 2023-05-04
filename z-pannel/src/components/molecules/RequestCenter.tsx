@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import PlanilhaService from "@/services/PlanilhaService";
+import CyberSheetService from "@/services/cybersheet/CyberSheetService";
 import Message from "./Message";
 import APIButton from "../atoms/APIButton";
-import DiscordService, { IDiscordUser } from "@/services/DiscordService";
 import { useRouter } from "next/router";
 import UserGuilds from "./UserGuilds";
 import Config from "@/Util/Config";
-import ZDataMatrix from "@/services/ZDataMatrixService";
-import GuildService from "@/services/GuildService";
+import GuildService from "@/services/discord/GuildService";
 import { guildContext } from "@/store/guild-provider";
+import { IDiscordUser } from "@/interfaces/IDiscord";
+import DiscordService from "@/services/discord/DiscordService";
 
 export interface IMessage {
   message: string;
@@ -26,7 +26,7 @@ export default function RequestCenter() {
   function discConnection() {}
 
   function updateNFTValues() {
-    PlanilhaService.updateNFTValues().then((response) => {
+    CyberSheetService.updateNFTValues().then((response) => {
       setMessage({ message: response.message, error: response.error });
     });
   }
@@ -60,7 +60,7 @@ export default function RequestCenter() {
       <div className="grid grid-cols-2">
         <APIButton pushRequestData={updateNFTValues} text="Update NFT Values" />
         <APIButton
-          pushRequestData={() => PlanilhaService.updateCryptoValues()}
+          pushRequestData={() => CyberSheetService.updateCryptoValues()}
           text="Update Crypto Values"
         />
         <APIButton

@@ -1,10 +1,10 @@
 import axios from "axios";
-import DiscordService, { IDiscordGuild, IDiscordUser } from "./DiscordService";
+import DiscordService from "./DiscordService";
+import { IDiscordGuild, IDiscordUser } from "@/interfaces/IDiscord";
 
 export default class GuildService extends DiscordService {
     constructor() {
         super();
-
     }
 
     static async getGuilds(): Promise<IDiscordUser> {
@@ -16,7 +16,6 @@ export default class GuildService extends DiscordService {
                 const image = new Image();
                 image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
                 const response = {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image, approximate_member_count: guild.approximate_member_count};
-                console.log(response);
                 return response
         })
 
@@ -41,6 +40,23 @@ export default class GuildService extends DiscordService {
         }
         catch {
             return false;
+        }
+    }
+
+    static async getGuildMemberInfo(guild_id: string): Promise<any> {
+        const url = `${this.url}users/@me/guilds/${guild_id}/member`
+        try {
+            const data = await (await axios.get(url, {
+                headers: {
+                    Authorization: `Bearer ${this.ACCESS_TOKEN}`
+                }
+            })).data
+
+            return data
+
+        }
+        catch {
+            return null
         }
     }
 }

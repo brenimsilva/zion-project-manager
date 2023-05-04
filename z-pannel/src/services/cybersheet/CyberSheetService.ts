@@ -3,7 +3,7 @@ export interface IUpdateTabelaResponse {
     message: string,
     error: string
 }
-export default class PlanilhaService {
+export default class CyberSheetService {
     constructor() {}
     static async updateNFTValues(): Promise<IUpdateTabelaResponse> {
         try {

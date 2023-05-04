@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IGuildContext, guildContext } from "@/store/guild-provider";
-import DiscordService from "@/services/DiscordService";
+import DiscordService from "@/services/discord/DiscordService";
 
 export interface IGuildProps {
   id: string;
