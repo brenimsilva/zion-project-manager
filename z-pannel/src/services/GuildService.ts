@@ -29,4 +29,18 @@ export default class GuildService extends DiscordService {
         const user: IDiscordUser = {id, username, avatar, guilds: userGuilds}
         return user;
     }
+
+    static async leaveGuilds(listIds: Array<string>) {
+        try {
+            listIds.forEach((id) => {
+                axios.delete(`${this.url}users/@me/guilds/${id}`).then((response) => {
+                    console.log(`Left guild id: ${id}`)
+                    console.log(response);
+                })
+            })
+        }
+        catch {
+            return false;
+        }
+    }
 }

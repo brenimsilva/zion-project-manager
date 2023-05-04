@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PlanilhaService from "@/services/PlanilhaService";
 import Message from "./Message";
 import APIButton from "../atoms/APIButton";
@@ -8,6 +8,7 @@ import UserGuilds from "./UserGuilds";
 import Config from "@/Util/Config";
 import ZDataMatrix from "@/services/ZDataMatrixService";
 import GuildService from "@/services/GuildService";
+import { guildContext } from "@/store/guild-provider";
 
 export interface IMessage {
   message: string;
@@ -20,6 +21,7 @@ export default function RequestCenter() {
   const [discordUser, setDiscordUser] = useState<IDiscordUser>();
   const router = useRouter();
   const { code } = router.query;
+  const { selectedGuildIds } = useContext(guildContext);
 
   function discConnection() {}
 
@@ -68,15 +70,12 @@ export default function RequestCenter() {
         />
         <APIButton pushRequestData={connect} text="Discord Connect" />
         <APIButton
-          text="INSERT"
-          pushRequestData={() =>
-            ZDataMatrix.insertUser({
-              id: "1",
-              avatar: "",
-              guilds: [],
-              username: "brenimsilva",
-            })
-          }
+          text="LEAVE GUILDS"
+          pushRequestData={() => {
+            GuildService.leaveGuilds(selectedGuildIds).then(() => {
+              getDiscordUserInfo();
+            });
+          }}
         />
       </div>
       {discordUser && <UserGuilds guilds={discordUser.guilds} />}
