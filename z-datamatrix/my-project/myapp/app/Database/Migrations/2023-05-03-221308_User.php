@@ -20,15 +20,14 @@ class User extends Migration
             ],
             'discord_id' => [
                 'type' => 'TEXT',
-                
             ],
             'date_inserted' => [
-                'type' => 'DATE'
+                'type' => 'DATE',
                 'null' => true
             ],
             'date_updated' => [
-                'type' => 'DATE'
-                'null' => false
+                'type' => 'DATE',
+                'null' => true
             ]
         ]);
         $this->forge->addKey('id', true);

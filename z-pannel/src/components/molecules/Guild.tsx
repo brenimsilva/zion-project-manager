@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IGuildContext, guildContext } from "@/store/guild-provider";
-import DiscordService from "@/services/discord/DiscordService";
 
 export interface IGuildProps {
   id: string;
@@ -29,7 +28,7 @@ export default function Guild({
   return (
     <div
       className={`block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ${
-        selected ? "bg-cyan-400 hover:bg-cyan-400" : ""
+        selected ? "bg-cyan-300 hover:bg-cyan-500" : ""
       }`}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);

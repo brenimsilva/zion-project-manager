@@ -1,0 +1,43 @@
+ERROR - 2023-05-05 02:12:40 --> mysqli_sql_exception: Table 'z-db.user' doesn't exist in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+#6 /app/myapp/app/Services/UserService.php(22): CodeIgniter\BaseModel->findAll()
+#7 /app/myapp/app/Controllers/UserController.php(30): App\Services\UserService->getAll()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-05 02:12:40 --> Table 'z-db.user' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Services/UserService.php(22): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/UserController.php(30): App\Services\UserService->getAll()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-05 02:21:48 --> mysqli_sql_exception: Unknown table 'z-db.user' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(637): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-03-221308_User.php(39): CodeIgniter\Database\Forge->dropTable()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\User->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/MigrateRollback.php(92): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRollback->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
