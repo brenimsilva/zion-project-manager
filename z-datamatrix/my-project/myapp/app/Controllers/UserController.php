@@ -7,6 +7,7 @@ use CodeIgniter\RESTful\ResourceController;
 use Exception;
 use App\Services\UserService;
 use App\Util\DIContainer;
+use CodeIgniter\Config\Services;
 
 class UserController extends ResourceController
 {

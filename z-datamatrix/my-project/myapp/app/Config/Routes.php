@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/user/(:num)', 'UserController::getById/$1');
 $routes->get('/user', 'UserController::getAll');
 $routes->post("/user", 'UserController::insert');
+$routes->get('/migrate', "UserController::migrate");
 
 /*
  * --------------------------------------------------------------------
