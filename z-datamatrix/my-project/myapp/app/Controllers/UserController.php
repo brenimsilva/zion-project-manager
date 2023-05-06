@@ -2,12 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Entities\User;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 use App\Services\UserService;
 use App\Util\DIContainer;
-use CodeIgniter\Config\Services;
 
 class UserController extends ResourceController
 {
@@ -27,7 +26,6 @@ class UserController extends ResourceController
 
     public function getAll() 
     {
-        
         $retorno = $this->_userService->getAll();
         return $this->response->setJSON($retorno);
     }
@@ -40,20 +38,30 @@ class UserController extends ResourceController
 
     public function insert()
     {
-        $user = $this->request->getJSON();
-        $retorno = $this->_userService->insert($user);
-        return $this->response->setJSON(["message" => "User inserted successfully", "data" => $retorno]);
-    }
-
-
-    public function insertUser() 
-    {
-        $data = $this->request->getJSON();
-        $result = $this->__checkUserExists($data->user_id);
-        if(count($result) > 0) {
-            return $this->response->setJSON(["message" => "user already inserted into db"]);
+        try {
+            // return $this->response->setJSON(["data" => $data]);
+            // $user->{$key} = $value;
+            $data = $this->request->getJSON();
+            $user = new User();
+            foreach ($data as $key => $value) {
+                $user->{$key} = $value;
+            }
+            // $retorno = $this->_userService->insert($user);
+            return $this->response->setJSON(["message" => "User inserted successfully", "data" => $user]);
         }
-        $this->__insertQuery("INSERT INTO discord_user(user_id, username) VALUES('{$data->user_id}', '{$data->username}')");
-        return $this->response->setJSON(["message" => "User {$data->username} inserted successfuly!"]);
+        catch(Exception $ex) {
+            return ["message" => "Error"];
+        }
     }
+
+    // public function insertUser() 
+    // {
+    //     $data = $this->request->getJSON();
+    //     $result = $this->__checkUserExists($data->user_id);
+    //     if(count($result) > 0) {
+    //         return $this->response->setJSON(["message" => "user already inserted into db"]);
+    //     }
+    //     $this->__insertQuery("INSERT INTO discord_user(user_id, username) VALUES('{$data->user_id}', '{$data->username}')");
+    //     return $this->response->setJSON(["message" => "User {$data->username} inserted successfuly!"]);
+    // }
 }
