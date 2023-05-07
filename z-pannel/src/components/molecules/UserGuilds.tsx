@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Guild from "./Guild";
-import Select from "./Select";
 import { IDiscordGuild } from "@/interfaces/IDiscord";
 
 export interface IUserGuildsProps {
