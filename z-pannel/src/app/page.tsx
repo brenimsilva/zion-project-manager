@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Navbar from "./components/organisms/Navbar";
-import { useTransition } from "react";
-import UserService from "./services/datamatrix/UserService";
 import TButton from "./components/atoms/TButton";
+import FNButton from "./components/atoms/FNButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +23,12 @@ export default function Home() {
               Are you ready to start your adventure and start building something
               great with Z-PANNEL?
             </p>
-            {/* @ts-expect-error */}
+            {/* @ts-expect-error Async Component*/}
             <TButton />
-            <button className="bg-transparent hover:bg-violet-500 text-violet-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
-              See more
-            </button>
+            <FNButton
+              btnStyle="bg-transparent hover:bg-violet-500 text-violet-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
+              text="Read More"
+            />
           </div>
         </div>
         <div className="flex justify-center items-center h-screen">
