@@ -34,11 +34,9 @@ export default function DiscordCenter() {
       </div>
       <div className="grid grid-cols-2">
         <APIButton
-          disabled={!connected}
           pushRequestData={getDiscordUserInfo}
           text="Get Discord User Info"
         />
-        <APIButton pushRequestData={connect} text="Discord Connect" />
         <APIButton
           text="Leave Guilds"
           pushRequestData={() => {

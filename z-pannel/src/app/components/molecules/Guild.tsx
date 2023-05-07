@@ -17,6 +17,17 @@ export default function Guild({
   const [selected, setSelected] = useState<boolean>(false);
   const { addSelectedGuildId, selectedGuildIds, removeSelectedGuildId } =
     useContext(guildContext) as IGuildContext;
+  const [divClass, setDivClass] = useState<string>();
+
+  useEffect(() => {
+    const twClass =
+      "block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700";
+    if (selected) {
+      setDivClass(`${twClass} bg-cyan-300 hover:bg-cyan-500`);
+    } else {
+      setDivClass(twClass);
+    }
+  }, [selected]);
 
   useEffect(() => {
     if (selectedGuildIds.includes(id)) {
@@ -25,22 +36,20 @@ export default function Guild({
       setSelected(false);
     }
   }, [selectedGuildIds]);
+
   return (
     <div
-      className={`block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ${
-        selected ? "bg-black-300 hover:bg-cyan-400" : ""
-      }`}
+      className={divClass}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
       }}
+      // style={{ backgroundColor: selected ? "#67e8f9" : "white" }}
     >
       <div className="grid grid-cols-4">
         {
           <div className="col-span-1">
             {imageSrc.includes("null") ? (
-              <div>
-                {/* <strong className="bg-red-500">{name[0].toUpperCase()}</strong> */}
-              </div>
+              <div></div>
             ) : (
               <img src={imageSrc} className="border rounded-lg" width="50" />
             )}
