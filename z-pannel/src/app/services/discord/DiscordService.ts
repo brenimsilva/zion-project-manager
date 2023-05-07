@@ -3,7 +3,6 @@ import { IDiscordAuth } from "./IDiscord";
 import axios from "axios";
 
 export default class DiscordService {
-    static ACCESS_TOKEN = "";
     static url = "https://discord.com/api/"
     static cdn = "https://cdn.discordapp.com/"
 
@@ -23,7 +22,8 @@ export default class DiscordService {
                 'Accept-Encoding': 'application/x-www-form-urlencoded'
             }
             const response: IDiscordAuth = await (await axios.post(`${this.url}oauth2/token`, params, {headers: headers} )).data
-            this.ACCESS_TOKEN = response.access_token;
+
+            localStorage.setItem("access_token", response.access_token);
             console.log(`User Authenticated successfuly!`);
             return true;
         }

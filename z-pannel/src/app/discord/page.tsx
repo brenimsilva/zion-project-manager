@@ -14,11 +14,11 @@ export default function discord() {
   const code = useSearchParams().get("code");
   const [connected, setConnected] = useState<boolean>(false);
   useEffect(() => {
-    if (!DiscordService.ACCESS_TOKEN && !code) {
+    if (!localStorage.getItem("access_token") && !code) {
       setConnected(false);
       const url = `https://discord.com/api/oauth2/authorize?client_id=1102067081115091055&redirect_uri=http%3A%2F%2F${Config.APP_HOST}%3A${Config.APP_PORT}%2Fdiscord&response_type=code&scope=identify%20guilds%20guilds.members.read%20guilds.join%20gdm.join%20connections%20email`;
       router.push(url);
-    } else if (code && !DiscordService.ACCESS_TOKEN) {
+    } else if (code && !localStorage.getItem("access_token")) {
       DiscordService.authenticate(code).then((auth) => {
         setConnected(auth);
       });

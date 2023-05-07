@@ -10,7 +10,7 @@ export default class GuildService extends DiscordService {
     static async getGuilds(): Promise<IDiscordUser> {
         const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
             headers: {
-                Authorization: `Bearer ${this.ACCESS_TOKEN}`
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
             }
         })).data.map((guild: any): IDiscordGuild => {
                 const image = new Image();
@@ -21,7 +21,7 @@ export default class GuildService extends DiscordService {
 
         const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
             headers: {
-                Authorization: `Bearer ${this.ACCESS_TOKEN}`
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
             }
         })).data
         
@@ -48,7 +48,7 @@ export default class GuildService extends DiscordService {
         try {
             const data = await (await axios.get(url, {
                 headers: {
-                    Authorization: `Bearer ${this.ACCESS_TOKEN}`
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
                 }
             })).data
 
