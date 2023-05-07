@@ -18,7 +18,7 @@ class UserController extends ResourceController
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Headers: *");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-        header("Access-Control-Expose-Headers: Content-Length, X-JSON");
+        header("Access-Control-Expose-Headers: Content-Length, X-JSON, FormData");
         header("Access-Control-Max-Age: 86400");
         $this->_DIContainer = new DIContainer();
         $this->_userService = $this->_DIContainer->getUserService();

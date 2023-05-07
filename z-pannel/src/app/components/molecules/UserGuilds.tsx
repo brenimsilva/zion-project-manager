@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Guild from "./Guild";
-import { IDiscordGuild } from "@/interfaces/IDiscord";
+import { IDiscordGuild } from "@/services/discord/IDiscord";
 
 export interface IUserGuildsProps {
   guilds: Array<IDiscordGuild>;

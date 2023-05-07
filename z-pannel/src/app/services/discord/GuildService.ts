@@ -1,6 +1,6 @@
 import axios from "axios";
 import DiscordService from "./DiscordService";
-import { IDiscordGuild, IDiscordUser } from "@/interfaces/IDiscord";
+import { IDiscordGuild, IDiscordUser } from "./IDiscord";
 
 export default class GuildService extends DiscordService {
     constructor() {

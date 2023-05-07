@@ -1,5 +1,5 @@
+import { IGuildContext, guildContext } from "@/app/store/guild-provider";
 import React, { useContext, useEffect, useState } from "react";
-import { IGuildContext, guildContext } from "@/store/guild-provider";
 
 export interface IGuildProps {
   id: string;

@@ -1,5 +1,5 @@
-import Config from "@/Util/Config";
-import { IDiscordAuth } from "@/interfaces/IDiscord";
+import Config from "@/app/Util/Config";
+import { IDiscordAuth } from "./IDiscord";
 import axios from "axios";
 
 export default class DiscordService {
