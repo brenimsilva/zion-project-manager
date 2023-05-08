@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <main className="h-screen grid grid-cols-2">
         <div className=" h-screen ">
           <div
@@ -23,8 +22,8 @@ export default function Home() {
               Are you ready to start your adventure and start building something
               great with Z-PANNEL?
             </p>
-            {/* @ts-expect-error Async Component*/}
-            <TButton />
+            {/* @ts-expect-error Async Component
+               <TButton /> */}
             <FNButton
               btnStyle="bg-transparent hover:bg-violet-500 text-violet-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
               text="Read More"

@@ -36,7 +36,6 @@ export default function discord() {
             title="Não autorizado!"
           />
         )}
-        <Navbar />
         <DiscordCenter />
       </div>
     </GuildProvider>

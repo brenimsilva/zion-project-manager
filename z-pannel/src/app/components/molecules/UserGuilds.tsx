@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Guild from "./Guild";
 import { IDiscordGuild } from "@/app/services/discord/IDiscord";
+import SimpleSelect from "../atoms/SimpleSelect";
 
 export interface IUserGuildsProps {
   guilds: Array<IDiscordGuild>;
 }
-export default function UserGuilds({ guilds }: IUserGuildsProps) {
-  const [orderParam, setOrderParam] = useState<string>("Alphabetic");
+export default async function UserGuilds({ guilds }: IUserGuildsProps) {
+  const [orderParam, setOrderParam] = useState<string>("Alphabetic (asc)");
   const [userInput, setUserInput] = useState<string>("");
   const [filteredList, setFilteredList] = useState<Array<IDiscordGuild>>([
     ...sortByParams({ guilds }, orderParam),
@@ -58,16 +59,17 @@ export default function UserGuilds({ guilds }: IUserGuildsProps) {
         </strong>
       </h5>
       <div>
-        <select
-          onChange={(e) => {
-            setOrderParam(e.target.value);
+        <SimpleSelect
+          options={[
+            "Alphabetic (asc)",
+            "Alphabetic (desc)",
+            "Members (asc)",
+            "Members (desc)",
+          ]}
+          stateFn={(value) => {
+            setOrderParam(value);
           }}
-        >
-          <option>Alphabetic (asc)</option>
-          <option>Alphabetic (desc)</option>
-          <option>Members (asc)</option>
-          <option>Members (desc)</option>
-        </select>
+        />
         <input
           type="text"
           onChange={(e) => {
