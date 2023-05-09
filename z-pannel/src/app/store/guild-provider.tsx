@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useState } from "react";
 
 export interface IGuildContext {
@@ -39,7 +40,11 @@ export default function GuildProvider({ children }: IGuildProviderProps) {
 
   return (
     <guildContext.Provider
-      value={{ selectedGuildIds, addSelectedGuildId, removeSelectedGuildId }}
+      value={{
+        selectedGuildIds,
+        addSelectedGuildId,
+        removeSelectedGuildId,
+      }}
     >
       {children}
     </guildContext.Provider>

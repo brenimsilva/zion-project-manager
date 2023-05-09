@@ -1,6 +1,8 @@
 import Navbar from "./components/organisms/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import GuildProvider from "./store/guild-provider";
+import UserProvider from "./store/user-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <UserProvider>
+          <GuildProvider>
+            <Navbar />
+            {children}
+          </GuildProvider>
+        </UserProvider>
       </body>
     </html>
   );

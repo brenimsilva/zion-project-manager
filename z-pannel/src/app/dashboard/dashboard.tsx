@@ -6,10 +6,8 @@ import React from "react";
 export default function dashboard() {
   return (
     <div>
-      <GuildProvider>
-        <Navbar />
-        <RequestCenter />
-      </GuildProvider>
+      <Navbar />
+      <RequestCenter />
     </div>
   );
 }

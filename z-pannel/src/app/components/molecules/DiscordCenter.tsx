@@ -15,7 +15,7 @@ export default function DiscordCenter() {
   const { selectedGuildIds } = useContext(guildContext);
 
   function getDiscordUserInfo() {
-    GuildService.getGuilds().then((user) => {
+    GuildService.getUserData().then((user) => {
       setDiscordUser(user);
     });
   }

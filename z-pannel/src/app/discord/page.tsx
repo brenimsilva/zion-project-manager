@@ -28,16 +28,14 @@ export default function discord() {
   }, []);
 
   return (
-    <GuildProvider>
-      <div>
-        {!connected && (
-          <Modal
-            text="Clique no botao abaixo para realizar o login com sua conta discord"
-            title="Não autorizado!"
-          />
-        )}
-        <DiscordCenter />
-      </div>
-    </GuildProvider>
+    <div>
+      {!connected && (
+        <Modal
+          text="Clique no botao abaixo para realizar o login com sua conta discord"
+          title="Não autorizado!"
+        />
+      )}
+      <DiscordCenter />
+    </div>
   );
 }

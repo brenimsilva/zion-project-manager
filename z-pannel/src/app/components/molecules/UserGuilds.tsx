@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import Guild from "./Guild";
 import { IDiscordGuild } from "@/app/services/discord/IDiscord";
 import SimpleSelect from "../atoms/SimpleSelect";
+import ListGuilds from "./ListGuilds";
 
 export interface IUserGuildsProps {
   guilds: Array<IDiscordGuild>;
 }
-export default async function UserGuilds({ guilds }: IUserGuildsProps) {
+export default function UserGuilds({ guilds }: IUserGuildsProps) {
   const [orderParam, setOrderParam] = useState<string>("Alphabetic (asc)");
   const [userInput, setUserInput] = useState<string>("");
   const [filteredList, setFilteredList] = useState<Array<IDiscordGuild>>([
@@ -79,17 +80,7 @@ export default async function UserGuilds({ guilds }: IUserGuildsProps) {
         />
       </div>
       <div className={`grid grid-cols-4 gap-5`}>
-        {filteredList.map((guild) => {
-          return (
-            <Guild
-              key={guild.id}
-              id={guild.id}
-              imageSrc={guild.image.src}
-              name={guild.name}
-              approximate_member_count={guild.approximate_member_count}
-            />
-          );
-        })}
+        <ListGuilds filteredList={guilds} />
       </div>
     </div>
   );

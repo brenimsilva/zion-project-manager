@@ -7,7 +7,7 @@ export default class GuildService extends DiscordService {
         super();
     }
 
-    static async getGuilds(): Promise<IDiscordUser> {
+    static async getUserData(): Promise<IDiscordUser> {
         const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`
