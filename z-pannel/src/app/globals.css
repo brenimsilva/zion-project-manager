@@ -8,3 +8,14 @@
   * {
     font-family: 'Montserrat', sans-serif;
   }
+
+  .fadeIn {
+    opacity: 0;
+    animation: fade-in 0.3s forwards;
+  }
+  
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+    }
+  }

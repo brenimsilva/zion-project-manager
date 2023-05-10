@@ -80,7 +80,7 @@ export default function UserGuilds({ guilds }: IUserGuildsProps) {
         />
       </div>
       <div className={`grid grid-cols-4 gap-5`}>
-        <ListGuilds filteredList={guilds} />
+        <ListGuilds filteredList={filteredList} />
       </div>
     </div>
   );
