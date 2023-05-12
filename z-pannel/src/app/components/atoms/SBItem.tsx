@@ -1,5 +1,10 @@
 import React from "react";
 
-export default function SBItem() {
-  return <div>SBItem</div>;
+export interface ISBItem {
+  text: string;
+  href: string;
+}
+
+export default function SBItem({ text, href }: ISBItem) {
+  return <div></div>;
 }
