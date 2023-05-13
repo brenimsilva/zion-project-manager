@@ -35,6 +35,7 @@ class Request:
         
         url = f"{uri}{nft['symbol']}{ending}".format(
             symbol=nft['symbol'].lower().replace(" ", "_"))
+        print(url)
         response = requests.request("GET", url, headers=headers, data=payload)
         if(nft['rede'] == "ethereum"):
             data = float(response.json()["collection"]["stats"]["floor_price"])
