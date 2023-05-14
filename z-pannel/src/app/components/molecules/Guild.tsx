@@ -1,43 +1,55 @@
 import useClass from "@/app/hooks/useClass";
 import { IGuildContext, guildContext } from "@/app/store/guild-provider";
 import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
 
 export interface IGuildProps {
   id: string;
   imageSrc: string;
   name: string;
   approximate_member_count: number;
+  selected: boolean;
 }
 
 const twClass =
-  "block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700";
+  "block fadeIn select-none cursor-pointer max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800";
+
+interface ICard {
+  selected: boolean;
+}
+
+const Card = styled.div`
+  display: block;
+  user-select: none;
+  cursor: pointer;
+  max-width: 384px;
+  padding: 24px;
+  background-color: ${(props: ICard) => (props.selected ? "#67e8f9" : "white")};
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  &:hover {
+    background-color: ${(props: ICard) =>
+      props.selected ? "#06b6d4" : "#f3f4f6"};
+  }
+`;
 
 export default function Guild({
   id,
   imageSrc,
   name,
   approximate_member_count,
+  selected,
 }: IGuildProps) {
-  const [selected, setSelected] = useState<boolean>(false);
-  const { addSelectedGuildId, selectedGuildIds, removeSelectedGuildId } =
-    useContext(guildContext) as IGuildContext;
-  const divClass = useClass({
-    classOnFalse: twClass,
-    classOnTrue: `${twClass} bg-cyan-400 hover:bg-cyan-600`,
-    condition: selected,
-  });
-
-  useEffect(() => {
-    if (selectedGuildIds.includes(id)) {
-      setSelected(true);
-    } else {
-      setSelected(false);
-    }
-  }, [selectedGuildIds]);
+  const { addSelectedGuildId, removeSelectedGuildId } = useContext(
+    guildContext
+  ) as IGuildContext;
 
   return (
-    <div
-      className={divClass}
+    <Card
+      className={"fadeIn"}
+      selected={selected}
       onClick={() => {
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
       }}
@@ -67,6 +79,6 @@ export default function Guild({
           </p>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

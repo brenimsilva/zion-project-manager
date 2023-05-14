@@ -5,9 +5,9 @@ import CyberSheetService from "../services/cybersheet/CyberSheetService";
 
 export default function page() {
   return (
-    <div className="">
+    <div className="w-full">
       <h1>asd</h1>
-      <APIButton
+      {/* <APIButton
         text="cybersheet"
         pushRequestData={() => {
           CyberSheetService.updateCryptoValues().then((data) => {
@@ -15,7 +15,7 @@ export default function page() {
           });
           // CyberSheetService.updateNFTValues().then((data) => console.log(data));
         }}
-      />
+      /> */}
     </div>
   );
 }
