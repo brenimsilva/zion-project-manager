@@ -1,8 +1,5 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Navbar from "./components/organisms/Navbar";
-import TButton from "./components/atoms/TButton";
-import FNButton from "./components/atoms/FNButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +21,11 @@ export default function Home() {
             </p>
             {/* @ts-expect-error Async Component
                <TButton /> */}
-            <FNButton
+            {/* <FNButton
               btnStyle="bg-transparent hover:bg-violet-500 text-violet-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
               text="Read More"
-            />
+              func={() => {}}
+            /> */}
           </div>
         </div>
         <div className="flex justify-center items-center h-screen">

@@ -1,7 +1,6 @@
 import React from "react";
-import { IMessage } from "./RequestCenter";
 
-export default function Message({ message, error }: IMessage) {
+export default function Message({ message, error }: any) {
   if (error) {
     return (
       <div className="fadeIn">

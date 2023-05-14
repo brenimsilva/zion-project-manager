@@ -14,7 +14,7 @@ export default function SimpleSelect({ options, stateFn }: ISelectProps) {
         }}
       >
         {options.map((option) => {
-          return <option>{option}</option>;
+          return <option key={option}>{option}</option>;
         })}
       </select>
     </div>
