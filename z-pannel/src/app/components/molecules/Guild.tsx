@@ -1,6 +1,5 @@
-import useClass from "@/app/hooks/useClass";
 import { IGuildContext, guildContext } from "@/app/store/guild-provider";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 export interface IGuildProps {
@@ -55,15 +54,14 @@ export default function Guild({
       }}
     >
       <div className="grid grid-cols-4">
-        {
-          <div className="col-span-1">
-            {imageSrc.includes("null") ? (
-              <div></div>
-            ) : (
-              <img src={imageSrc} className="border rounded-lg" width="50" />
-            )}
-          </div>
-        }
+        <div className="col-span-1">
+          {imageSrc.includes("null") ? (
+            <div></div>
+          ) : (
+            <img src={imageSrc} className="border rounded-lg" width="50" />
+          )}
+        </div>
+
         <div className="col-span-3">
           <h5 className="">
             <strong>Nome: </strong>

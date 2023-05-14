@@ -2,12 +2,10 @@
 
 import DiscordCenter from "../components/molecules/DiscordCenter";
 import Modal from "../components/molecules/Modal";
-import Navbar from "../components/organisms/Navbar";
 import React, { useEffect, useState } from "react";
 import DiscordService from "../services/discord/DiscordService";
 import { useRouter, useSearchParams } from "next/navigation";
 import Config from "../Util/Config";
-import GuildProvider from "../store/guild-provider";
 
 export default function discord() {
   const router = useRouter();
