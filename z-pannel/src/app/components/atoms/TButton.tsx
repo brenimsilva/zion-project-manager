@@ -1,12 +1,27 @@
-"use server";
-import UserService from "@/app/services/datamatrix/UserService";
 import React from "react";
 
-export default async function TButton() {
-  const data = await UserService.getAll();
+interface TButtonProps {
+  textColor: string;
+  borderColor: string;
+  hoverTextColor: string;
+  hoverBorderColor: string;
+  text: string;
+}
+
+export default function TButton({
+  textColor,
+  borderColor,
+  hoverBorderColor,
+  hoverTextColor,
+  text,
+}: TButtonProps) {
   return (
-    <div>
-      <div>{JSON.stringify(data)}</div>;<button>CONFIRMAR</button>
-    </div>
+    <React.Fragment>
+      <button
+        className={`flex items-center px-3 py-2 border rounded text-${textColor} border-${borderColor} hover:text-${hoverTextColor} hover:border-${hoverBorderColor}`}
+      >
+        {text}
+      </button>
+    </React.Fragment>
   );
 }

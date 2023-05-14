@@ -1,4 +1,5 @@
 "use client";
+import Colors from "@/app/Util/Colors";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -21,9 +22,10 @@ export default function SBItem({ href, icon }: ISBItem) {
 
   return (
     <div
-      className={`flex justify-center  
-      hover:bg-${selected ? "gray" : "cyan"}-500 rounded-xl 
-      bg-${selected ? "cyan" : "red"}-300`}
+      className="flex justify-center rounded rounded-xl hover:text-cHL transition-all duration-200"
+      style={
+        selected ? { backgroundColor: Colors.cWhite, color: Colors.cHL } : {}
+      }
     >
       <a href={href} className="col-span-1 text-center grid">
         <span className="flex my-2 items-center">

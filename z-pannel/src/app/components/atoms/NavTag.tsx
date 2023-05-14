@@ -10,7 +10,7 @@ export default function NavTag({ text, href }: INavTagProps) {
     <React.Fragment>
       <a
         href={href}
-        className="block mt-4 lg:inline-block lg:mt-0 text-violet-200 hover:text-white mr-4"
+        className="block mt-4 lg:inline-block lg:mt-0 text-cHL hover:text-white mr-4 transition-all duration-200"
       >
         {text}
       </a>
