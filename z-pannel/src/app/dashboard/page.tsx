@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
+import DashBoardPageContainer from "../components/atoms/DashBoardPageContainer";
 
 export default function page() {
-  return <div className="w-full"></div>;
+  return (
+    <DashBoardPageContainer>
+      <h1>Teste</h1>
+    </DashBoardPageContainer>
+  );
 }

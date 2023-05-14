@@ -42,7 +42,7 @@ export default function DiscordCenter() {
   }, []);
 
   return (
-    <div className="">
+    <div className="h-full">
       {!connected && (
         <Modal
           text="Clique no botao abaixo para realizar o login com sua conta discord"

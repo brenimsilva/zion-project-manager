@@ -22,16 +22,28 @@ export default function SBItem({ href, icon }: ISBItem) {
 
   return (
     <div
-      className="flex justify-center rounded rounded-xl hover:text-cHL transition-all duration-200"
+      className="p-1 my-1 rounded rounded-xl"
       style={
-        selected ? { backgroundColor: Colors.cWhite, color: Colors.cHL } : {}
+        selected
+          ? {
+              border: `1px solid ${Colors.cWhite}`,
+              boxShadow: `0px 0px 3px #00000028`,
+            }
+          : {}
       }
     >
-      <a href={href} className="col-span-1 text-center grid">
-        <span className="flex my-2 items-center">
-          <i className={icon}></i>
-        </span>
-      </a>
+      <div
+        className="flex justify-center rounded rounded-xl hover:text-cHL transition-all duration-200"
+        style={
+          selected ? { backgroundColor: Colors.cWhite, color: Colors.cHL } : {}
+        }
+      >
+        <a href={href} className="col-span-1 text-center grid">
+          <span className="flex my-2 items-center">
+            <i className={icon}></i>
+          </span>
+        </a>
+      </div>
     </div>
   );
 }

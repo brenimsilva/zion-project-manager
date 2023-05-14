@@ -27,7 +27,7 @@ export default function RootLayout({
         //@ts-ignore
         precedence="default"
       />
-      <body className={inter.className}>
+      <body className={`${inter.className} h-screen`}>
         <UserProvider>
           <GuildProvider>
             <Navbar />

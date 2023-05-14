@@ -3,6 +3,7 @@ import Guild from "./Guild";
 import { IDiscordGuild } from "@/app/services/discord/IDiscord";
 import SimpleSelect from "../atoms/SimpleSelect";
 import ListGuilds from "./ListGuilds";
+import SimpleInput from "../atoms/SimpleInput";
 
 export interface IUserGuildsProps {
   guilds: Array<IDiscordGuild>;
@@ -54,12 +55,12 @@ export default function UserGuilds({ guilds }: IUserGuildsProps) {
 
   return (
     <div className="">
-      <h5 className="p-5">
+      <h5 className="py-5">
         <strong>
           Servidores: <span className="text-green-500">{guilds.length}</span>
         </strong>
       </h5>
-      <div>
+      <div className="">
         <SimpleSelect
           options={[
             "Alphabetic (asc)",
@@ -71,16 +72,16 @@ export default function UserGuilds({ guilds }: IUserGuildsProps) {
             setOrderParam(value);
           }}
         />
-        <input
-          type="text"
-          onChange={(e) => {
-            setUserInput(e.target.value);
+        <SimpleInput
+          stateFn={(value) => {
+            setUserInput(value);
           }}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className={`grid grid-cols-4 gap-5`}>
-        <ListGuilds filteredList={filteredList} />
+      <div className="overflow-auto" style={{ maxHeight: "35rem" }}>
+        <div className="grid grid-cols-4 gap-5">
+          <ListGuilds filteredList={filteredList} />
+        </div>
       </div>
     </div>
   );

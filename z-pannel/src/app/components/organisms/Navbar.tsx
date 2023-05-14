@@ -30,8 +30,7 @@ export default function Navbar() {
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow text-end mr-5">
             <NavTag text="Home" href="/" />
-            <NavTag text="Discord" href="/discord" />
-            <NavTag text="Cyber Sheet" href="/cybersheet" />
+            <NavTag text="Dashboard" href="/dashboard" />
           </div>
           <div>
             <a

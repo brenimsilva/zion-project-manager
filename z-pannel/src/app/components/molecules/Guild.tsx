@@ -18,10 +18,15 @@ interface ICard {
 }
 
 const Card = styled.div`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   user-select: none;
   cursor: pointer;
   max-width: 384px;
+  min-height: 100px;
+  max-height: 100px;
+  font-size: small;
   padding: 24px;
   background-color: ${(props: ICard) => (props.selected ? "#67e8f9" : "white")};
   border-width: 1px;
@@ -53,7 +58,7 @@ export default function Guild({
         !selected ? addSelectedGuildId(id) : removeSelectedGuildId(id);
       }}
     >
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 gap-2">
         <div className="col-span-1">
           {imageSrc.includes("null") ? (
             <div></div>
