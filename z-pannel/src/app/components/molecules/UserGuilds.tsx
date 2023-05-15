@@ -10,6 +10,7 @@ import { guildContext } from "@/app/store/guild-provider";
 import Config from "@/app/Util/Config";
 import DiscordService from "@/app/services/discord/DiscordService";
 import { useRouter, useSearchParams } from "next/navigation";
+import Title from "../atoms/Title";
 
 export interface IUserGuildsProps {
   guilds: Array<IDiscordGuild>;
@@ -87,50 +88,60 @@ export default function UserGuilds() {
     <div className="">
       <h5 className="py-5">
         <strong>
-          Servidores:{" "}
+          Servidores:
           {discordUser && (
-            <span className="text-green-500">{discordUser.guilds.length}</span>
+            <span className="text-green-500 mx-1">
+              {discordUser.guilds.length}
+            </span>
           )}
         </strong>
       </h5>
-      <div className="">
-        <SimpleSelect
-          options={[
-            "Alphabetic (asc)",
-            "Alphabetic (desc)",
-            "Members (asc)",
-            "Members (desc)",
-          ]}
-          stateFn={(value) => {
-            setOrderParam(value);
-          }}
-        />
-        <SimpleInput
-          stateFn={(value) => {
-            setUserInput(value);
-          }}
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-5">
-        <APIButton
-          pushRequestData={getDiscordUserInfo}
-          text="Get Discord User Info"
-        />
-        <APIButton
-          text="Leave Guilds"
-          disabled={true}
-          pushRequestData={() => {
-            GuildService.leaveGuilds(selectedGuildIds).then(() => {
-              getDiscordUserInfo();
-            });
-          }}
-        />
+      <div className="grid grid-cols-2 gap-10">
+        <div className="bg-white p-5 mb-10 rounded rounded-xl shadow flex flex-col justify-center">
+          <Title text="Search Actions" />
+          <div className="my-2">
+            <SimpleSelect
+              options={[
+                "Alphabetic (asc)",
+                "Alphabetic (desc)",
+                "Members (asc)",
+                "Members (desc)",
+              ]}
+              stateFn={(value) => {
+                setOrderParam(value);
+              }}
+            />
+          </div>
+          <div className="my-2">
+            <SimpleInput
+              stateFn={(value) => {
+                setUserInput(value);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center-col bg-white p-5 mb-10 rounded rounded-xl shadow gap-5 ">
+          <Title text="Guild Actions" />
+          <APIButton
+            pushRequestData={getDiscordUserInfo}
+            text="Get Discord User Info"
+          />
+          <APIButton
+            text="Leave Guilds"
+            disabled={true}
+            pushRequestData={() => {
+              GuildService.leaveGuilds(selectedGuildIds).then(() => {
+                getDiscordUserInfo();
+              });
+            }}
+          />
+        </div>
       </div>
       <div
-        className="scrollbar scrollbar-thin scroll-smooth overflow-auto "
-        style={{ maxHeight: "35rem" }}
+        className="scrollbar scrollbar-thin scroll-smooth overflow-auto border rounded rounded-xl p-5 shadow-sm"
+        style={{ maxHeight: "25rem" }}
       >
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-4 gap-5 ">
           {filteredList && <ListGuilds filteredList={filteredList} />}
         </div>
       </div>

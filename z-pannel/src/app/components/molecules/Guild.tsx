@@ -1,3 +1,4 @@
+import Colors from "@/app/Util/Colors";
 import { IGuildContext, guildContext } from "@/app/store/guild-provider";
 import React, { useContext } from "react";
 import styled from "styled-components";
@@ -19,6 +20,7 @@ interface ICard {
 
 const Card = styled.div`
   display: flex;
+  color: ${(props: ICard) => (props.selected ? Colors.cWhite : Colors.cDark)};
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -28,14 +30,15 @@ const Card = styled.div`
   max-height: 100px;
   font-size: small;
   padding: 24px;
-  background-color: ${(props: ICard) => (props.selected ? "#67e8f9" : "white")};
+  background-color: ${(props: ICard) =>
+    props.selected ? Colors.cHL : "white"};
   border-width: 1px;
   border-color: #e5e7eb;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   &:hover {
     background-color: ${(props: ICard) =>
-      props.selected ? "#06b6d4" : "#f3f4f6"};
+      props.selected ? "rgba(0, 172, 181, 0.671)" : "#f3f4f6"};
   }
 `;
 
