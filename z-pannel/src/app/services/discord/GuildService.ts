@@ -8,25 +8,33 @@ export default class GuildService extends DiscordService {
     }
 
     static async getUserData(): Promise<IDiscordUser> {
-        const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`
-            }
-        })).data.map((guild: any): IDiscordGuild => {
-                const image = new Image();
-                image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
-                const response = {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image, approximate_member_count: guild.approximate_member_count};
-                return response
-        })
-
-        const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`
-            }
-        })).data
-        
-        const user: IDiscordUser = {id, username, avatar, guilds: userGuilds}
-        return user;
+        try {
+            const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                }
+            })).data.map((guild: any): IDiscordGuild => {
+                    const image = new Image();
+                    image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
+                    const response = {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image, approximate_member_count: guild.approximate_member_count};
+                    return response
+            })
+    
+            const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                }
+            })).data
+            
+            const user: IDiscordUser = {id, username, avatar, guilds: userGuilds}
+            return user;
+        }
+        catch {
+            const user: IDiscordUser = {avatar: "", guilds: [], id: "", username: ""}
+           
+            
+            return user;
+        }
     }
 
     static async leaveGuilds(listIds: Array<string>) {
