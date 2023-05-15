@@ -139,7 +139,7 @@ export default function UserGuilds() {
       </div>
       <div
         className="scrollbar scrollbar-thin scroll-smooth overflow-auto border rounded rounded-xl p-5 shadow-sm"
-        style={{ maxHeight: "25rem" }}
+        style={{ maxHeight: "25rem", minHeight: "25rem" }}
       >
         <div className="grid grid-cols-4 gap-5 ">
           {filteredList && <ListGuilds filteredList={filteredList} />}
