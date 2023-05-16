@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import UserGuilds from "./UserGuilds";
 import Message from "./Message";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
-import DiscordService from "@/app/services/discord/DiscordService";
-import Modal from "./Modal";
 
 export default function DiscordCenter() {
   const [message, setMessage] = useState<any>({ message: "", error: "" });
