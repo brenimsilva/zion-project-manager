@@ -1,0 +1,184 @@
+CRITICAL - 2023-05-16 22:33:28 --> Namespace declaration statement has to be the very first statement or after any declare call in the script
+in APPPATH/Controllers/DBController.php on line 4.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-05-16 22:34:35 --> Namespace declaration statement has to be the very first statement or after any declare call in the script
+in APPPATH/Controllers/DBController.php on line 4.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-05-16 22:35:12 --> Namespace declaration statement has to be the very first statement or after any declare call in the script
+in APPPATH/Controllers/DBController.php on line 4.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-05-16 22:35:41 --> Namespace declaration statement has to be the very first statement or after any declare call in the script
+in APPPATH/Controllers/DBController.php on line 4.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2023-05-16 22:59:27 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(35): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/MigrateRollback.php(92): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRollback->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2023-05-16 23:00:46 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(35): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/MigrateRollback.php(92): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRollback->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2023-05-16 23:01:45 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/MigrateRollback.php(92): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRollback->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2023-05-16 23:02:00 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/app/Controllers/DBController.php(21): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\DBController->migrate()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-16 23:02:00 --> Access denied for user 'zion'@'%' to database 'profile_discord'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+ 6 SYSTEMPATH/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+ 7 SYSTEMPATH/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+ 8 APPPATH/Controllers/DBController.php(21): CodeIgniter\Database\MigrationRunner->regress()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\DBController->migrate()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-16 23:03:40 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/MigrateRollback.php(92): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRollback->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2023-05-16 23:06:01 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/app/Controllers/DBController.php(21): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\DBController->migrate()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-16 23:06:01 --> Access denied for user 'zion'@'%' to database 'profile_discord'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+ 5 APPPATH/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+ 6 SYSTEMPATH/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+ 7 SYSTEMPATH/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+ 8 APPPATH/Controllers/DBController.php(21): CodeIgniter\Database\MigrationRunner->regress()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\DBController->migrate()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-16 23:06:18 --> mysqli_sql_exception: Table 'z-db.discord_user' doesn't exist in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+#6 /app/myapp/app/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+#7 /app/myapp/app/Controllers/UserController.php(29): App\Services\UserService->getAll()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-16 23:06:18 --> Table 'z-db.discord_user' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/UserController.php(29): App\Services\UserService->getAll()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-16 23:06:22 --> mysqli_sql_exception: Table 'z-db.discord_user' doesn't exist in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+#6 /app/myapp/app/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+#7 /app/myapp/app/Controllers/UserController.php(29): App\Services\UserService->getAll()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-16 23:06:22 --> Table 'z-db.discord_user' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/UserController.php(29): App\Services\UserService->getAll()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()

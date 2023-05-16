@@ -1,12 +1,11 @@
-
 <?php 
 
 namespace App\Controllers;
 
+use Exception;
 use CodeIgniter\Config\Services;
 use CodeIgniter\Database\MigrationRunner;
 use CodeIgniter\RESTful\ResourceController;
-use Exception;
 
 class DBController extends ResourceController {
     
