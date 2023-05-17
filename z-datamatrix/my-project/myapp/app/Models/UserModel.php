@@ -14,7 +14,7 @@ class UserModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id', 'username', 'discord_id', 'date_inserted', 'last_updated'
+        'id', 'login', 'name', 'password', 'email', 'date_inserted'
     ];
 
     // Dates

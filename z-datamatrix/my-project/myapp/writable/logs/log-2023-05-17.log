@@ -1,0 +1,58 @@
+ERROR - 2023-05-17 21:43:12 --> mysqli_sql_exception: Table 'z-db.users' doesn't exist in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+#6 /app/myapp/app/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+#7 /app/myapp/app/Controllers/UserController.php(29): App\Services\UserService->getAll()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-17 21:43:13 --> Table 'z-db.users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/UserController.php(29): App\Services\UserService->getAll()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-17 21:43:40 --> mysqli_sql_exception: Table 'z-db.users' doesn't exist in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+#6 /app/myapp/app/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+#7 /app/myapp/app/Controllers/UserController.php(29): App\Services\UserService->getAll()
+#8 /app/myapp/system/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+#9 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#10 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#11 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-05-17 21:43:40 --> Table 'z-db.users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Services/UserService.php(24): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/UserController.php(29): App\Services\UserService->getAll()
+ 9 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\UserController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()

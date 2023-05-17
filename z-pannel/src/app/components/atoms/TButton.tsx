@@ -6,7 +6,10 @@ interface TButtonProps {
   hoverTextColor: string;
   hoverBorderColor: string;
   text: string;
+  fn: (param? : any) => void;
 }
+
+
 
 export default function TButton({
   textColor,
@@ -14,11 +17,13 @@ export default function TButton({
   hoverBorderColor,
   hoverTextColor,
   text,
+  fn
 }: TButtonProps) {
   return (
     <React.Fragment>
       <button
         className={`flex items-center px-3 py-2 border rounded text-${textColor} border-${borderColor} hover:text-${hoverTextColor} hover:border-${hoverBorderColor}`}
+        onClick = {fn}
       >
         {text}
       </button>
