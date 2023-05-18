@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import DashBoardPageContainer from "../components/atoms/DashBoardPageContainer";
 

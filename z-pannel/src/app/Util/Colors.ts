@@ -1,9 +1,9 @@
-export default class Colors {
-   public static cHL: string = "#00ADB5" //
-   public static cHL2: string = "#d464e5"
-   public static cWhite: string = "#EEEEEE"
-   public static cBG: string = "#393E46"
-   public static cDark: string = "#222831"
+enum Colors {
+   cHL = "var(--cHL)",
+   cHL2 = "var(--cHL2)",
+   cWhite = "var(--cWhite)",
+   cBG = "var(--cBG)",
+   cDark = "var(--cDark)"
 }
 
-
+export default Colors;

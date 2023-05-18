@@ -20,7 +20,7 @@ export default function ListGuilds({ filteredList }: ListGuildProps) {
             imageSrc={guild.image.src}
             name={guild.name}
             approximate_member_count={guild.approximate_member_count}
-            selected={selectedGuildIds.includes(guild.id) ? true : false}
+            selected={selectedGuildIds.includes(guild.id)}
           />
         );
       })}

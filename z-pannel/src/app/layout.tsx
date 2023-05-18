@@ -30,8 +30,10 @@ export default function RootLayout({
       <body className={`${inter.className} h-screen`}>
         <UserProvider>
           <GuildProvider>
-            <Navbar />
-            {children}
+            <div className="h-full">
+              <Navbar />
+              {children}
+            </div>
           </GuildProvider>
         </UserProvider>
       </body>
