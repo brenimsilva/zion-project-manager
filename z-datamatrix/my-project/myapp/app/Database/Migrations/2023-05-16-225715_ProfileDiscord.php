@@ -37,6 +37,6 @@ class ProfileDiscord extends Migration
 
     public function down()
     {
-        $this->forge->dropDatabase('profile_discord');
+        $this->forge->dropTable('profile_discord');
     }
 }

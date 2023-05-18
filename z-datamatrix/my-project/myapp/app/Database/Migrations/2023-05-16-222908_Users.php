@@ -33,7 +33,13 @@ class Users extends Migration
                 ],
                 "date_inserted" => [
                     "type" => "DATETIME",
-                    "null" => true
+                    "null" => true,
+                    'default' => null
+                ],
+                "date_updated" => [
+                    "type" => "DATETIME",
+                    "null" => true,
+                    'default' => null
                 ]
             ]
         );

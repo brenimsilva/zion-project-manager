@@ -1,0 +1,28 @@
+ERROR - 2023-05-18 23:23:25 --> mysqli_sql_exception: Access denied for user 'zion'@'%' to database 'profile_discord' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(287): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-225715_ProfileDiscord.php(40): CodeIgniter\Database\Forge->dropDatabase()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\ProfileDiscord->down()
+#6 /app/myapp/system/Database/MigrationRunner.php(299): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/MigrateRollback.php(92): CodeIgniter\Database\MigrationRunner->regress()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\MigrateRollback->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2023-05-18 23:24:13 --> mysqli_sql_exception: Invalid default value for 'date_inserted' in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/Forge.php(546): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/app/Database/Migrations/2023-05-16-222908_Users.php(48): CodeIgniter\Database\Forge->createTable()
+#5 /app/myapp/system/Database/MigrationRunner.php(877): App\Database\Migrations\Users->up()
+#6 /app/myapp/system/Database/MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/myapp/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest()
+#8 /app/myapp/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run()
+#9 /app/myapp/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/myapp/spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
