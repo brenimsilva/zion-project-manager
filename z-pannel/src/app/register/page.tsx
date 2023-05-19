@@ -1,34 +1,13 @@
 "use client";
-import React from "react";
-import SimpleInput from "../components/atoms/SimpleInput";
-import FormInput from "../components/atoms/FormInput";
+import React, { useState } from "react";
 import Title from "../components/atoms/Title";
+import RegisterForm from "../components/molecules/RegisterForm";
 
 export default function page() {
   return (
-    <div>
+    <div className="flex flex-col items-center gap-10">
       <Title text="Register" />
-      <div className="w-2/5">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 grid grid-cols-2 gap-5">
-          <div className="col-span-2">
-            <FormInput text="Username" inputType="text" />
-            <FormInput text="Password" inputType="password" />
-          </div>
-          <div className="col-span-2">
-            <FormInput text="Nome" inputType="text" />
-          </div>
-          <FormInput text="Email" inputType="email" />
-          <FormInput text="Confirm Email" inputType="email" />
-          <div className="col-span-2">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
-            >
-              Sign In
-            </button>
-          </div>
-        </form>
-      </div>
+      <RegisterForm />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 @tailwind base;
 :root {
   --cHL:  #00ADB5;
+  --cHLAlpha:  #00acb583;
   --cHL2: #d464e5;
   --cWhite: #EEEEEE;
   --cBG: #393E46;

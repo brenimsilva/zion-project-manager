@@ -1,18 +1,37 @@
-import React from 'react'
+import Colors from "@/app/Util/Colors";
+import React from "react";
 
 interface FormInputProps {
-    text: string;
-    inputType: string;
-
+  text: string;
+  inputType: string;
+  getInput: (input: string) => void;
+  required?: boolean;
 }
 
-export default function FormInput({text, inputType}: FormInputProps) {
+export default function FormInput({
+  text,
+  inputType,
+  required,
+  getInput,
+}: FormInputProps) {
   return (
     <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={text}>
+      <label
+        className="block text-cBG text-sm font-bold mb-2"
+        htmlFor={text}
+        style={{}}
+      >
         {text}
+        {required && <span className="text-red-500">*</span>}
       </label>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-red-500" id="username" type={inputType} placeholder={text} />
+      <input
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-gray-500"
+        id="username"
+        type={inputType}
+        placeholder={text}
+        required={required}
+        onChange={({ target }) => getInput(target.value)}
+      />
     </div>
-  )
+  );
 }
