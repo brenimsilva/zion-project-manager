@@ -4,6 +4,8 @@ import UserService, {
   IDMUser,
 } from "@/app/services/datamatrix/user/UserService";
 
+import { z } from "zod";
+
 interface IFormData {
   login: string;
   password: string;
@@ -22,14 +24,28 @@ const defaultFormState: IFormData = {
   emailConfirm: "",
 };
 
-async function submitHandler(formData: IFormData) {
-  if (formData.email !== formData.emailConfirm) {
-    return { errors: { email: "Email must be the same of Email Confirm" } };
-  }
-  if (formData.password !== formData.passwordConfirm) {
-    return {
-      errors: { password: "Password must be the same of Password Confirm" },
-    };
+const registerSchema = z
+  .object({
+    login: z.string().min(4),
+    password: z.string().min(4),
+    passwordConfirm: z.string().min(4),
+    name: z.string().min(2),
+    email: z.string().email(),
+    emailConfirm: z.string().email(),
+  })
+  .strict()
+  .refine((data) => data.email === data.emailConfirm, {
+    message: "Emails don't match",
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords don't match",
+  });
+type formData = z.infer<typeof registerSchema>;
+
+async function submitHandler(formData: formData) {
+  const result = registerSchema.safeParse(formData);
+  if (!result.success) {
+    console.log(JSON.parse(result.error));
   }
   const response = await UserService.add({
     id: 0,
