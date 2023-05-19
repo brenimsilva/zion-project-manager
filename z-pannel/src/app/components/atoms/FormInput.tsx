@@ -4,7 +4,7 @@ import React from "react";
 interface FormInputProps {
   text: string;
   inputType: string;
-  getInput: (input: string) => void;
+  getInput: any;
   required?: boolean;
 }
 
@@ -30,7 +30,7 @@ export default function FormInput({
         type={inputType}
         placeholder={text}
         required={required}
-        onChange={({ target }) => getInput(target.value)}
+        {...getInput}
       />
     </div>
   );
