@@ -1,0 +1,15 @@
+CRITICAL - 2023-05-19 01:07:57 --> Call to undefined method App\Services\UserService::insert()
+in APPPATH/Controllers/UserController.php on line 47.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\UserController->add()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-19 01:15:43 --> Undefined property: App\Services\UserService::$load
+in APPPATH/Services/UserService.php on line 15.
+ 1 APPPATH/Services/UserService.php(15): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Util/DIContainer.php(26): App\Services\UserService->__construct()
+ 3 APPPATH/Controllers/UserController.php(24): App\Util\DIContainer->getUserService()
+ 4 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\UserController->__construct()
+ 5 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()

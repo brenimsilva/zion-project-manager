@@ -43,14 +43,15 @@ class UserService
     }
     
 
-    public function insert(User $user) 
+    public function add(User $user) 
     {
-        $userExists = count($this->model->where("username", $user->getDiscordId())->findAll()) > 0;
-        if($userExists) 
-        {
-            return ["message" => "User with discord ID => {$user->getDiscordId()} already exists"];
+        if(isset($user->password)) {
+            $user->password = password_hash($user->password, PASSWORD_DEFAULT);
         }
-        $this->model->insert($user);
+        $return = $this->model->insert($user);
+        if(!$return) {
+            return ["error" => $this->model->errors()];
+        }
         return true;
     }
 }

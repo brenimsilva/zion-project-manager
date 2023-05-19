@@ -44,8 +44,20 @@ class UserController extends ResourceController
             foreach ($data as $key => $value) {
                 $user->{$key} = $value;
             }
-            // $retorno = $this->_userService->insert($user);
-            return $this->response->setJSON(["message" => "User inserted successfully", "data" => $user]);
+            $retorno = $this->_userService->add($user);
+            $errors = isset($retorno['error']);
+
+            $response = $errors ? [
+                "message" => "User not inserted, check errors", 
+                "data" => null,
+                "errors" => $retorno['error']
+            ] : [
+                "message" => "User inserted successfully",
+                "data" => $user,
+                "errors" => null
+
+            ];
+            return $this->response->setJSON($response);
 
         }
         catch(Exception $ex) {

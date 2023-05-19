@@ -37,7 +37,6 @@ export default class UserService {
   static async add(user: IDMUser): Promise<IDMAddResponse> {
     const body = JSON.stringify(user);
     const response = (await axios.post(this._url, body)).data;
-    console.log(response);
     return response;
   }
 }
