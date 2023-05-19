@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import FormInput from "../atoms/FormInput";
+import UserService, {
+  IDMUser,
+} from "@/app/services/datamatrix/user/UserService";
 
 interface IFormData {
   login: string;
@@ -70,7 +73,13 @@ export default function RegisterForm() {
           className="col-span-2 bg-cDark hover:bg-cHL transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
           onClick={() => {
-            console.log(formData);
+            UserService.add({
+              id: 0,
+              email: formData.email,
+              login: formData.login,
+              name: formData.name,
+              password: formData.password,
+            });
           }}
         >
           Sign In

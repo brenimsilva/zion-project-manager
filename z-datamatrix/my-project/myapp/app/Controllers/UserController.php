@@ -36,11 +36,9 @@ class UserController extends ResourceController
         return $this->response->setJSON($retorno);
     }
 
-    public function insert()
+    public function add()
     {
         try {
-            // return $this->response->setJSON(["data" => $data]);
-            // $user->{$key} = $value;
             $data = $this->request->getJSON();
             $user = new User();
             foreach ($data as $key => $value) {
@@ -48,6 +46,7 @@ class UserController extends ResourceController
             }
             // $retorno = $this->_userService->insert($user);
             return $this->response->setJSON(["message" => "User inserted successfully", "data" => $user]);
+
         }
         catch(Exception $ex) {
             return ["message" => "Error"];

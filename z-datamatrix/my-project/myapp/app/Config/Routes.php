@@ -31,8 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/user/(:num)', 'UserController::getById/$1');
 $routes->get('/user', 'UserController::getAll');
+$routes->post("/user", 'UserController::add');
 $routes->get('/migrate', "DBController::migrate");
-$routes->post("/user", 'UserController::insert');
 
 /*
  * --------------------------------------------------------------------
