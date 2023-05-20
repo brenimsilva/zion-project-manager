@@ -1,12 +1,9 @@
-"use client";
 import Colors from "@/app/Util/Colors";
 import React from "react";
-import TButton from "../atoms/TButton";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import RouteButton from "../atoms/RouteButton";
 
 export default function LandingPage() {
-  const route = useRouter();
   return (
     <div>
       <main className="h-screen grid grid-cols-2">
@@ -32,15 +29,13 @@ export default function LandingPage() {
                 something great with Z-PANNEL?
               </p>
             </div>
-            <TButton
+            <RouteButton
               borderColor="cHL"
               hoverBorderColor="cWhite"
               hoverTextColor="cWhite"
               textColor="cHL"
               text="Start Now!"
-              fn={() => {
-                route.push("/login");
-              }}
+              route="/login"
             />
           </div>
         </div>

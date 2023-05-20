@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Title from "../components/atoms/Title";
 import RegisterForm from "../components/organisms/RegisterForm";
 

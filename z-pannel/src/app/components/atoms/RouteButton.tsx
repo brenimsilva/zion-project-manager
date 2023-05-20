@@ -1,3 +1,5 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface TButtonProps {
@@ -6,22 +8,23 @@ interface TButtonProps {
   hoverTextColor: string;
   hoverBorderColor: string;
   text: string;
-  fn: (param?: any) => void;
+  route: string;
 }
 
-export default function TButton({
+export default function RouteButton({
   textColor,
   borderColor,
   hoverBorderColor,
   hoverTextColor,
   text,
-  fn,
+  route,
 }: TButtonProps) {
+  const router = useRouter();
   return (
     <React.Fragment>
       <button
         className={`flex items-center px-3 py-2 border rounded text-${textColor} border-${borderColor} hover:text-${hoverTextColor} hover:border-${hoverBorderColor}`}
-        onClick={fn}
+        onClick={() => router.push(route)}
       >
         {text}
       </button>

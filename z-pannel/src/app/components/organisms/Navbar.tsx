@@ -1,13 +1,10 @@
-"use client";
 import React from "react";
 import NavTag from "../atoms/NavTag";
 import Logo from "../atoms/Logo";
-import Colors from "@/app/Util/Colors";
-import { useRouter } from "next/navigation";
+import RouteButton from "../atoms/RouteButton";
 
 // require("dotenv").config();
 export default function Navbar() {
-  const route = useRouter();
   const color = "violet";
   return (
     <div className="nav-bar">
@@ -36,12 +33,14 @@ export default function Navbar() {
             <NavTag text="Dashboard" href="/dashboard" />
           </div>
           <div>
-            <button
-              onClick={() => route.push("/login")}
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-cHL border-cHL hover:border-transparent hover:text-cWhite hover:bg-cHL mt-4 lg:mt-0"
-            >
-              Login
-            </button>
+            <RouteButton
+              borderColor="cHL"
+              hoverBorderColor="cWhite"
+              hoverTextColor="cWhite"
+              textColor="cHL"
+              text="Login"
+              route="/login"
+            />
           </div>
         </div>
       </nav>
