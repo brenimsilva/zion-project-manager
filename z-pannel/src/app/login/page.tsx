@@ -1,4 +1,3 @@
-"use client";
 import Title from "../components/atoms/Title";
 import LoginForm from "../components/organisms/LoginForm";
 

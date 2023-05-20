@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import FormInput from "../atoms/FormInput";
 import { useForm } from "react-hook-form";
