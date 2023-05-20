@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Title from "../components/atoms/Title";
-import RegisterForm from "../components/organisms/RegisterForm";
+import LoginForm from "../components/organisms/LoginForm";
 
 export default function page() {
   return (
     <div className="flex flex-col items-center gap-10">
-      <Title text="Register" />
-      <RegisterForm />
+      <Title text="Login" />
+      <LoginForm />
     </div>
   );
 }

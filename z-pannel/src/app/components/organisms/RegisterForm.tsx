@@ -8,7 +8,7 @@ import UserService, {
 
 import { z } from "zod";
 import FormError from "../atoms/FormError";
-import Modal from "./Modal";
+import Modal from "../molecules/Modal";
 import { useRouter } from "next/navigation";
 
 const registerSchema = z
