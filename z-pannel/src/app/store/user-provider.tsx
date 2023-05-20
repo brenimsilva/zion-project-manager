@@ -18,10 +18,7 @@ interface IUCProps {
   children: ReactNode;
 }
 
-export const userContext = createContext<IUserContext>({
-  user: defaultState,
-  setUser: () => {},
-});
+export const userContext = createContext<IUserContext>({} as IUserContext);
 
 export default function UserProvider({ children }: IUCProps) {
   const [user, setUser] = useState<IDiscordUser>(defaultState);
