@@ -6,8 +6,15 @@ interface ModalProps {
   title?: string;
   children?: React.ReactNode;
   type?: string;
+  click: () => void;
 }
-export default function Modal({ children, title, text, type }: ModalProps) {
+export default function Modal({
+  children,
+  title,
+  text,
+  type,
+  click,
+}: ModalProps) {
   return (
     <React.Fragment>
       <ModalContainer>
@@ -38,6 +45,7 @@ export default function Modal({ children, title, text, type }: ModalProps) {
               </h3>
               <div className="mt-2">
                 <p className="text-sm text-gray-500">{text}</p>
+                {children}
               </div>
             </div>
           </div>
@@ -52,6 +60,7 @@ export default function Modal({ children, title, text, type }: ModalProps) {
           <button
             type="button"
             className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+            onClick={click}
           >
             Cancel
           </button>

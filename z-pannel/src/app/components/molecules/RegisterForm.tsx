@@ -8,6 +8,7 @@ import UserService, {
 
 import { z } from "zod";
 import FormError from "../atoms/FormError";
+import Modal from "./Modal";
 
 const registerSchema = z
   .object({
@@ -30,6 +31,8 @@ const registerSchema = z
 type formData = z.infer<typeof registerSchema>;
 
 export default function RegisterForm() {
+  const [DMErrors, setDMErrors] = useState();
+  const [modalIsActive, setModalIsActive] = useState(false);
   const {
     register,
     handleSubmit,
@@ -38,7 +41,7 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  function submitData(data: formData) {
+  async function submitData(data: formData) {
     const body: IDMUser = {
       id: 0,
       email: data.email,
@@ -46,13 +49,22 @@ export default function RegisterForm() {
       name: data.name,
       password: data.password,
     };
-    UserService.add(body).then((response) => {
-      console.log(response);
-    });
+    const response = await UserService.add(body);
+    if (response.errors !== null) {
+      setDMErrors(response.errors);
+      setModalIsActive(true);
+    }
   }
 
   return (
     <div className="w-2/5">
+      {modalIsActive && (
+        <Modal
+          title="Register Errors"
+          text={JSON.stringify(DMErrors)}
+          click={() => setModalIsActive(false)}
+        />
+      )}
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 grid grid-cols-2 gap-5"
         onSubmit={handleSubmit(submitData)}
