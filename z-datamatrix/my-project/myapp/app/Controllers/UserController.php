@@ -64,15 +64,4 @@ class UserController extends ResourceController
             return ["message" => "Error"];
         }
     }
-
-    // public function insertUser() 
-    // {
-    //     $data = $this->request->getJSON();
-    //     $result = $this->__checkUserExists($data->user_id);
-    //     if(count($result) > 0) {
-    //         return $this->response->setJSON(["message" => "user already inserted into db"]);
-    //     }
-    //     $this->__insertQuery("INSERT INTO discord_user(user_id, username) VALUES('{$data->user_id}', '{$data->username}')");
-    //     return $this->response->setJSON(["message" => "User {$data->username} inserted successfuly!"]);
-    // }
 }

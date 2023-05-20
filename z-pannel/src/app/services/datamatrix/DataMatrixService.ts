@@ -1,4 +1,6 @@
+import Config from "@/app/Util/Config";
+
 export default class DataMatrixService {
-    private static baseUrl: string = "http://localhost:8000/"
+    protected static baseUrl: string = `http://${Config.DATAMATRIX_HOST}:${Config.DATAMATRIX_PORT}/`
     constructor() {}
 }

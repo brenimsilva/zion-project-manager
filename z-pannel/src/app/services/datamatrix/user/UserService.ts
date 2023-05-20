@@ -2,6 +2,7 @@ import API from "@/app/Util/API";
 import Config from "@/app/Util/Config";
 import axios from "axios";
 import { IDMDiscordUser } from "../discord_user/IDiscordUser";
+import DataMatrixService from "../DataMatrixService";
 
 export interface IDMUser {
   id: number;
@@ -19,10 +20,12 @@ interface IDMAddResponse {
   errors?: any;
 }
 
-export default class UserService {
+export default class UserService extends DataMatrixService {
   private static _resource = "user";
-  private static _url = `http://${Config.DATAMATRIX_HOST}:${Config.DATAMATRIX_PORT}/${this._resource}`;
-  constructor() {}
+  private static _url = `${this.baseUrl}${this._resource}`;
+  constructor() {
+    super();
+  }
 
   static async getById<IDMUser>(id: string): Promise<IDMUser> {
     return await API.get<IDMUser>({ url: `${this._url}/${id}` });

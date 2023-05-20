@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Title from "../atoms/Title";
 import FormInput from "../atoms/FormInput";
+import AuthService from "@/app/services/datamatrix/auth/AuthService";
 
 const loginSchema = z.object({
   login: z.string().min(4).max(70),
@@ -22,7 +23,7 @@ export default function LoginForm() {
   } = useForm<loginType>();
 
   function submitLogin(data: loginType) {
-    console.log(data);
+    AuthService.auth({ login: data.login, password: data.password });
   }
 
   return (

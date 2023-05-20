@@ -9,6 +9,10 @@ class DIContainer
     private $userModel;
     private $userService;
 
+    public function __construct()
+    {
+    }
+
     public function getUserModel(): UserModel 
     {
         if(isset($this->userModel)) {

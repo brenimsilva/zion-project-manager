@@ -33,6 +33,7 @@ $routes->get('/user/(:num)', 'UserController::getById/$1');
 $routes->get('/user', 'UserController::getAll');
 $routes->post("/user", 'UserController::add');
 $routes->get('/migrate', "DBController::migrate");
+$routes->post("/auth", "AuthController::auth");
 
 /*
  * --------------------------------------------------------------------

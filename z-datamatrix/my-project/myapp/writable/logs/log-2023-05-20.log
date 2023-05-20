@@ -18,3 +18,73 @@ in APPPATH/Services/UserService.php on line 59.
  6 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
  7 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
  8 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-20 17:55:24 --> Attempt to read property "login" on array
+in APPPATH/Controllers/AuthController.php on line 22.
+ 1 APPPATH/Controllers/AuthController.php(22): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->auth()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-20 17:55:42 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+ LIMIT 1' at line 3 in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 /app/myapp/app/Controllers/AuthController.php(23): CodeIgniter\BaseModel->first()
+#7 /app/myapp/system/CodeIgniter.php(934): App\Controllers\AuthController->auth()
+#8 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#9 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#10 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-05-20 17:55:43 --> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+ LIMIT 1' at line 3
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH/Controllers/AuthController.php(23): CodeIgniter\BaseModel->first()
+ 8 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->auth()
+ 9 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+11 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-20 17:58:11 --> mysqli_sql_exception: Operand should contain 1 column(s) in /app/myapp/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /app/myapp/system/Database/MySQLi/Connection.php(295): mysqli->query()
+#1 /app/myapp/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/myapp/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/myapp/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+#4 /app/myapp/system/Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 /app/myapp/system/BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 /app/myapp/app/Controllers/AuthController.php(24): CodeIgniter\BaseModel->first()
+#7 /app/myapp/system/CodeIgniter.php(934): App\Controllers\AuthController->auth()
+#8 /app/myapp/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#9 /app/myapp/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#10 /app/myapp/public/index.php(69): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-05-20 17:58:11 --> Operand should contain 1 column(s)
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH/Controllers/AuthController.php(24): CodeIgniter\BaseModel->first()
+ 8 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->auth()
+ 9 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+11 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-20 17:58:59 --> Undefined property: stdClass::$teste
+in APPPATH/Controllers/AuthController.php on line 24.
+ 1 APPPATH/Controllers/AuthController.php(24): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->auth()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
