@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Authentication;
 use App\Models\UserModel;
 use App\Services\UserService;
 use App\Util\DIContainer;
@@ -13,12 +14,12 @@ class AuthController extends ResourceController {
     
     private DIContainer $_container;
     private UserModel $_usermodel;
-    private Session $_session;
+    private $_auth;
     public function __construct()
     {
         $this->_container = new DIContainer();
         $this->_usermodel = $this->_container->getUserModel();
-        $this->_session = session();
+        $this->_auth = new Authentication();
     }
 
     public function auth()
@@ -26,19 +27,11 @@ class AuthController extends ResourceController {
         try {
             $login = $this->request->getJSON()->login;
             $password = $this->request->getJSON()->password;
-            $user = $this->_usermodel->where("login", $login)->first();
 
-            if($user === null)
-            {
-                return $this->response->setJSON(["message" => "User not found"]);
-            }
-            if(password_verify($password, $user->password)) {
-                $this->_session->regenerate();
-                $this->_session->set("id", $user->id);
-                return $this->response->setJSON(["message" => "Login success", "user" => $user, "session" => $this->_session->get("id")]);
-            } else {
-                return $this->response->setJSON(["error" => "Incorrect user or password"]);
-            }
+            $result = $this->_auth->login($login, $password);
+            if($result) {
+                return $this->response->setJSON(["message" => "Login success", "session" => $result['session'], "user" => $result['user']]);
+            };
         }
         catch(Exception $ex) {
             $this->response->setStatusCode(500);
@@ -52,6 +45,6 @@ class AuthController extends ResourceController {
     }
 
     public function teste() {
-        return $this->response->setJSON(["message" => $this->_session->has("id")]);
+        return $this->response->setJSON($this->_auth->getSession());
     }
 }
