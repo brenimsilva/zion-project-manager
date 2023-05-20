@@ -45,13 +45,16 @@ class UserService
 
     public function add(User $user) 
     {
+        //Validations
         if(isset($user->password)) {
             $user->password = password_hash($user->password, PASSWORD_DEFAULT);
         }
+        //End Validations
         $return = $this->model->insert($user);
         if(!$return) {
             return ["error" => $this->model->errors()];
         }
+
         return true;
     }
 }

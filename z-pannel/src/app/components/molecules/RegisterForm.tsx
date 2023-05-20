@@ -7,24 +7,7 @@ import UserService, {
 } from "@/app/services/datamatrix/user/UserService";
 
 import { z } from "zod";
-
-interface IFormData {
-  login: string;
-  password: string;
-  passwordConfirm: string;
-  name: string;
-  email: string;
-  emailConfirm: string;
-}
-
-const defaultFormState: IFormData = {
-  login: "",
-  name: "",
-  password: "",
-  passwordConfirm: "",
-  email: "",
-  emailConfirm: "",
-};
+import FormError from "../atoms/FormError";
 
 const registerSchema = z
   .object({
@@ -46,24 +29,7 @@ const registerSchema = z
   });
 type formData = z.infer<typeof registerSchema>;
 
-async function submitHandler(formData: formData) {
-  const result = registerSchema.safeParse(formData);
-  if (!result.success) {
-    console.log(JSON.parse(result.error));
-  }
-  const response = await UserService.add({
-    id: 0,
-    email: formData.email,
-    login: formData.login,
-    name: formData.name,
-    password: formData.password,
-  });
-
-  return response;
-}
-
 export default function RegisterForm() {
-  const [formData, setFormData] = useState<IFormData>(defaultFormState);
   const {
     register,
     handleSubmit,
@@ -73,7 +39,16 @@ export default function RegisterForm() {
   });
 
   function submitData(data: formData) {
-    console.log("IT Worked", data);
+    const body: IDMUser = {
+      id: 0,
+      email: data.email,
+      login: data.login,
+      name: data.name,
+      password: data.password,
+    };
+    UserService.add(body).then((response) => {
+      console.log(response);
+    });
   }
 
   return (
@@ -90,19 +65,29 @@ export default function RegisterForm() {
             required
           />
         </div>
-        {errors.login && <span>{errors.login.message}</span>}
-        <FormInput
-          text="Password"
-          inputType="password"
-          getInput={{ ...register("password") }}
-          required
-        />
-        <FormInput
-          text="Password Confirm"
-          inputType="password"
-          getInput={{ ...register("passwordConfirm") }}
-          required
-        />
+        {errors.login && <FormError text={errors.login.message!} colSpan={2} />}
+        <div className="grid grid-cols-2 gap-5 col-span-2">
+          <FormInput
+            text="Password"
+            inputType="password"
+            getInput={{ ...register("password") }}
+            required
+          />
+          <FormInput
+            text="Password Confirm"
+            inputType="password"
+            getInput={{ ...register("passwordConfirm") }}
+            required
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-5 col-span-2">
+          {errors.password && (
+            <FormError text={errors.password.message!} colSpan={1} />
+          )}
+          {errors.passwordConfirm && (
+            <FormError text={errors.passwordConfirm.message!} colSpan={1} />
+          )}
+        </div>
         <div className="col-span-2">
           <FormInput
             text="Name"
@@ -111,18 +96,30 @@ export default function RegisterForm() {
             required
           />
         </div>
-        <FormInput
-          text="Email"
-          inputType="email"
-          getInput={{ ...register("email") }}
-          required
-        />
-        <FormInput
-          text="Confirm Email"
-          inputType="email"
-          getInput={{ ...register("emailConfirm") }}
-          required
-        />
+        {errors.name && <FormError text={errors.name.message!} colSpan={2} />}
+        <div className="grid grid-cols-2 gap-5 col-span-2">
+          <FormInput
+            text="Email"
+            inputType="email"
+            getInput={{ ...register("email") }}
+            required
+          />
+          <FormInput
+            text="Confirm Email"
+            inputType="email"
+            getInput={{ ...register("emailConfirm") }}
+            required
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-5 col-span-2">
+          {errors.email && (
+            <FormError text={errors.email.message!} colSpan={1} />
+          )}
+          {errors.emailConfirm && (
+            <FormError text={errors.emailConfirm.message!} colSpan={1} />
+          )}
+        </div>
+
         <button
           className="col-span-2 bg-cDark hover:bg-cHL transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"

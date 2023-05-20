@@ -26,12 +26,19 @@ class UserModel extends Model
 
     // Validation
     protected $validationRules      = [
-        "login" => "required",
+        "login" => "required|is_unique[users.login]",
         "name" => "required",
         "password" => "required",
-        "email" => "required|valid_email"
+        "email" => "required|valid_email|is_unique[users.email]"
     ];
-    protected $validationMessages   = [];
+    protected $validationMessages   = [
+        'email' => [
+            'is_unique' => 'Sorry. That email has already been taken. Please choose another.'
+        ],
+        'login' => [
+            'is_unique' => 'Sorry. That login has already been taken. Please choose another.'
+        ]
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
