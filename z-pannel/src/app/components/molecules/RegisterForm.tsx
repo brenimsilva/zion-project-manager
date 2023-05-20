@@ -9,6 +9,7 @@ import UserService, {
 import { z } from "zod";
 import FormError from "../atoms/FormError";
 import Modal from "./Modal";
+import { useRouter } from "next/navigation";
 
 const registerSchema = z
   .object({
@@ -33,6 +34,7 @@ type formData = z.infer<typeof registerSchema>;
 export default function RegisterForm() {
   const [DMErrors, setDMErrors] = useState();
   const [modalIsActive, setModalIsActive] = useState(false);
+  const route = useRouter();
   const {
     register,
     handleSubmit,
@@ -53,7 +55,10 @@ export default function RegisterForm() {
     if (response.errors !== null) {
       setDMErrors(response.errors);
       setModalIsActive(true);
+      return;
     }
+    console.log(response);
+    route.push("/dashboard");
   }
 
   return (
