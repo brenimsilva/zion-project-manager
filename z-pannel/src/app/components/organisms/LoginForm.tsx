@@ -51,6 +51,14 @@ export default function LoginForm() {
           Sign in
         </button>
       </form>
+      <button
+        type="button"
+        onClick={() => {
+          AuthService.teste();
+        }}
+      >
+        Teste
+      </button>
     </div>
   );
 }

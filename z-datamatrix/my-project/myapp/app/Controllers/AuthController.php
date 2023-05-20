@@ -6,16 +6,19 @@ use App\Models\UserModel;
 use App\Services\UserService;
 use App\Util\DIContainer;
 use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\Session\Session;
 use Exception;
 
 class AuthController extends ResourceController {
     
     private DIContainer $_container;
     private UserModel $_usermodel;
+    private Session $_session;
     public function __construct()
     {
         $this->_container = new DIContainer();
         $this->_usermodel = $this->_container->getUserModel();
+        $this->_session = session();
     }
 
     public function auth()
@@ -30,7 +33,9 @@ class AuthController extends ResourceController {
                 return $this->response->setJSON(["message" => "User not found"]);
             }
             if(password_verify($password, $user->password)) {
-                return $this->response->setJSON(["message" => "Login success", "user" => $user]);
+                $this->_session->regenerate();
+                $this->_session->set("id", $user->id);
+                return $this->response->setJSON(["message" => "Login success", "user" => $user, "session" => $this->_session->get("id")]);
             } else {
                 return $this->response->setJSON(["error" => "Incorrect user or password"]);
             }
@@ -39,5 +44,14 @@ class AuthController extends ResourceController {
             $this->response->setStatusCode(500);
             return $this->response->setJSON(["error" => "Some props not found"]);
         }
+    }
+
+    public function logoff() {
+        $this->_session->destroy();
+        return $this->response->setJSON(["message" => "User loged out"]);
+    }
+
+    public function teste() {
+        return $this->response->setJSON(["message" => $this->_session->has("id")]);
     }
 }

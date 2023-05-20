@@ -15,8 +15,13 @@ export default class AuthService extends DataMatrixService
     static async auth({login, password}: ILoginProps) 
     {
         const body = JSON.stringify({login: login, password: password})
-        console.log(body);
         const response = await fetch(this.baseUrl + this._resource, {method: "POST", body: body});
+        const data = await response.json();
+        console.log(data);
+    }
+
+    static async teste() {
+        const response = await fetch(this.baseUrl + this._resource)
         const data = await response.json();
         console.log(data);
     }
