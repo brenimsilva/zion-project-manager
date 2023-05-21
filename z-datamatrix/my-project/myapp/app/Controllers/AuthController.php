@@ -4,11 +4,10 @@ namespace App\Controllers;
 
 use App\Libraries\Authentication;
 use App\Models\UserModel;
-use App\Services\UserService;
 use App\Util\DIContainer;
 use CodeIgniter\RESTful\ResourceController;
-use CodeIgniter\Session\Session;
 use Exception;
+use JWT;
 
 class AuthController extends ResourceController {
     
@@ -17,6 +16,15 @@ class AuthController extends ResourceController {
     private $_auth;
     public function __construct()
     {
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Headers: *");
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+        header("Access-Control-Expose-Headers: Content-Length, X-JSON, FormData");
+        header("Access-Control-Max-Age: 86400");
+        if ( "OPTIONS" === $_SERVER['REQUEST_METHOD'] ) {
+            die();
+        }
         $this->_container = new DIContainer();
         $this->_usermodel = $this->_container->getUserModel();
         $this->_auth = new Authentication();
@@ -28,10 +36,12 @@ class AuthController extends ResourceController {
             $login = $this->request->getJSON()->login;
             $password = $this->request->getJSON()->password;
 
-            $result = $this->_auth->login($login, $password);
+            $result = $this->_auth->login($login, $password)['user'];
+            $data = $this->_jwt_encode($result);
             if($result) {
-                return $this->response->setJSON(["message" => "Login success", "session" => $result['session'], "user" => $result['user']]);
+                return $this->response->setJSON(["message" => "Login success", "data" => $data]);
             };
+            return $this->response->setJSON(["message" => "Wrong password"]);
         }
         catch(Exception $ex) {
             $this->response->setStatusCode(500);
@@ -44,7 +54,20 @@ class AuthController extends ResourceController {
         return $this->response->setJSON(["message" => "User loged out"]);
     }
 
-    public function teste() {
-        return $this->response->setJSON($this->_auth->getSession());
+    public function decodeToken() {
+        
+        $token = $this->request->getJSON("token")['data'];
+        $jwt = new JWT();
+        $jwtSecretKey = "matrix";
+        $decoded_token = $jwt->decode($token, $jwtSecretKey, "HS256");
+        return $this->response->setJSON(["data"=> $decoded_token]);
+
+    }
+
+    private function _jwt_encode($data) {
+        $jwt = new JWT();
+        $jwtSecretKey = "matrix";
+        $token = $jwt->encode($data, $jwtSecretKey, "HS256");
+        return $token;
     }
 }

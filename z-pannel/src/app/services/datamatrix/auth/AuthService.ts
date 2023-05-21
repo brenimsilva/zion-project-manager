@@ -1,3 +1,4 @@
+import axios, { AxiosHeaders } from "axios";
 import DataMatrixService from "../DataMatrixService";
 
 interface ILoginProps {
@@ -21,9 +22,9 @@ export default class AuthService extends DataMatrixService
     }
 
     static async teste() {
-        const response = await fetch(this.baseUrl + this._resource)
-        const data = await response.json();
-        console.log(data);
+        const body = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQ1LCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbS5iciIsInVzZXJUeXBlIjoiYWRtaW4ifQ.Ep6pn_-zDEJrw49ei5OePNaygktMamAaXCreGWspqHw";
+        const response = await (await axios.post(this.baseUrl + this._resource + "0", {data: body})).data;
+        console.log(response);
     }
 
 }

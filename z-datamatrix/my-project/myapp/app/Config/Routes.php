@@ -34,7 +34,7 @@ $routes->get('/user', 'UserController::getAll');
 $routes->post("/user", 'UserController::add');
 $routes->get('/migrate', "DBController::migrate");
 $routes->post("/auth", "AuthController::auth");
-$routes->get("/auth", "AuthController::teste");
+$routes->match(["POST","OPTIONS"], "/auth0", "AuthController::decodeToken");
 
 
 /*

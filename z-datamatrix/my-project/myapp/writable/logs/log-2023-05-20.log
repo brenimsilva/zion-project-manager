@@ -88,3 +88,113 @@ in APPPATH/Controllers/AuthController.php on line 24.
  3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
  4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
  5 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 22:12:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:13:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:14:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:14:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:15:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:15:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 22:15:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:02:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:11:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:16:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:21:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:32:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:33:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:34:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:34:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-20 23:34:51 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH/Helpers/jwt_helper.php on line 33.
+ 1 APPPATH/Helpers/jwt_helper.php(33): explode('.', null)
+ 2 APPPATH/Controllers/AuthController.php(71): JWT::decode(null, 'matrix', 'HS256')
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-20 23:34:51 --> Wrong number of segments
+in APPPATH/Helpers/jwt_helper.php on line 35.
+ 1 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:35:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:35:14 --> Unexpected control character found
+in APPPATH/Helpers/jwt_helper.php on line 178.
+ 1 APPPATH/Helpers/jwt_helper.php(113): JWT::_handleJsonError()
+ 2 APPPATH/Helpers/jwt_helper.php(38): JWT::jsonDecode()
+ 3 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:35:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:35:29 --> Unexpected control character found
+in APPPATH/Helpers/jwt_helper.php on line 178.
+ 1 APPPATH/Helpers/jwt_helper.php(113): JWT::_handleJsonError()
+ 2 APPPATH/Helpers/jwt_helper.php(38): JWT::jsonDecode()
+ 3 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:36:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:39:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:41:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:46:34 --> explode(): Argument #2 ($string) must be of type string, array given
+in APPPATH/Helpers/jwt_helper.php on line 33.
+ 1 APPPATH/Helpers/jwt_helper.php(33): explode()
+ 2 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:47:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:47:00 --> explode(): Argument #2 ($string) must be of type string, array given
+in APPPATH/Helpers/jwt_helper.php on line 33.
+ 1 APPPATH/Helpers/jwt_helper.php(33): explode()
+ 2 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:47:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-05-20 23:48:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:48:00 --> json_decode(): Argument #1 ($json) must be of type string, array given
+in APPPATH/Helpers/jwt_helper.php on line 111.
+ 1 APPPATH/Helpers/jwt_helper.php(111): json_decode()
+ 2 APPPATH/Controllers/AuthController.php(71): JWT::jsonDecode()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:48:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:48:26 --> strlen(): Argument #1 ($string) must be of type string, array given
+in APPPATH/Helpers/jwt_helper.php on line 146.
+ 1 APPPATH/Controllers/AuthController.php(71): JWT::urlsafeB64Decode()
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:48:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:48:57 --> explode(): Argument #2 ($string) must be of type string, array given
+in APPPATH/Helpers/jwt_helper.php on line 33.
+ 1 APPPATH/Helpers/jwt_helper.php(33): explode()
+ 2 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-20 23:49:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-20 23:49:13 --> explode(): Argument #2 ($string) must be of type string, array given
+in APPPATH/Helpers/jwt_helper.php on line 33.
+ 1 APPPATH/Helpers/jwt_helper.php(33): explode()
+ 2 APPPATH/Controllers/AuthController.php(71): JWT::decode()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\AuthController->decodeToken()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(69): CodeIgniter\CodeIgniter->run()
