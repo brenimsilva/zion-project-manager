@@ -1,8 +1,12 @@
+"use client";
 import Navbar from "./components/organisms/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import GuildProvider from "./store/guild-provider";
 import UserProvider from "./store/user-provider";
+import { usePathname } from "next/navigation";
+import { checkPublicRoute } from "./Util/app-routes";
+import PrivateRoute from "./components/organisms/PrivateRoute";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +20,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const path = usePathname();
+  const isAPublicRoute = checkPublicRoute(path);
+
   return (
     <html lang="en">
       <link
@@ -32,7 +39,8 @@ export default function RootLayout({
           <GuildProvider>
             <div className="h-full">
               <Navbar />
-              {children}
+              {isAPublicRoute && children}
+              {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
             </div>
           </GuildProvider>
         </UserProvider>

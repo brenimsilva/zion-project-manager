@@ -1,5 +1,8 @@
+"use client";
 import { Inter } from "next/font/google";
 import Sidebar from "../components/molecules/Sidebar";
+import { useContext } from "react";
+import { authContext } from "../store/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 

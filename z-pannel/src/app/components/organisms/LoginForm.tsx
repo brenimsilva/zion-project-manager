@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Title from "../atoms/Title";
 import FormInput from "../atoms/FormInput";
 import AuthService from "@/app/services/datamatrix/auth/AuthService";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   login: z.string().min(4).max(70),
@@ -16,21 +17,23 @@ const loginSchema = z.object({
 type loginType = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<loginType>();
 
-  const [response, setResponse] = useState();
-
   async function submitLogin(data: loginType) {
-    const response = await AuthService.auth({
+    const response = await AuthService.login({
       login: data.login,
       password: data.password,
     });
     console.log(response);
-    setResponse(response.data);
+    await localStorage.setItem("datamatrix.token", response.data);
+    AuthService.auth().then(() => {
+      router.push("/dashboard/server-list");
+    });
   }
 
   return (
@@ -58,14 +61,6 @@ export default function LoginForm() {
           Sign in
         </button>
       </form>
-      <button
-        type="button"
-        onClick={() => {
-          AuthService.teste(response);
-        }}
-      >
-        Teste
-      </button>
     </div>
   );
 }
