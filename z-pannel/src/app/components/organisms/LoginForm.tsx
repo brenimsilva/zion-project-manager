@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,8 +22,15 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<loginType>();
 
-  function submitLogin(data: loginType) {
-    AuthService.auth({ login: data.login, password: data.password });
+  const [response, setResponse] = useState();
+
+  async function submitLogin(data: loginType) {
+    const response = await AuthService.auth({
+      login: data.login,
+      password: data.password,
+    });
+    console.log(response);
+    setResponse(response.data);
   }
 
   return (
@@ -54,7 +61,7 @@ export default function LoginForm() {
       <button
         type="button"
         onClick={() => {
-          AuthService.teste();
+          AuthService.teste(response);
         }}
       >
         Teste
