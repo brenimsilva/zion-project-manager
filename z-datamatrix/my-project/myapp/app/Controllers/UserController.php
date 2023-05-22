@@ -17,9 +17,11 @@ class UserController extends ResourceController
     {
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Headers: *");
+        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, x_requested_with");
         header("Access-Control-Allow-Credentials: true");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         header("Access-Control-Expose-Headers: Content-Length, X-JSON, FormData");
+        
         header("Access-Control-Max-Age: 86400");
         if ( "OPTIONS" === $_SERVER['REQUEST_METHOD'] ) {
             die();
