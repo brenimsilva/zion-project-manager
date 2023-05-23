@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,7 @@ import Title from "../atoms/Title";
 import FormInput from "../atoms/FormInput";
 import AuthService from "@/app/services/datamatrix/auth/AuthService";
 import { useRouter } from "next/navigation";
+import { authContext } from "@/app/store/auth-provider";
 
 const loginSchema = z.object({
   login: z.string().min(4).max(70),
@@ -24,16 +25,19 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<loginType>();
 
+  const { signIn } = useContext(authContext);
+
   async function submitLogin(data: loginType) {
-    const response = await AuthService.login({
-      login: data.login,
-      password: data.password,
-    });
-    console.log(response);
-    await localStorage.setItem("datamatrix.token", response.data);
-    AuthService.auth().then(() => {
-      router.push("/dashboard/server-list");
-    });
+    await signIn(data);
+    // const response = await AuthService.login({
+    //   login: data.login,
+    //   password: data.password,
+    // });
+    // console.log(response);
+    // await localStorage.setItem("datamatrix.token", response.data);
+    // AuthService.auth().then(() => {
+    //   router.push("/dashboard/server-list");
+    // });
   }
 
   return (

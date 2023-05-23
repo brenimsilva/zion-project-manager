@@ -16,7 +16,7 @@ export function checkPublicRoute(asPath: string): boolean {
     return appPublicRoutes.includes(asPath);
 }
 
-export function checkLocalStorageToken() {
+export function checkCookiesForToken() {
     const userToken = localStorage.getItem("datamatrix.token");
     console.log(userToken);
 

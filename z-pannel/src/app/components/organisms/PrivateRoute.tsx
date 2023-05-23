@@ -1,7 +1,8 @@
-import { APP_ROUTES, checkLocalStorageToken } from "@/app/Util/app-routes";
+import { APP_ROUTES } from "@/app/Util/app-routes";
 import AuthService from "@/app/services/datamatrix/auth/AuthService";
+import { authContext } from "@/app/store/auth-provider";
 import { useRouter } from "next/navigation";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 
 interface props {
   children: ReactNode;
@@ -9,20 +10,23 @@ interface props {
 
 export default function PrivateRoute({ children }: props) {
   const { push } = useRouter();
-
-  const token = checkLocalStorageToken();
-  console.log(token);
+  const { user } = useContext(authContext);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!user);
 
   useEffect(() => {
-    if (!token) {
+    setIsAuthenticated(!!user);
+  }, [user]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
       push(APP_ROUTES.public.login);
     }
-  }, [token, push]);
+  }, [isAuthenticated, push]);
 
   return (
     <React.Fragment>
-      {!token && null}
-      {token && children}
+      {!isAuthenticated && null}
+      {isAuthenticated && children}
     </React.Fragment>
   );
 }

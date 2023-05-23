@@ -7,6 +7,7 @@ import UserProvider from "./store/user-provider";
 import { usePathname } from "next/navigation";
 import { checkPublicRoute } from "./Util/app-routes";
 import PrivateRoute from "./components/organisms/PrivateRoute";
+import AuthProvider from "./store/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,11 +38,13 @@ export default function RootLayout({
       <body className={`${inter.className} h-screen`}>
         <UserProvider>
           <GuildProvider>
-            <div className="h-full">
-              <Navbar />
-              {isAPublicRoute && children}
-              {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
-            </div>
+            <AuthProvider>
+              <div className="h-full">
+                <Navbar />
+                {isAPublicRoute && children}
+                {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
+              </div>
+            </AuthProvider>
           </GuildProvider>
         </UserProvider>
       </body>
