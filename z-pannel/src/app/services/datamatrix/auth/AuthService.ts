@@ -19,11 +19,15 @@ export default class AuthService extends DataMatrixService
         const body = JSON.stringify({login: login, password: password})
         const response = await fetch(this.baseUrl + this._resource, {method: "POST", body: body});
         const data = await response.json();
-        return data;
+        const token = JSON.stringify({data: data.data});
+        const user = await (await fetch(this.baseUrl + "decode", {method: "POST", body: token})).json();
+        
+        
+        return {message: data.message, token: data.data, user: user};
     }
 
     static async recoverUserInfo(token: string) {
-        const response = await (await axios.post(this.baseUrl + this._resource + "0", {data: token})).data;
+        const response = await (await axios.post(this.baseUrl + "decode", {data: token})).data;
         return response;
     }
 

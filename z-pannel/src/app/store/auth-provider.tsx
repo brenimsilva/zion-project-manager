@@ -2,40 +2,44 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { createContext } from "react";
 import AuthService from "../services/datamatrix/auth/AuthService";
+import { setCookie } from "nookies";
+import { useRouter } from "next/navigation";
 
 type AuthContextType = {
   isAuthenticated: boolean;
   user: any;
+  signIn: ({ login, password }: loginProps) => Promise<void>;
 };
 
 type props = {
   children: ReactNode;
 };
 
+interface loginProps {
+  login: string;
+  password: string;
+}
+
 export const authContext = createContext({} as AuthContextType);
 
 export default function AuthProvider({ children }: props) {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [user, setUser] = useState();
-  async function signIn() {}
+  const [user, setUser] = useState<DMUserProjection | null>(null);
+  const router = useRouter();
 
-  useEffect(() => {
-    const token = localStorage.getItem("datamatrix.token");
-    if (token) {
-      AuthService.recoverUserInfo(token).then((response) => {
-        console.log(response);
-        setUser(response);
-      });
-    }
-  }, []);
+  const isAuthenticated = !!user;
 
-  async function verifyLogin() {
-    const auth = await AuthService.auth();
-    if (!auth) console.log("Login falhou");
+  async function signIn({ login, password }: loginProps) {
+    const { token, user } = await AuthService.login({ login, password });
+    setCookie(undefined, "datamatrix.token", token, {
+      maxAge: 60 * 60 * 10, //10 hours
+    });
+    setUser(user);
+
+    router.push("/dashboard");
   }
 
   return (
-    <authContext.Provider value={{ isAuthenticated, user }}>
+    <authContext.Provider value={{ isAuthenticated, user, signIn }}>
       {children}
     </authContext.Provider>
   );

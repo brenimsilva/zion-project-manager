@@ -57,7 +57,7 @@ class AuthController extends ResourceController {
 
     public function decodeToken() {
         
-        $token = $this->request->getJSON("token")['data'];
+        $token = $this->request->getJSON("data")["data"];
         $jwt = new JWT();
         $jwtSecretKey = "matrix";
         $decoded_token = $jwt->decode($token, $jwtSecretKey, "HS256");
