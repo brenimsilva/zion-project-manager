@@ -6,7 +6,8 @@ export const APP_ROUTES = {
     },
     public: {
         home: "/",
-        login: "/login"
+        login: "/login",
+        admin: "/admin"
     }
 }
 

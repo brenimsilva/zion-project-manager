@@ -1,7 +1,7 @@
 import API from "@/app/Util/API";
 import Config from "@/app/Util/Config";
 import axios from "axios";
-import { IDMDiscordUser } from "../discord_user/IDiscordUser";
+import { IDMProfile } from "../profiles/Interfaces";
 import DataMatrixService from "../DataMatrixService";
 
 export interface IDMUser {

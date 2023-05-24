@@ -1,6 +1,7 @@
 import axios from "axios";
 import DiscordService from "./DiscordService";
 import { IDiscordGuild, IDiscordUser } from "./IDiscord";
+import ProfileService from "../datamatrix/profiles/ProfileService";
 
 export default class GuildService extends DiscordService {
     constructor() {
@@ -9,9 +10,10 @@ export default class GuildService extends DiscordService {
 
     static async getUserData(): Promise<IDiscordUser> {
         try {
+            const accessToken = (await ProfileService.getById(1)).discord_api_token;
             const userGuilds: Array<IDiscordGuild> = await (await axios.get(`${this.url}users/@me/guilds?with_counts=true`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                    Authorization: `Bearer ${accessToken}`
                 }
             })).data.map((guild: any): IDiscordGuild => {
                     const image = new Image();
@@ -22,7 +24,7 @@ export default class GuildService extends DiscordService {
     
             const {avatar, username, id} = await (await axios.get(`${this.url}users/@me`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                    Authorization: `Bearer ${accessToken}`
                 }
             })).data
             

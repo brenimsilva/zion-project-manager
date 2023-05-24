@@ -56,16 +56,6 @@ export default function UserGuilds() {
     });
   }
 
-  // useEffect(() => {
-  //   if (!code && !connected) {
-  //     router.push(DiscordService.authUrl);
-  //   } else if (code && !connected) {
-  //     DiscordService.authenticate(code).then((auth) => {
-  //       setConnected(auth);
-  //     });
-  //   }
-  // }, [code]);
-
   useEffect(() => {
     setFilteredList((prev) => {
       return [...sortByParams({ guilds: prev }, orderParam)];

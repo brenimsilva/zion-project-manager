@@ -35,6 +35,9 @@ $routes->post("/user", 'UserController::add');
 $routes->get('/migrate', "DBController::migrate");
 $routes->post("/auth", "AuthController::auth");
 $routes->match(["POST","OPTIONS"], "/decode", "AuthController::decodeToken");
+$routes->match(["GET","OPTIONS"], "/profile/(:num)", "ProfileController::getbyId/$1");
+$routes->match(["PUT","OPTIONS"], "/profile", "ProfileController::updateProfile");
+
 
 
 /*

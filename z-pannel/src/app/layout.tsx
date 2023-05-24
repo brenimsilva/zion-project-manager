@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const path = usePathname();
-  const isAPublicRoute = checkPublicRoute(path);
-
+  // const isAPublicRoute = checkPublicRoute(path);
+  const isAPublicRoute = true;
   return (
     <html lang="en">
       <link

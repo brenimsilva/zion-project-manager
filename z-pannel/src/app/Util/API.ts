@@ -19,7 +19,7 @@ export default class API {
     
     static async put({url, body, headers}: IRequestParams) {
         const bodyJson = JSON.stringify(body);
-        return this._sendRequest({url, method:"PUT", body:bodyJson, headers});
+        return this._sendRequest({url, method:"PUT", body:bodyJson});
     }
 
     static async delete({url, body, headers}: IRequestParams) {
@@ -28,9 +28,9 @@ export default class API {
     }
 
     static async _sendRequest<T>({url, method, body, headers}: IRequestParams): Promise<T> {
-        console.log(url, method);
         // const params = {...body, ...headers};
-        const response = await fetch(url, {method: method, headers: {"Content-Type": "application/json"}});
+
+        const response = await fetch(url, {method: method, headers: {"Content-Type": "application/json"}, body: body});
         const responseJson = await response.json();
         return responseJson;
     }
