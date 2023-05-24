@@ -13,4 +13,9 @@ export default class ProfileService extends DataMatrixService{
         const response = await API.put({url: `${this.baseUrl}${this.resource}`, body: profile});
         return response;
     }
+
+    static async add(profile: IDMProfile) {
+        const response = await API.post({url: `${this.baseUrl}${this.resource}`, body: profile});
+        return response;
+    }
 }

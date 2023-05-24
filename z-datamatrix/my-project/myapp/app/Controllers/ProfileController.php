@@ -37,4 +37,12 @@ class ProfileController extends ResourceController {
         return $this->response->setJSON($newUser);
 
     }
+
+    public function add()
+    {
+        $model = new ProfileModel();
+        $newUser = $this->request->getJSON();
+        $model->insert($newUser);
+        return $this->response->setJSON($newUser);
+    }
 }
