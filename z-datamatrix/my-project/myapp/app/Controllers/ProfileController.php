@@ -42,6 +42,9 @@ class ProfileController extends ResourceController {
     {
         $model = new ProfileModel();
         $newUser = $this->request->getJSON();
+        if(isset($model->where("discord_id", $newUser->discord_id)->first())) {
+            return $this->response->setJSON(["error" => true, "message" => "discord_id already in use"]);
+        }
         $model->insert($newUser);
         return $this->response->setJSON($newUser);
     }
