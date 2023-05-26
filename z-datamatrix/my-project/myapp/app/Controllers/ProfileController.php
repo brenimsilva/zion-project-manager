@@ -2,11 +2,13 @@
 namespace App\Controllers;
 
 use App\Models\ProfileModel;
+use App\Services\ProfileService;
 use App\Util\DIContainer;
 use CodeIgniter\RESTful\ResourceController;
 
 class ProfileController extends ResourceController {
-    private $_DIContainer;
+    private DIContainer $_DIContainer;
+    private ProfileService $_service;
     public function __construct()
     {
         header('Access-Control-Allow-Origin: *');
@@ -15,37 +17,34 @@ class ProfileController extends ResourceController {
         header("Access-Control-Allow-Credentials: true");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         header("Access-Control-Expose-Headers: Content-Length, X-JSON, FormData");
-        
         header("Access-Control-Max-Age: 86400");
+        
         if ( "OPTIONS" === $_SERVER['REQUEST_METHOD'] ) {
             die();
         }
         $this->_DIContainer = new DIContainer();
+        $this->_service = $this->_DIContainer->getProfileService();
     }
 
     public function getById($id)
     {
-        $model = new ProfileModel();
-        return $this->response->setJSON($model->find($id));
+        $response = $this->_service->getById($id);
+        return $this->response->setJSON($response);
     }
 
     public function updateProfile() 
     {
-        $model = new ProfileModel();
         $newUser = $this->request->getJSON();
-        $model->update($newUser->id, $newUser);
-        return $this->response->setJSON($newUser);
-
+        $response = $this->_service->updateProfile($newUser);
+        return $this->response->setJSON($response);
     }
 
     public function add()
     {
-        $model = new ProfileModel();
         $newUser = $this->request->getJSON();
-        if(isset($model->where("discord_id", $newUser->discord_id)->first())) {
-            return $this->response->setJSON(["error" => true, "message" => "discord_id already in use"]);
-        }
-        $model->insert($newUser);
-        return $this->response->setJSON($newUser);
+        $response = $this->_service->add($newUser);
+        return $this->response->setJSON($response);
     }
+
+    
 }
