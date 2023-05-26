@@ -28,10 +28,12 @@ export default function page() {
             if (!!profile.discord_api_token) {
               setAccessToken(profile.discord_api_token);
             }
-            ProfileService.updateProfile({
+            const newProfile = {
               ...profile,
               discord_api_token: accessToken,
-            });
+            };
+            console.log(newProfile);
+            ProfileService.updateProfile(newProfile);
           });
         }}
       >

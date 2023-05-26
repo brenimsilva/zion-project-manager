@@ -10,7 +10,7 @@ class ProfileService
     
     public function __construct(ProfileModel $model)
     {
-        $this->$model = $model;
+        $this->model = $model;
     }
 
     public function getAll() 

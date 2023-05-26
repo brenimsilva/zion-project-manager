@@ -7,7 +7,7 @@ use App\Util\DIContainer;
 use CodeIgniter\RESTful\ResourceController;
 
 class ProfileController extends ResourceController {
-    private DIContainer $_DIContainer;
+    private $_DIContainer;
     private ProfileService $_service;
     public function __construct()
     {
@@ -35,6 +35,7 @@ class ProfileController extends ResourceController {
     public function updateProfile() 
     {
         $newUser = $this->request->getJSON();
+        return ["message" => $newUser];
         $response = $this->_service->updateProfile($newUser);
         return $this->response->setJSON($response);
     }
