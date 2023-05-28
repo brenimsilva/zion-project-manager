@@ -38,7 +38,7 @@ class UserService
 
         catch (Exception $ex) 
         {
-            return ["message" => "ERROR trying to update user {$user->getId()}"];
+            return ["message" => "ERROR trying to update user {$prev->getId()}"];
         }
     }
     

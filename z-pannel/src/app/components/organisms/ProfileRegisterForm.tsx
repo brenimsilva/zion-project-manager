@@ -1,49 +1,103 @@
-"use client"
-import React, { useState } from 'react'
-import {z} from "zod";
+"use client";
+import React, { useState } from "react";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IDMProfile } from '@/app/services/datamatrix/profiles/Interfaces';
-import FormInput from '@/app/components/atoms/FormInput';
-import ProfileService from '@/app/services/datamatrix/profiles/ProfileService';
-
-
+import { IDMProfile } from "@/app/services/datamatrix/profiles/Interfaces";
+import FormInput from "@/app/components/atoms/FormInput";
+import ProfileService from "@/app/services/datamatrix/profiles/ProfileService";
+import Title from "../atoms/Title";
+import Image from "next/image";
+import DiscordService from "@/app/services/discord/DiscordService";
+import UserService from "@/app/services/datamatrix/user/UserService";
+import DataMatrixService from "@/app/services/datamatrix/DataMatrixService";
+import AuthService from "@/app/services/datamatrix/auth/AuthService";
 
 const registerSchema = z.object({
-username: z.string(),
-discord_username: z.string(),
-discord_id: z.string(),
-discord_email: z.string(),
-})
+  username: z.string(),
+  discord_username: z.string(),
+  discord_id: z.string(),
+  discord_email: z.string(),
+});
 
-type RegisterSchema = z.infer<typeof registerSchema>
+type RegisterSchema = z.infer<typeof registerSchema>;
 export default function ProfileRegisterForm() {
-    const [message, setMessage] = useState<string>("");
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm<RegisterSchema>({
-        resolver: zodResolver(registerSchema),
-      });
-    
-      async function submitNewProfile(profile: RegisterSchema) {
-        const response = await ProfileService.add({...profile, id_user: 1, discord_api_token: "", discord_avatar: ""});
-        setMessage(JSON.stringify(response));
-        return;
-      }
-    
-    
-      return (
-        <div>
-          <form onSubmit={handleSubmit(submitNewProfile)}>
-            <FormInput getInput={{...register("username")}} inputType='text' text='Username'/>
-            <FormInput getInput={{...register("discord_username")}} inputType='text' text='Discord Username'/>
-            <FormInput getInput={{...register("discord_email")}} inputType='text' text='Discord Email'/>
-            <FormInput getInput={{...register("discord_id")}} inputType='text' text='Discord Id'/>
-            <button type='submit' className='p-5 border shadow'>Confirmar</button>
-          </form>
-          <strong className='text-cHL2'>{message}</strong>
+  const [message, setMessage] = useState<string>("");
+  const [code, setCode] = useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  async function submitNewProfile(profile: RegisterSchema) {
+    const response = await ProfileService.add({
+      ...profile,
+      id_user: 1,
+      discord_api_token: "",
+      discord_avatar: "",
+    });
+    setMessage(JSON.stringify(response));
+    return;
+  }
+
+  async function connectWithDiscord() {
+    if (!!code) {
+      DiscordService.authenticate(code).then((access_token) => {});
+    }
+  }
+  return (
+    <div className="grid grid-cols-4">
+      <div className="col-span-3">
+        <Title text="Profile Register" />
+        <form onSubmit={handleSubmit(submitNewProfile)}>
+          <FormInput
+            getInput={{ ...register("username") }}
+            inputType="text"
+            text="Username"
+          />
+          <FormInput
+            getInput={{ ...register("discord_username") }}
+            inputType="text"
+            text="Discord Username"
+          />
+          <FormInput
+            getInput={{ ...register("discord_email") }}
+            inputType="text"
+            text="Discord Email"
+          />
+          <FormInput
+            getInput={{ ...register("discord_id") }}
+            inputType="text"
+            text="Discord Id"
+          />
+          <button type="submit" className="p-5 border shadow">
+            Confirmar
+          </button>
+        </form>
+
+        <Title text="Or connect with discord" />
+        <div className="">
+          <button
+            type="button"
+            onClick={() => {}}
+            className="border shadow p-3 w-full text-cWhite bg-[#5865f2] hover:bg-[#2b3cf3d8] hover:text-white transition"
+          >
+            <i className="fa-brands fa-discord" />
+          </button>
         </div>
-      )
+      </div>
+      <div className="w-fit col-span-1">
+        <Image
+          src="/bot1.jpg"
+          alt="a bot registering"
+          width={500}
+          height={400}
+        />
+      </div>
+      <strong className="text-cHL2">{message}</strong>
+    </div>
+  );
 }

@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ProfileService from "../services/datamatrix/profiles/ProfileService";
+import ProfileService from "../../services/datamatrix/profiles/ProfileService";
 import { usePathname, useSearchParams } from "next/navigation";
-import DiscordService from "../services/discord/DiscordService";
+import DiscordService from "../../services/discord/DiscordService";
 import { useRouter } from "next/navigation";
 
 export default function page() {

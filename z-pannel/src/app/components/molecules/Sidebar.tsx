@@ -12,6 +12,11 @@ export default function Sidebar() {
           href="/dashboard/cyber-sheet"
           icon="fa-solid fa-sheet-plastic"
         />
+        <SBItem
+          href="/dashboard/profile-register"
+          icon="fa-solid fa-user-plus"
+        />
+        <SBItem href="/dashboard/admin" icon="fa-solid fa-lock" />
       </div>
     </div>
   );

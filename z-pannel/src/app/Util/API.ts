@@ -1,3 +1,5 @@
+import { IDMProfile } from "../services/datamatrix/profiles/Interfaces";
+
 export interface IRequestParams {
     url: string;
     method?: "POST" | "GET" | "PUT" | "DELETE";
