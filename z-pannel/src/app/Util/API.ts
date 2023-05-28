@@ -32,7 +32,7 @@ export default class API {
     static async _sendRequest<T>({url, method, body, headers}: IRequestParams): Promise<T> {
         // const params = {...body, ...headers};
 
-        const response = await fetch(url, {method: method, headers: {"Content-Type": "application/json"}, body: body});
+        const response = await fetch(url, {method: method, headers: {"Content-Type": "application/json", ...headers}, body: body});
         const responseJson = await response.json();
         return responseJson;
     }

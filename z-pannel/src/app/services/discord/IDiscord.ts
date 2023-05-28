@@ -20,5 +20,14 @@ export interface IDiscordUser {
     avatar: string;
     id: string;
     username: string;
-    guilds: Array<IDiscordGuild>
+    guilds: Array<IDiscordGuild>;
+    discriminator: string;
+    verified: boolean;
+    email: string;
+    flags: number;
+    banner: string;
+    accent_color: number;
+    premium_type: number;
+    public_flags: number;
 }
+
