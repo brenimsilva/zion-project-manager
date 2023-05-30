@@ -53,8 +53,8 @@ export default function RegisterForm() {
       password: data.password,
     };
     const response = await UserService.add(body);
-    if (response.errors !== null) {
-      setDMErrors(response.errors);
+    if (response.error !== null) {
+      setDMErrors(response.error);
       setModalIsActive(true);
       return;
     }

@@ -45,7 +45,20 @@ class ProfileController extends ResourceController {
     {
         $newUser = $this->request->getJSON();
         $response = $this->_service->add($newUser);
-        return $this->response->setJSON(["data" => $response, "message" => "Profile added successfully!"]);
+        $errors = isset($response['error']);
+
+        $return = $errors ? [
+            "message" => "Profile not inserted, check errors", 
+            "data" => null,
+            "error" => $response['error']
+        ] : [
+            "message" => "Profile inserted successfully",
+            "data" => $response['data'],
+            "error" => null
+
+        ];
+
+        return $this->response->setJSON($return);
     }
 
     

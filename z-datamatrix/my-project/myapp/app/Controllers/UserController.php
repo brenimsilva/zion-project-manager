@@ -56,11 +56,11 @@ class UserController extends ResourceController
             $response = $errors ? [
                 "message" => "User not inserted, check errors", 
                 "data" => null,
-                "errors" => $retorno['error']
+                "error" => $retorno['error']
             ] : [
                 "message" => "User inserted successfully",
                 "data" => $user,
-                "errors" => null
+                "error" => null
 
             ];
             return $this->response->setJSON($response);

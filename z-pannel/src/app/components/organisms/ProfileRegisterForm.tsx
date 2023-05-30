@@ -80,7 +80,7 @@ export default function ProfileRegisterForm() {
         const response = await ProfileService.add(newUser);
         //@ts-ignore
         if (!!response.error) {
-          console.log("ERROR");
+          console.log(response);
           return;
         }
         console.log("User added");

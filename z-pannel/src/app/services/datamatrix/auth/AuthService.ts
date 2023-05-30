@@ -36,7 +36,7 @@ export default class AuthService extends DataMatrixService
         if (token === null) return false;
 
         const data = await this.recoverUserInfo(token);
-        if(data.errors) return false;
+        if(data.error) return false;
         else return data;
         // location.href = `/dashboard`;
     }

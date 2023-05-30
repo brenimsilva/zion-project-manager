@@ -27,10 +27,10 @@ class ProfileService
     public function add($profile)
     {
         $insert = $this->model->insert($profile);
-        if($insert) {
-            return $profile;
+        if(!$insert) {
+            return ["error" => $this->model->errors()];
         }
-        return false;
+        return ["data" => $profile];
     }
 
     public function updateProfile(Profile $newProfile)

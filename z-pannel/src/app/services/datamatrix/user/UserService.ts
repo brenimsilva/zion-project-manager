@@ -17,7 +17,7 @@ export interface IDMUser {
 interface IDMAddResponse {
   message: string;
   data: IDMUser;
-  errors?: any;
+  error?: any;
 }
 
 export default class UserService extends DataMatrixService {

@@ -25,8 +25,14 @@ class ProfileModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
+    protected $validationRules      = [
+        "discord_id" => "is_unique[profiles.discord_id]"
+    ];
+    protected $validationMessages   = [
+        'discord_id' => [
+            'is_unique' => 'Sorry. That discord_id is already been taken.'
+        ],
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
