@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Classes\ProfileDTO;
 use App\Models\ProfileModel;
 use App\Services\ProfileService;
 use App\Util\DIContainer;
@@ -44,7 +45,7 @@ class ProfileController extends ResourceController {
     {
         $newUser = $this->request->getJSON();
         $response = $this->_service->add($newUser);
-        return $this->response->setJSON($response);
+        return $this->response->setJSON(["data" => $response, "message" => "Profile added successfully!"]);
     }
 
     

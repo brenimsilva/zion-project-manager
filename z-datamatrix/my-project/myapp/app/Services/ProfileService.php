@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Classes\ProfileDTO;
 use App\Entities\Profile;
 use App\Models\ProfileModel;
 
@@ -23,7 +24,7 @@ class ProfileService
         return $this->model->find($id);
     }
 
-    public function add(Profile $profile)
+    public function add($profile)
     {
         $insert = $this->model->insert($profile);
         if($insert) {

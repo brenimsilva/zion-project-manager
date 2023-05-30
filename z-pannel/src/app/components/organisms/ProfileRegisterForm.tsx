@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IDMProfile } from "@/app/services/datamatrix/profiles/Interfaces";
+import { IDMProfile, IDMProfileDTO } from "@/app/Util/Interfaces";
 import FormInput from "@/app/components/atoms/FormInput";
 import ProfileService from "@/app/services/datamatrix/profiles/ProfileService";
 import Title from "../atoms/Title";
@@ -61,12 +61,14 @@ export default function ProfileRegisterForm() {
         console.log("Access token granted: ");
         console.log(access_token);
 
-        const user = await DiscordService.getDiscordUser(access_token);
+        const user = await DiscordService.getDiscordUserWithGuilds(
+          access_token
+        );
 
         console.log("Got a new user");
         console.log(user);
 
-        const newUser: IDMProfile = {
+        const newUser: IDMProfileDTO = {
           discord_api_token: access_token,
           discord_avatar: user.avatar,
           discord_email: user.email,
@@ -76,12 +78,12 @@ export default function ProfileRegisterForm() {
           discord_username: user.username,
         };
         const response = await ProfileService.add(newUser);
+        //@ts-ignore
         if (!!response.error) {
           console.log("ERROR");
           return;
         }
         console.log("User added");
-        console.log(newUser);
         console.log(response);
       } else {
         console.log("Invalid code, redirecting to discords authentication...");

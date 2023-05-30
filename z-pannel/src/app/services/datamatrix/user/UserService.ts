@@ -1,7 +1,7 @@
 import API from "@/app/Util/API";
 import Config from "@/app/Util/Config";
 import axios from "axios";
-import { IDMProfile } from "../profiles/Interfaces";
+import { IDMProfile } from "../../../Util/Interfaces";
 import DataMatrixService from "../DataMatrixService";
 
 export interface IDMUser {

@@ -1,4 +1,4 @@
-import { IDMProfile } from "../services/datamatrix/profiles/Interfaces";
+import { IDMProfile } from "./Interfaces";
 
 export interface IRequestParams {
     url: string;

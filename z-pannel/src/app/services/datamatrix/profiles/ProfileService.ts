@@ -1,6 +1,6 @@
 import API from "@/app/Util/API";
 import DiscordService from "../../discord/DiscordService";
-import { IDMProfile } from "./Interfaces";
+import { IDMProfile, IDMProfileDTO } from "../../../Util/Interfaces";
 import DataMatrixService from "../DataMatrixService";
 export default class ProfileService extends DataMatrixService{
     private static resource = "profile";
@@ -14,7 +14,7 @@ export default class ProfileService extends DataMatrixService{
         return response;
     }
 
-    static async add(profile: IDMProfile) {
+    static async add(profile: IDMProfileDTO) {
         const response = await API.post({url: `${this.baseUrl}${this.resource}`, body: profile});
         return response;
     }

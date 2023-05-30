@@ -1,5 +1,5 @@
 import Config from "@/app/Util/Config";
-import { IDiscordAuth, IDiscordGuild, IDiscordUser } from "./IDiscord";
+import { IDiscordAuth, IDiscordGuild, IDiscordUser } from "../../Util/Interfaces";
 import axios from "axios";
 import ProfileService from "../datamatrix/profiles/ProfileService";
 import API from "@/app/Util/API";
@@ -35,41 +35,51 @@ export default class DiscordService {
         }
     }
 
-    static async getDiscordUser(access_token?: string) {
+    static async getDiscordUserWithGuilds(access_token?: string) {
         try {
-            let accessToken = "";
-            if(!!access_token)
-            {
-                accessToken = access_token;
-                console.log("CERTO");
-            } else {
-                accessToken = (await ProfileService.getById(1)).discord_api_token;
-            }
-
-            const response: Array<any> = await API.get({url: `${this.url}users/@me/guilds?with_counts=true`, headers: {
-                Authorization: `Bearer ${accessToken}`
-            }}
-            )
-            console.log(response);
-
-            const userGuilds = response.map((guild: any): IDiscordGuild => {
-                const image = new Image();
-                image.src = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
-                const response = {icon: guild.icon, id: guild.id, name: guild.name, owner: guild.owner, image: image, approximate_member_count: guild.approximate_member_count};
-                return response
-        })
+            let accessToken = await this._getAccessToken(access_token);
+            const userGuilds: Array<IDiscordGuild> = await this.getUserGuildList(accessToken);
     
-            const user = await API.get<IDiscordUser>({url: `${this.url}users/@me`, headers: {
-                Authorization: `Bearer ${accessToken}`
-            }}
-            )
+            const user = await this.getDiscordUser(accessToken);
             
-            const userResponse: IDiscordUser = {...user, guilds: userGuilds}
-            return userResponse;
+            const userWithGuilds: IDiscordUser = {...user, guilds: userGuilds}
+            return userWithGuilds;
         }
         catch {
             const user: IDiscordUser = {} as IDiscordUser
             return user;
         }
+    }
+
+    private static async _getAccessToken(access_token?: string) {
+        if(!!access_token)
+        {
+            return access_token;
+        } 
+        return (await ProfileService.getById(1)).discord_api_token;
+    }
+
+    public static async getUserGuildList(access_token: string): Promise<Array<IDiscordGuild>> {
+        const response =  await API.get<Array<IDiscordGuild>>({url: `${this.url}users/@me/guilds?with_counts=true`, headers: {
+            Authorization: `Bearer ${access_token}`
+        }}
+        )
+        const data = response.map((guild): IDiscordGuild => {
+            const imageSrc = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
+            const response: IDiscordGuild = {...guild, imageSrc: imageSrc};
+            return response
+        })
+
+        return data;
+    }
+
+    public static async getDiscordUser(access_token: string): Promise<IDiscordUser>
+    {
+        const response = await API.get<IDiscordUser>({url: `${this.url}users/@me`, headers: {
+            Authorization: `Bearer ${access_token}`
+        }}
+        )
+
+        return response;
     }
 }
