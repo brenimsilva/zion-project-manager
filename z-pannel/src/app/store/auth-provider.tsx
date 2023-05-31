@@ -29,11 +29,15 @@ export default function AuthProvider({ children }: props) {
   const isAuthenticated = !!user;
 
   async function signIn({ login, password }: loginProps) {
-    const { token, user } = await AuthService.login({ login, password });
+    const {
+      token,
+      user: { data: user },
+    } = await AuthService.login({ login, password });
     setCookie(undefined, "datamatrix.token", token, {
       maxAge: 60 * 60 * 10, //10 hours
     });
     setUser(user);
+    console.log(user);
 
     router.push("/dashboard");
   }

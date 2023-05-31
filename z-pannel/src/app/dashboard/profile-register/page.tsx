@@ -1,12 +1,6 @@
-import ProfileRegisterForm from '@/app/components/organisms/ProfileRegisterForm'
-import React from 'react'
-
-
+import ProfileRegisterForm from "@/app/components/organisms/ProfileRegisterForm";
+import React from "react";
 
 export default function page() {
-  return (
-    <div>
-     <ProfileRegisterForm />
-    </div>
-  )
+  return <ProfileRegisterForm />;
 }

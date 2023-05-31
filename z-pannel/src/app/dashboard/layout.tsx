@@ -1,6 +1,7 @@
 "use client";
 import { Inter } from "next/font/google";
 import Sidebar from "../components/molecules/Sidebar";
+import DashBoardPageContainer from "../components/atoms/DashBoardPageContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function DashboardLayout({
   return (
     <div className="flex h-5/6">
       <Sidebar />
-      <div className="w-full">{children}</div>
+      <div className="w-full">
+        <DashBoardPageContainer>{children}</DashBoardPageContainer>
+      </div>
     </div>
   );
 }

@@ -2,9 +2,5 @@ import DashBoardPageContainer from "../../components/atoms/DashBoardPageContaine
 import DiscordCenter from "../../components/molecules/DiscordCenter";
 
 export default function page() {
-  return (
-    <DashBoardPageContainer>
-      <DiscordCenter />
-    </DashBoardPageContainer>
-  );
+  return <DiscordCenter />;
 }

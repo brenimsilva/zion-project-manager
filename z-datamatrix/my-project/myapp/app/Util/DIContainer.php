@@ -17,7 +17,7 @@ class DIContainer
     {
     }
 
-    private function _getUserModel(): UserModel 
+    public function getUserModel(): UserModel 
     {
         if(isset($this->userModel)) {
             return $this->userModel;
@@ -31,7 +31,7 @@ class DIContainer
         if(isset($this->userService)) {
             return $this->userService;
         }
-        $this->userService = new UserService($this->_getUserModel());
+        $this->userService = new UserService($this->getUserModel());
         return $this->userService;
     }
 

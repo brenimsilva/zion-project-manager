@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, createContext, useState } from "react";
-import { IDiscordUser } from "../services/discord/IDiscord";
+import { IDiscordUser } from "../Util/Interfaces";
 
 const defaultState: IDiscordUser = {
   avatar: "",
