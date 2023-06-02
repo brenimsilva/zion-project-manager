@@ -2,12 +2,11 @@
 import Navbar from "./components/organisms/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import GuildProvider from "./store/guild-provider";
-import UserProvider from "./store/user-provider";
 import { usePathname } from "next/navigation";
 import { checkPublicRoute } from "./Util/app-routes";
 import PrivateRoute from "./components/organisms/PrivateRoute";
 import AuthProvider from "./store/auth-provider";
+import Providers from "./components/atoms/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const path = usePathname();
-  // const isAPublicRoute = checkPublicRoute(path);
-  const isAPublicRoute = true;
+  const isAPublicRoute = checkPublicRoute(path);
   return (
     <html lang="en">
       <link
@@ -36,17 +34,13 @@ export default function RootLayout({
         precedence="default"
       />
       <body className={`${inter.className} h-screen`}>
-        <UserProvider>
-          <GuildProvider>
-            <AuthProvider>
-              <div className="h-full">
-                <Navbar />
-                {isAPublicRoute && children}
-                {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
-              </div>
-            </AuthProvider>
-          </GuildProvider>
-        </UserProvider>
+        <Providers>
+          <div className="h-full">
+            <Navbar />
+            {isAPublicRoute && children}
+            {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
+          </div>
+        </Providers>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 import Colors from "@/app/Util/Colors";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -19,6 +19,7 @@ const IContainer = styled.div`
 export default function SBItem({ href, icon }: ISBItem) {
   const route = usePathname();
   const selected = route === href;
+  const router = useRouter();
 
   return (
     <div
@@ -38,7 +39,12 @@ export default function SBItem({ href, icon }: ISBItem) {
           selected ? { backgroundColor: Colors.cWhite, color: Colors.cHL } : {}
         }
       >
-        <a href={href} className="col-span-1 text-center grid">
+        <a
+          onClick={() => {
+            router.push(href);
+          }}
+          className="col-span-1 text-center grid cursor-pointer"
+        >
           <span className="flex my-2 items-center">
             <i className={icon}></i>
           </span>

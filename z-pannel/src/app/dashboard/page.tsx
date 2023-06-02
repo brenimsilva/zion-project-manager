@@ -1,6 +1,11 @@
-import React from "react";
-import DashBoardPageContainer from "../components/atoms/DashBoardPageContainer";
+"use client";
+import React, { useContext } from "react";
+import Title from "../components/atoms/Title";
 
 export default function page() {
-  return <h1>Teste</h1>;
+  return (
+    <div>
+      <Title text="Dashboard Index" />
+    </div>
+  );
 }
