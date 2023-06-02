@@ -18,25 +18,24 @@ class Authentication
         $this->_session = session();
     }
 
-    public function login($login, $password)
+    public function login($login, $password, $token = null)
     {
-        $user = $this->_usermodel->where("login", $login)->first();
-        if($user === null)
+        $userData = $this->_usermodel->where("login", $login)->first();
+        if($userData === null)
         {
             return false;
         }
-        if(!password_verify($password, $user->password))
+        if(!password_verify($password, $userData->password))
         {
             return false;
         }
 
-        $this->_session->regenerate();
-        $this->_session->set("id", $user->id);
-        return ["session" => $this->_session->get(), "user" => $user];
-    }
-
-    public function getSession() 
-    {
-        return ["session" => $this->_session->get()];
+        $user = [
+            "id" => $userData->id,
+            "login" => $userData->login,
+            "name" => $userData->name,
+            "email" => $userData->email
+        ];
+        return $user;
     }
 }

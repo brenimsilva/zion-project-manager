@@ -1,7 +1,7 @@
-import { IDiscordGuild } from "@/app/services/discord/IDiscord";
 import React, { useContext, useEffect } from "react";
 import Guild from "./Guild";
 import { IGuildContext, guildContext } from "@/app/store/guild-provider";
+import { IDiscordGuild } from "@/app/Util/Interfaces";
 
 interface ListGuildProps {
   filteredList: Array<IDiscordGuild>;
@@ -17,7 +17,7 @@ export default function ListGuilds({ filteredList }: ListGuildProps) {
           <Guild
             key={guild.id}
             id={guild.id}
-            imageSrc={guild.image.src}
+            imageSrc={guild.imageSrc || ""}
             name={guild.name}
             approximate_member_count={guild.approximate_member_count}
             selected={selectedGuildIds.includes(guild.id)}

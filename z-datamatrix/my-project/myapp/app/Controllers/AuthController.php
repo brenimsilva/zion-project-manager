@@ -37,7 +37,7 @@ class AuthController extends ResourceController {
             $login = $this->request->getJSON()->login;
             $password = $this->request->getJSON()->password;
 
-            $result = $this->_auth->login($login, $password)['user'];
+            $result = $this->_auth->login($login, $password);
             $data = $this->_jwt_encode($result);
             if($result) {
                 return $this->response->setJSON(["message" => "Login success", "data" => $data]);

@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Guild from "./Guild";
-import { IDiscordGuild, IDiscordUser } from "@/app/services/discord/IDiscord";
 import SimpleSelect from "../atoms/SimpleSelect";
 import ListGuilds from "./ListGuilds";
 import SimpleInput from "../atoms/SimpleInput";
 import APIButton from "../atoms/APIButton";
 import GuildService from "@/app/services/discord/GuildService";
 import { guildContext } from "@/app/store/guild-provider";
-import Config from "@/app/Util/Config";
-import DiscordService from "@/app/services/discord/DiscordService";
 import { useRouter, useSearchParams } from "next/navigation";
 import Title from "../atoms/Title";
+import { IDiscordGuild, IDiscordUser } from "@/app/Util/Interfaces";
+import DiscordService from "@/app/services/discord/DiscordService";
+import ProfileService from "@/app/services/datamatrix/profiles/ProfileService";
 
 export interface IUserGuildsProps {
   guilds: Array<IDiscordGuild>;
@@ -47,13 +46,13 @@ export default function UserGuilds() {
   const [connected, setConnected] = useState<boolean>(true);
   const router = useRouter();
   const code = useSearchParams().get("code");
-  function getDiscordUserInfo() {
-    GuildService.getUserData().then((user) => {
-      if (connected) {
-        setDiscordUser(user);
-        setFilteredList(user.guilds);
-      }
-    });
+  async function getDiscordUserInfo() {
+    const { discord_api_token } = await ProfileService.getById(7);
+    const user = await DiscordService.getDiscordUserWithGuilds(
+      discord_api_token
+    );
+    setDiscordUser(user);
+    setFilteredList(user.guilds!);
   }
 
   useEffect(() => {
@@ -64,8 +63,8 @@ export default function UserGuilds() {
 
   useEffect(() => {
     if (discordUser) {
-      setFilteredList(() => {
-        return discordUser.guilds.filter((guild) => {
+      setFilteredList((prev) => {
+        return discordUser!.guilds!.filter((guild) => {
           return guild.name
             .toLocaleLowerCase()
             .includes(userInput.toLocaleLowerCase());
@@ -81,7 +80,7 @@ export default function UserGuilds() {
           Servidores:
           {discordUser && (
             <span className="text-green-500 mx-1">
-              {discordUser.guilds.length}
+              {discordUser!.guilds!.length}
             </span>
           )}
         </strong>

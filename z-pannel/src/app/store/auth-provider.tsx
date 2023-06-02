@@ -6,7 +6,6 @@ import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
 
 type AuthContextType = {
-  isAuthenticated: boolean;
   user: any;
   signIn: ({ login, password }: loginProps) => Promise<void>;
 };
@@ -26,16 +25,16 @@ export default function AuthProvider({ children }: props) {
   const [user, setUser] = useState<DMUserProjection | null>(null);
   const router = useRouter();
 
-  const isAuthenticated = !!user;
-
   async function signIn({ login, password }: loginProps) {
     const {
       token,
       user: { data: user },
     } = await AuthService.login({ login, password });
+
     setCookie(undefined, "datamatrix.token", token, {
       maxAge: 60 * 60 * 10, //10 hours
     });
+
     setUser(user);
     console.log(user);
 
@@ -43,7 +42,7 @@ export default function AuthProvider({ children }: props) {
   }
 
   return (
-    <authContext.Provider value={{ isAuthenticated, user, signIn }}>
+    <authContext.Provider value={{ user, signIn }}>
       {children}
     </authContext.Provider>
   );

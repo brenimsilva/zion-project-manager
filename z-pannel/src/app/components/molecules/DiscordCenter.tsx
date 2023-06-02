@@ -9,12 +9,6 @@ export default function DiscordCenter() {
 
   return (
     <div className="h-full">
-      {/* {!connected && (
-        <Modal
-          text="Clique no botao abaixo para realizar o login com sua conta discord"
-          title="Não autorizado!"
-        />
-      )} */}
       <div className="msg-box">
         <Message message={message.message} error={message.error} />
       </div>

@@ -10,7 +10,6 @@ interface props {
 export default function PrivateRoute({ children }: props) {
   const { push } = useRouter();
   const { user } = useContext(authContext);
-  console.log(user);
   const isAuthenticated = !!user;
 
   useEffect(() => {
