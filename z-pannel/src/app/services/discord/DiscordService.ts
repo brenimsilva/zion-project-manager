@@ -56,7 +56,7 @@ export default class DiscordService {
         {
             return access_token;
         } 
-        return (await ProfileService.getById(1)).discord_api_token;
+        return (await ProfileService.getById(7)).discord_api_token;
     }
 
     public static async getUserGuildList(access_token: string): Promise<Array<IDiscordGuild>> {
@@ -81,5 +81,23 @@ export default class DiscordService {
         )
 
         return response;
+    }
+
+    static async leaveGuilds(listIds: Array<string>) {
+        try {
+            let accessToken = await this._getAccessToken(undefined);
+            await listIds.forEach((id) => {
+                axios.delete(`${this.url}users/@me/guilds/${id}`, {data: JSON.stringify({lurking: false}),
+                 headers: {
+                    Authorization: `MTEwODE1MzU4OTI5MTA0NDg4NA.GRfkeo.fHHE5uYBx5UJmPqUIb8lt7gVWUFjERgb23WQgQ`
+                } }).then((response) => {
+                    console.log(`Left guild id: ${id}`)
+                    console.log(response);
+                })
+            })
+        }
+        catch {
+            return false;
+        }
     }
 }

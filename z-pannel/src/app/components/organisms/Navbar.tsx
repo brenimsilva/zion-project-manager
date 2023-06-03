@@ -8,14 +8,14 @@ export default function Navbar() {
   const color = "violet";
   return (
     <div className="nav-bar">
-      <nav className="flex items-center justify-between bg-cDark flex-wrap p-6">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
+      <nav className="flex items-center justify-between flex-wrap p-6 shadow">
+        <div className="flex items-center flex-shrink-0  mr-6">
           <Logo />
           <span className="font-semibold text-xl tracking-tight">Z-Pannel</span>
         </div>
         <div className="block lg:hidden">
           <button
-            className={`flex items-center px-3 py-2 border rounded text-${color}-200 border-${color}-400 hover:text-white hover:border-white`}
+            className={`flex items-center px-3 py-2 border rounded text-${color}-200 border-${color}-400 hover:text-cHL2 hover:border-cHL2`}
           >
             <svg
               className="fill-current h-3 w-3"
@@ -35,8 +35,8 @@ export default function Navbar() {
           <div>
             <RouteButton
               borderColor="cHL"
-              hoverBorderColor="cWhite"
-              hoverTextColor="cWhite"
+              hoverBorderColor="cDark"
+              hoverTextColor="cDark"
               textColor="cHL"
               text="Login"
               route="/login"

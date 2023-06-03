@@ -1,11 +1,10 @@
 @tailwind base;
 :root {
-  --cHL:  #00ADB5;
-  --cHLAlpha:  #00acb583;
-  --cHL2: #d464e5;
+  --cHL:  #42a6f8;
+  --cHL2: #2185D5;
   --cWhite: #EEEEEE;
-  --cBG: #393E46;
-  --cDark: #222831;
+  --cBG: #3A4750;
+  --cDark: #303841;
 }
 
 /* Firefox */

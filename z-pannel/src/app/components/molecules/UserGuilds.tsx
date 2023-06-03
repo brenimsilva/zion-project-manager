@@ -117,9 +117,9 @@ export default function UserGuilds() {
           />
           <APIButton
             text="Leave Guilds"
-            disabled={true}
+            disabled={false}
             pushRequestData={() => {
-              GuildService.leaveGuilds(selectedGuildIds).then(() => {
+              DiscordService.leaveGuilds(selectedGuildIds).then(() => {
                 getDiscordUserInfo();
               });
             }}

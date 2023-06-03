@@ -2,6 +2,7 @@ import axios from "axios";
 import DiscordService from "./DiscordService";
 import { IDiscordGuild, IDiscordUser } from "./IDiscord";
 import ProfileService from "../datamatrix/profiles/ProfileService";
+import { headers } from "next/dist/client/components/headers";
 
 export default class GuildService extends DiscordService {
     constructor() {
@@ -42,7 +43,9 @@ export default class GuildService extends DiscordService {
     static async leaveGuilds(listIds: Array<string>) {
         try {
             listIds.forEach((id) => {
-                axios.delete(`${this.url}users/@me/guilds/${id}`).then((response) => {
+                axios.delete(`${this.url}v9/users/@me/guilds/${id}`, {data: JSON.stringify({lurking: false}),                 headers: {
+                    Authorization: `Bearer ${accessToken}`
+                } }).then((response) => {
                     console.log(`Left guild id: ${id}`)
                     console.log(response);
                 })
