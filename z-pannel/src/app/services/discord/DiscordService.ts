@@ -19,12 +19,12 @@ export default class DiscordService {
                 grant_type: "authorization_code", 
                 code: code, 
                 redirect_uri: `http://${Config.APP_HOST}:${Config.APP_PORT}/dashboard/profile-register`, 
-            })
+            }).toString();
             const headers = {
                 'Content-Type':  'application/x-www-form-urlencoded',
                 'Accept-Encoding': 'application/x-www-form-urlencoded'
             }
-            const response: IDiscordAuth = await (await axios.post(`${this.url}oauth2/token`, params, {headers: headers} )).data
+            const response: IDiscordAuth = await API.post<IDiscordAuth>({url: `${this.url}oauth2/token` + params, headers})
             // localStorage.setItem("access_token", response.access_token);
             // console.log(localStorage.getItem("access_token"));
             console.log(`User Authenticated successfuly!`);

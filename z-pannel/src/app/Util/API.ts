@@ -14,9 +14,9 @@ export default class API {
         return this._sendRequest<T>({url, method:"GET", headers});
     }
 
-    static async post({url, body, headers}: IRequestParams) {
+    static async post<T>({url, body, headers}: IRequestParams) {
         const bodyJson = JSON.stringify(body);
-        return this._sendRequest({url, method:"POST", body:bodyJson, headers});
+        return this._sendRequest<T>({url, method:"POST", body:bodyJson, headers});
     }
     
     static async put({url, body, headers}: IRequestParams) {
