@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { createContext } from "react";
 import AuthService from "../services/datamatrix/auth/AuthService";
-import { setCookie } from "nookies";
+import { setCookie, parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
 import { DMUserProjection } from "../projections/DMProjections";
 
@@ -27,20 +27,33 @@ export default function AuthProvider({ children }: props) {
   const router = useRouter();
 
   async function signIn({ login, password }: loginProps) {
-    const {
-      token,
-      user: { data: user },
-    } = await AuthService.login({ login, password });
+    const { user, token } = await AuthService.login({ login, password });
 
-    setCookie(undefined, "datamatrix.token", token, {
-      maxAge: 60 * 60 * 10, //10 hours
-    });
+    // setCookie(undefined, "datamatrix.token", token, {
+    //   maxAge: 60 * 60 * 10, //10 hours
+    // });
 
     setUser(user);
     console.log(user);
 
     router.push("/dashboard");
   }
+
+  async function signInWithToken(token: string) {
+    const user = await AuthService.recoverUserInfo(token);
+    setUser(user);
+    console.log("Sign in with token successful");
+    console.log(user);
+  }
+
+  useEffect(() => {
+    const { "datamatrix.token": token } = parseCookies();
+    if (token) {
+      AuthService.recoverUserInfo(token).then((user) => {
+        setUser(user);
+      });
+    }
+  }, []);
 
   return (
     <authContext.Provider value={{ user, signIn }}>
