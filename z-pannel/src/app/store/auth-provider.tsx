@@ -4,6 +4,7 @@ import { createContext } from "react";
 import AuthService from "../services/datamatrix/auth/AuthService";
 import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
+import { DMUserProjection } from "../projections/DMProjections";
 
 type AuthContextType = {
   user: any;

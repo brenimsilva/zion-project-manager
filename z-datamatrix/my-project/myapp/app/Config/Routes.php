@@ -33,7 +33,7 @@ $routes->get('/user/(:num)', 'UserController::getById/$1');
 $routes->get('/user', 'UserController::getAll');
 $routes->post("/user", 'UserController::add');
 $routes->get('/migrate', "DBController::migrate");
-$routes->post("/auth", "AuthController::auth");
+$routes->match(["POST", "OPTIONS"], "/auth", "AuthController::auth");
 $routes->match(["POST","OPTIONS"], "/decode", "AuthController::decodeToken");
 $routes->match(["GET","OPTIONS"], "/profile/(:num)", "ProfileController::getbyId/$1");
 $routes->match(["PUT","OPTIONS"], "/profile", "ProfileController::updateProfile");

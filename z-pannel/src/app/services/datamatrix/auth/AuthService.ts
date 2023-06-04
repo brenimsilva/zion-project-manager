@@ -1,10 +1,16 @@
 import axios, { AxiosHeaders } from "axios";
 import DataMatrixService from "../DataMatrixService";
 import Config from "@/app/Util/Config";
+import API from "@/app/Util/API";
+import { DMUserProjection } from "@/app/projections/DMProjections";
 
 interface ILoginProps {
     login: string;
     password: string;
+}
+
+interface IUserAuth {
+
 }
 
 export default class AuthService extends DataMatrixService
@@ -14,16 +20,15 @@ export default class AuthService extends DataMatrixService
         super();
     }
 
-    static async login({login, password}: ILoginProps): Promise<any> 
+    static async login({login, password}: ILoginProps): Promise<{message: string, token: string, user: DMUserProjection}> 
     {
-        const body = JSON.stringify({login: login, password: password})
-        const response = await fetch(this.baseUrl + this._resource, {method: "POST", body: body});
-        const data = await response.json();
-        const token = JSON.stringify({data: data.data});
-        const user = await (await fetch(this.baseUrl + "decode", {method: "POST", body: token})).json();
+        const body = {login: login, password: password};
+        const {message, data} = await API.post<{message: string, data: string}>({url: this.baseUrl + this._resource, body});
+        
+        const user = await API.post<DMUserProjection>({url: this.baseUrl + "decode",  body: data});
         
         
-        return {message: data.message, token: data.data, user: user};
+        return {message: message, token: data, user: user};
     }
 
     static async recoverUserInfo(token: string) {

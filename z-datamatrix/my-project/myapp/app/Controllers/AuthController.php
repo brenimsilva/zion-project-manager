@@ -42,7 +42,7 @@ class AuthController extends ResourceController {
             if($result) {
                 return $this->response->setJSON(["message" => "Login success", "data" => $data]);
             };
-            return $this->response->setJSON(["message" => "Wrong password"]);
+            return $this->response->setJSON(["message" => "Wrong password", "data" => null]);
         }
         catch(Exception $ex) {
             $this->response->setStatusCode(500);
@@ -57,7 +57,7 @@ class AuthController extends ResourceController {
 
     public function decodeToken() {
         
-        $token = $this->request->getJSON("data")["data"];
+        $token = $this->request->getJSON();
         $jwt = new JWT();
         $jwtSecretKey = "matrix";
         $decoded_token = $jwt->decode($token, $jwtSecretKey, "HS256");
