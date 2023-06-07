@@ -20,7 +20,8 @@ interface ICard {
 
 const Card = styled.div`
   display: flex;
-  color: ${(props: ICard) => (props.selected ? Colors.cWhite : Colors.cDark)};
+  color: ${(props: ICard) =>
+    props.selected ? Colors.marsWhite : Colors.cDark};
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -31,7 +32,7 @@ const Card = styled.div`
   font-size: small;
   padding: 24px;
   background-color: ${(props: ICard) =>
-    props.selected ? Colors.cHL : "white"};
+    props.selected ? Colors.marsHL1 : "white"};
   border-width: 1px;
   border-color: #e5e7eb;
   border-radius: 0.5rem;

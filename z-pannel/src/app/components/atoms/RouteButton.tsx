@@ -23,7 +23,7 @@ export default function RouteButton({
   return (
     <React.Fragment>
       <button
-        className={`flex items-center px-3 py-2 border rounded text-${textColor} border-${borderColor} hover:text-${hoverTextColor} hover:border-${hoverBorderColor}`}
+        className={`transition flex items-center px-3 py-2 border rounded text-${textColor} border-${borderColor} hover:text-${hoverTextColor} hover:border-${hoverBorderColor}`}
         onClick={() => router.push(route)}
       >
         {text}

@@ -19,8 +19,8 @@ export default function APIButton({
     <React.Fragment>
       <button
         onClick={pushData}
-        className={`bg-transparent hover:bg-cHL text-cHL font-semibold hover:text-white py-2 px-4 border border-cHL hover:border-transparent rounded ${
-          disabled ? "cursor-not-allowed hover:bg-cHL" : ""
+        className={`bg-transparent hover:bg-marsHL1 text-marsHL1 font-semibold hover:text-white py-2 px-4 border border-marsHL1 hover:border-transparent rounded ${
+          disabled ? "cursor-not-allowed hover:bg-marsHL1" : ""
         }`}
       >
         {text}

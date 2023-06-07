@@ -5,7 +5,7 @@ export default function Logo() {
     <React.Fragment>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-device-desktop-analytics h-8 w-8 mr-2"
+        className="icon icon-tabler text-white icon-tabler-device-desktop-analytics h-8 w-8 mr-2"
         width="24"
         height="24"
         viewBox="0 0 24 24"

@@ -7,15 +7,17 @@ import RouteButton from "../atoms/RouteButton";
 export default function Navbar() {
   const color = "violet";
   return (
-    <div className="nav-bar">
-      <nav className="flex items-center justify-between flex-wrap p-6 shadow">
+    <div className="nav-bar  ">
+      <nav className="flex items-center justify-between flex-wrap p-4 shadow-md absolute w-full">
         <div className="flex items-center flex-shrink-0  mr-6">
           <Logo />
-          <span className="font-semibold text-xl tracking-tight">Z-Pannel</span>
+          <span className="font-semibold text-xl tracking-tight text-marsWhite">
+            Z-Pannel
+          </span>
         </div>
         <div className="block lg:hidden">
           <button
-            className={`flex items-center px-3 py-2 border rounded text-${color}-200 border-${color}-400 hover:text-cHL2 hover:border-cHL2`}
+            className={`flex items-center px-3 py-2 border rounded text-${color}-200 border-${color}-400 hover:text-marsHL2 hover:border-marsHL2`}
           >
             <svg
               className="fill-current h-3 w-3"
@@ -34,10 +36,10 @@ export default function Navbar() {
           </div>
           <div>
             <RouteButton
-              borderColor="cHL"
-              hoverBorderColor="cDark"
-              hoverTextColor="cDark"
-              textColor="cHL"
+              borderColor="marsWhite"
+              hoverBorderColor="marsHL1"
+              hoverTextColor="marsHL1"
+              textColor="marsWhite"
               text="Login"
               route="/login"
             />

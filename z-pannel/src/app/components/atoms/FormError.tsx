@@ -7,8 +7,8 @@ interface props {
 export default function FormError({ text, colSpan }: props) {
   return (
     <div
-      className={`col-span-${colSpan} text-cHL text-xs transition`}
-      style={{ filter: `drop-shadow(1px 1px 2px ${Colors.cHL})` }}
+      className={`col-span-${colSpan} text-marsHL1 text-xs transition`}
+      style={{ filter: `drop-shadow(1px 1px 2px ${Colors.marsHL1})` }}
     >
       <strong>
         <h4>{text}</h4>

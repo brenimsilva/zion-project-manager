@@ -33,15 +33,6 @@ export default function LoginForm() {
 
   async function submitLogin(data: loginType) {
     await signIn(data);
-    // const response = await AuthService.login({
-    //   login: data.login,
-    //   password: data.password,
-    // });
-    // console.log(response);
-    // await localStorage.setItem("datamatrix.token", response.data);
-    // AuthService.auth().then(() => {
-    //   router.push("/dashboard/server-list");
-    // });
   }
 
   return (
@@ -72,7 +63,7 @@ export default function LoginForm() {
                 Forgot your password?
               </a>
             </div>
-            <button className="bg-cDark hover:bg-cHL text-cWhite p-2 w-full mt-10">
+            <button className="bg-cDark hover:bg-marsHL1 text-marsWhite p-2 w-full mt-10">
               Sign in
             </button>
           </form>

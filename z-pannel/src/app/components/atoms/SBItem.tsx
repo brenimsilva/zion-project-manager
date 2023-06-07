@@ -27,16 +27,18 @@ export default function SBItem({ href, icon }: ISBItem) {
       style={
         selected
           ? {
-              border: `1px solid ${Colors.cWhite}`,
+              border: `1px solid ${Colors.marsWhite}`,
               boxShadow: `0px 0px 3px #00000028`,
             }
           : {}
       }
     >
       <div
-        className="flex justify-center rounded rounded-xl hover:text-cHL transition-all duration-200"
+        className="flex justify-center rounded rounded-xl hover:text-marsHL1 transition-all duration-200"
         style={
-          selected ? { backgroundColor: Colors.cWhite, color: Colors.cHL } : {}
+          selected
+            ? { backgroundColor: Colors.marsWhite, color: Colors.marsHL1 }
+            : {}
         }
       >
         <a

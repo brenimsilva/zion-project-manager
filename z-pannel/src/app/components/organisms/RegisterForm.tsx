@@ -139,7 +139,7 @@ export default function RegisterForm() {
         </div>
 
         <button
-          className="col-span-2 bg-cDark hover:bg-cHL transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="col-span-2 bg-cDark hover:bg-marsHL1 transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Sign In

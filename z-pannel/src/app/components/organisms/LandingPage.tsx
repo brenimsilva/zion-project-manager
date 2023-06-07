@@ -5,8 +5,10 @@ import RouteButton from "../atoms/RouteButton";
 
 export default function LandingPage() {
   return (
-    <div>
+    <React.Fragment>
       <main className="h-screen">
+        {/* <Image src={"/marslandscape.jpg"} width={1000} height={100} /> */}
+        <img src="/marslandscape4.jpg" className="w-full h-3/6 object-cover" />
         {/* <RouteButton
               borderColor="cHL"
               hoverBorderColor="cWhite"
@@ -27,6 +29,6 @@ export default function LandingPage() {
           /> */}
         </div>
       </main>
-    </div>
+    </React.Fragment>
   );
 }
