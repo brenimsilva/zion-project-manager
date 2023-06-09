@@ -2,6 +2,11 @@ import Colors from "@/app/Util/Colors";
 import React from "react";
 import Image from "next/image";
 import RouteButton from "../atoms/RouteButton";
+import InfoBox from "../atoms/InfoBox";
+import Title from "../atoms/Title";
+
+
+const stats = [{id: 1, name: "Discord integration", value: "Create profiles to manage"}, {id: 2, name: "Store your projects social media links", value: "Easy to manage"}, {id: 3, name: "Be updated with all your giveaway", value: "Giveaways!"}]
 
 export default function LandingPage() {
   return (
@@ -18,15 +23,13 @@ export default function LandingPage() {
               route="/login"
             /> */}
 
-        <div className="flex justify-center items-center h-screen">
-          {/* <Image
-            alt="image"
-            width={700}
-            height={700}
-            src={"/I3.png"}
-            className="rounded rounded-full"
-            style={{ filter: "drop-shadow(30px 10px 4px #4444dd)" }}
-          /> */}
+        <div className="flex h-3/6">
+          <div className="flex flex-col w-full items-center my-10">
+          <Title text="Our core features" color="marsDark"/>
+            <div className="flex p-6">
+              <InfoBox listStats={stats}/>
+            </div>
+          </div>
         </div>
       </main>
     </React.Fragment>

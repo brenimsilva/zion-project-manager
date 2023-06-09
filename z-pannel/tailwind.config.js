@@ -22,6 +22,7 @@ module.exports = {
         marsWhite: "rgba(240,231,231,1)",
         marsDark: "rgba(69,24,4, 1)",
         marsHL1: "rgba(193,68,14,1)",
+        marsHL1alpha: "rgba(193,68,14,0.5)",
         marsHL2: "rgba(231,125,17,1)",
         marsHL3: "rgba(253,166,0,1)"
       },

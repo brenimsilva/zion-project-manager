@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <div className="nav-bar  ">
       <nav className="flex items-center justify-between flex-wrap p-4 shadow-md absolute w-full">
-        <div className="flex items-center flex-shrink-0  mr-6">
+        <div className="flex items-center flex-shrink-0  mr-6 bg-marsHL1alpha p-4">
           <Logo />
           <span className="font-semibold text-xl tracking-tight text-marsWhite">
             Z-Pannel
