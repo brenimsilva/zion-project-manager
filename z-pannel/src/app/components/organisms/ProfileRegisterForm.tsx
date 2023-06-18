@@ -128,7 +128,7 @@ export default function ProfileRegisterForm() {
           <button
             type="button"
             onClick={connectWithDiscord}
-            className="border shadow p-3 w-full text-marsWhite bg-[#5865f2] hover:bg-[#2b3cf3d8] hover:text-white transition"
+            className="border shadow p-3 w-full text-cWhite bg-[#5865f2] hover:bg-[#2b3cf3d8] hover:text-white transition"
           >
             <i className="fa-brands fa-discord" />
           </button>
@@ -142,7 +142,7 @@ export default function ProfileRegisterForm() {
           height={400}
         />
       </div>
-      <strong className="text-marsHL2">{message}</strong>
+      <strong className="text-cGreen">{message}</strong>
     </div>
   );
 }

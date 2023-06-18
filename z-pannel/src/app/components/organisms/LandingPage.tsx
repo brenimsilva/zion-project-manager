@@ -4,16 +4,23 @@ import Image from "next/image";
 import RouteButton from "../atoms/RouteButton";
 import InfoBox from "../atoms/InfoBox";
 import Title from "../atoms/Title";
+import Navbar from "./Navbar";
 
-
-const stats = [{id: 1, name: "Discord integration", value: "Create profiles to manage"}, {id: 2, name: "Store your projects social media links", value: "Easy to manage"}, {id: 3, name: "Be updated with all your giveaway", value: "Giveaways!"}]
+const stats = [
+  { id: 1, name: "Discord integration", value: "Create profiles to manage" },
+  {
+    id: 2,
+    name: "Store your projects social media links",
+    value: "Easy to manage",
+  },
+  { id: 3, name: "Be updated with all your giveaway", value: "Giveaways!" },
+];
 
 export default function LandingPage() {
   return (
     <React.Fragment>
-      <main className="h-screen">
+      <main className="">
         {/* <Image src={"/marslandscape.jpg"} width={1000} height={100} /> */}
-        <img src="/marslandscape4.jpg" className="w-full h-3/6 object-cover" />
         {/* <RouteButton
               borderColor="cHL"
               hoverBorderColor="cWhite"
@@ -25,9 +32,9 @@ export default function LandingPage() {
 
         <div className="flex h-3/6">
           <div className="flex flex-col w-full items-center my-10">
-          <Title text="Our core features" color="marsDark"/>
+            <Title text="Our core features" color="marsDark" />
             <div className="flex p-6">
-              <InfoBox listStats={stats}/>
+              <InfoBox listStats={stats} />
             </div>
           </div>
         </div>

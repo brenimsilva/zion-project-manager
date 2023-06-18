@@ -4,7 +4,7 @@ import Title from "../components/atoms/Title";
 
 export default function page() {
   return (
-    <div>
+    <div className="">
       <Title text="Dashboard Index" />
     </div>
   );

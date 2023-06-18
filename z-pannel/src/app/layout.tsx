@@ -45,7 +45,8 @@ export default function RootLayout({
       <body className={`${inter.className} h-screen`}>
         <Providers>
           <div className="h-full">
-            <Navbar />
+            <Navbar display="block" />
+            <div className="h-fit bg-red-500"></div>
             {isAPublicRoute && children}
             {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
           </div>

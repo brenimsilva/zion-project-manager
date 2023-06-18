@@ -12,7 +12,7 @@ export default function NavTag({ text, href }: INavTagProps) {
     <React.Fragment>
       <a
         onClick={() => router.push(href)}
-        className="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-marsWhite hover:text-white mr-4 transition-all duration-200"
+        className="cursor-pointer block mt-4 lg:inline-block lg:mt-0 text-cDark hover:text-cGray mr-4 transition-all duration-200"
       >
         {text}
       </a>

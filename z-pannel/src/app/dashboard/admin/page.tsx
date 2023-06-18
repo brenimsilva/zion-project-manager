@@ -22,7 +22,7 @@ export default function page() {
       <button
         className="border p-10 shadow"
         onClick={() => {
-          ProfileService.getById(1).then((profile) => {
+          ProfileService.getById(7).then((profile) => {
             console.log(profile);
             console.log("Fazendo update do user");
             if (!!profile.discord_api_token) {

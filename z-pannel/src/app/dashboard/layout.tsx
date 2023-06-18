@@ -16,10 +16,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-5/6">
-      <Sidebar />
-      <div className="w-full">
-        <DashBoardPageContainer>{children}</DashBoardPageContainer>
+    <div className="flex flex-col">
+      <div className="flex h-full">
+        <Sidebar />
+        <div className="w-full">
+          <DashBoardPageContainer>{children}</DashBoardPageContainer>
+        </div>
       </div>
     </div>
   );
