@@ -24,6 +24,19 @@ class ProfileService
         return $this->model->find($id);
     }
 
+    private function _getByDiscordId($discord_id)
+    {
+        return $this->model->where("discord_id", $discord_id)->first();
+    }
+
+    public function saveProfile($profile) 
+    {
+        if (!empty($this->_getByDiscordId($profile->discord_id)))
+        {
+            $this->updateProfile($profile);
+        }
+    }
+
     public function add($profile)
     {
         $insert = $this->model->insert($profile);
@@ -33,9 +46,9 @@ class ProfileService
         return ["data" => $profile];
     }
 
-    public function updateProfile(Profile $newProfile)
+    public function updateProfile($id, $newProfile)
     {
-        $update = $this->model->update($newProfile->id, $newProfile);
+        $update = $this->model->update($id, $newProfile);
         if($update){
             return $newProfile;
         }

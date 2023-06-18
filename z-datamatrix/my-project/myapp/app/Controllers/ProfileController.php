@@ -33,6 +33,14 @@ class ProfileController extends ResourceController {
         return $this->response->setJSON($response);
     }
 
+    public function saveProfile()
+    {
+        $user = $this->request->getJSON();
+        $response = $this->_service->saveProfile($user);
+        return $this->response->setJSON($response);
+    }
+
+
     public function updateProfile() 
     {
         $newUser = $this->request->getJSON();
