@@ -31,10 +31,12 @@ class ProfileService
 
     public function saveProfile($profile) 
     {
-        if (!empty($this->_getByDiscordId($profile->discord_id)))
+        $existingProfile = $this->_getByDiscordId($profile->discord_id);
+        if (!empty($existingProfile))
         {
-            $this->updateProfile($profile);
+            return $this->updateProfile($existingProfile);
         }
+        return $this->add($profile);
     }
 
     public function add($profile)
@@ -46,13 +48,13 @@ class ProfileService
         return ["data" => $profile];
     }
 
-    public function updateProfile($id, $newProfile)
+    public function updateProfile($newProfile)
     {
-        $update = $this->model->update($id, $newProfile);
+        $update = $this->model->update($newProfile->id, $newProfile);
         if($update){
-            return $newProfile;
+            return ["data" => $newProfile];
         }
-        return false;
+        return ['errors' => "Nao fez update"];
     }
 
     public function delete($id)

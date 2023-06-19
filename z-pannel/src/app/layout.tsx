@@ -46,7 +46,6 @@ export default function RootLayout({
         <Providers>
           <div className="h-full">
             <Navbar display="block" />
-            <div className="h-fit bg-red-500"></div>
             {isAPublicRoute && children}
             {!isAPublicRoute && <PrivateRoute>{children}</PrivateRoute>}
           </div>
