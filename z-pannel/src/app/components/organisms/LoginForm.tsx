@@ -2,10 +2,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Title from "../atoms/Title";
 import FormInput from "../atoms/FormInput";
-import AuthService from "@/app/services/datamatrix/auth/AuthService";
 import { useRouter } from "next/navigation";
 import { authContext } from "@/app/store/auth-provider";
 

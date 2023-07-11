@@ -38,6 +38,7 @@ export default class DiscordService {
     static async getDiscordUserWithGuilds(access_token?: string) {
         try {
             let accessToken = await this._getAccessToken(access_token);
+       
             const userGuilds: Array<IDiscordGuild> = await this.getUserGuildList(accessToken);
     
             const user = await this.getDiscordUser(accessToken);
@@ -60,17 +61,27 @@ export default class DiscordService {
     }
 
     public static async getUserGuildList(access_token: string): Promise<Array<IDiscordGuild>> {
-        const response =  await API.get<Array<IDiscordGuild>>({url: `${this.url}users/@me/guilds?with_counts=true`, headers: {
-            Authorization: `Bearer ${access_token}`
-        }}
-        )
-        const data = response.map((guild): IDiscordGuild => {
-            const imageSrc = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
-            const response: IDiscordGuild = {...guild, imageSrc: imageSrc};
-            return response
-        })
-
-        return data;
+        try {
+            const response = await API.get<Array<IDiscordGuild>>({url: `${this.url}users/@me/guilds?with_counts=true`, headers: {
+                Authorization: `Bearer ${access_token}`
+            }}
+            )
+            if(response.code !== 0)
+            {
+                const data = response.map((guild): IDiscordGuild => {
+                    const imageSrc = `${this.cdn}icons/${guild.id}/${guild.icon}.png`
+                    const response: IDiscordGuild = {...guild, imageSrc: imageSrc};
+                    return response
+                })
+                return data;
+            }
+            this.authenticate(access_token);
+            return null;
+        } 
+        catch (error) 
+        {
+            return error;   
+        }
     }
 
     public static async getDiscordUser(access_token: string): Promise<IDiscordUser>

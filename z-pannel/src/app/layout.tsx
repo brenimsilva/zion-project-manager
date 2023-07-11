@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { checkPublicRoute } from "./Util/app-routes";
 import PrivateRoute from "./components/organisms/PrivateRoute";
-import AuthProvider from "./store/auth-provider";
 import Providers from "./components/atoms/Providers";
 
 const inter = Inter({ subsets: ["latin"] });

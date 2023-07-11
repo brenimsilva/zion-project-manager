@@ -9,9 +9,6 @@ import ProfileService from "@/app/services/datamatrix/profiles/ProfileService";
 import Title from "../atoms/Title";
 import Image from "next/image";
 import DiscordService from "@/app/services/discord/DiscordService";
-import UserService from "@/app/services/datamatrix/user/UserService";
-import DataMatrixService from "@/app/services/datamatrix/DataMatrixService";
-import AuthService from "@/app/services/datamatrix/auth/AuthService";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const registerSchema = z.object({
@@ -56,6 +53,7 @@ export default function ProfileRegisterForm() {
 
   async function connectWithDiscord() {
     if (!!code) {
+      console.log(code);
       const access_token = await DiscordService.authenticate(code);
       if (access_token !== false) {
         console.log("Access token granted: ");

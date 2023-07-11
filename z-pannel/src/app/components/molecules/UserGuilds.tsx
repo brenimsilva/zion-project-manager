@@ -46,11 +46,14 @@ export default function UserGuilds() {
   const [connected, setConnected] = useState<boolean>(true);
   const router = useRouter();
   const code = useSearchParams().get("code");
+
   async function getDiscordUserInfo() {
     const { discord_api_token } = await ProfileService.getById(7);
+    console.log(discord_api_token);
     const user = await DiscordService.getDiscordUserWithGuilds(
       discord_api_token
     );
+    console.log(user);
     setDiscordUser(user);
     setFilteredList(user.guilds!);
   }
@@ -80,7 +83,7 @@ export default function UserGuilds() {
           Servidores:
           {discordUser && (
             <span className="text-green-500 mx-1">
-              {discordUser!.guilds!.length}
+              {discordUser.guilds && discordUser.guilds.length}
             </span>
           )}
         </strong>
